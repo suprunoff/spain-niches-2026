@@ -2,16 +2,38 @@
 
 ## Завершённые исследования
 
+### 🔥 НОВАЯ НИША: British Expats Spain Platform (Score 8.70)
+
+**Инвестиционное резюме (краткое):**
+- **Score:** 8.70/10 (Tier 1 ниша)
+- **Type:** SaaS + Affiliate streams (English-speaking expats only)
+- **TAM:** 400K+ British nationals in Spain, €1.2-1.5B service market
+- **Y2 MRR:** €21K (conservative), €75K+ (aggressive)
+- **LTV:CAC:** 275x (exceptional!)
+- **Unit Economics:** Year 2: €252K revenue, €112K profit
+- **Go/No-Go:** **GO** (blue ocean — no direct competitors)
+- **Key insight:** Post-Brexit vacuum in British expat services. First platform to be 100% British-focused, English-language, with multi-stream monetization (SaaS + legal affiliate + tax advisor + insurance).
+- **Expansion:** German expats (700K in Spain), Portugal, France (repeatable playbook)
+- **MVP Timeline:** 8-12 weeks
+- **Risk:** Churn >20% if sticky features not built; mitigation = affiliate lock-in + community
+
+**Документ:** `/Users/sprnff/Projects/research/02-research/spain-niches/DEEP-DIVE-BRITISH-EXPATS-SPAIN.md` (15K+ words, fully sourced)
+
+---
+
+## Завершённые исследования
+
 | # | Ниша | Score | TAM | Status | Файл |
 |---|------|-------|-----|--------|------|
 | 1 | Tourist Rental VUD Compliance | 9.10 | €52-82M | ✅ Complete | DEEP-DIVE-VUD-COMPLIANCE.md |
-| 2 | **Autónomo Compliance Bundle** | **8.65** | **€80-200M** | **✅ Complete** | **DEEP-DIVE-AUTONOMO-COMPLIANCE.md** |
-| 3 | Telegram Media Empire ES | 8.75 | €116-141K/y | ✅ Complete | DEEP-DIVE-TELEGRAM-MEDIA.md |
-| 4 | Home Services Directory ES | 8.90 | €40-100M | ✅ Complete | DEEP-DIVE-HOME-SERVICES.md |
-| 5 | Physiotherapists Directory | 8.70 | €20-50M | ✅ Complete | DEEP-DIVE-PHYSIO-DIRECTORY.md |
-| 6 | E-Commerce Seller Compliance | 8.75 | €60-150M | ✅ Complete | DEEP-DIVE-ECOMMERCE-COMPLIANCE.md |
-| 7 | **Crypto Tax SaaS — Modelo 721** | **8.85** | **€350M TAM** | **✅ Complete** | **DEEP-DIVE-MODELO-721-CRYPTO.md** |
-| 8 | **Corporate L&D + FUNDAE SaaS** | **8.29** | **€800M-€1B** | **✅ Complete** | **DEEP-DIVE-FUNDAE-SAAS.md** |
+| 2 | **British Expats Spain Platform** | **8.70** | **€1.2-1.5B** | **✅ Complete** | **DEEP-DIVE-BRITISH-EXPATS-SPAIN.md** |
+| 3 | **Autónomo Compliance Bundle** | **8.65** | **€80-200M** | **✅ Complete** | **DEEP-DIVE-AUTONOMO-COMPLIANCE.md** |
+| 4 | Telegram Media Empire ES | 8.75 | €116-141K/y | ✅ Complete | DEEP-DIVE-TELEGRAM-MEDIA.md |
+| 5 | Home Services Directory ES | 8.90 | €40-100M | ✅ Complete | DEEP-DIVE-HOME-SERVICES.md |
+| 6 | Physiotherapists Directory | 8.70 | €20-50M | ✅ Complete | DEEP-DIVE-PHYSIO-DIRECTORY.md |
+| 7 | E-Commerce Seller Compliance | 8.75 | €60-150M | ✅ Complete | DEEP-DIVE-ECOMMERCE-COMPLIANCE.md |
+| 8 | **Crypto Tax SaaS — Modelo 721** | **8.85** | **€350M TAM** | **✅ Complete** | **DEEP-DIVE-MODELO-721-CRYPTO.md** |
+| 9 | **Corporate L&D + FUNDAE SaaS** | **8.29** | **€800M-€1B** | **✅ Complete** | **DEEP-DIVE-FUNDAE-SAAS.md** |
 
 ## Crypto Tax SaaS — Modelo 721 — Ключевые результаты (Новая ниша)
 

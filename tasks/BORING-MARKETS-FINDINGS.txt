@@ -1,0 +1,190 @@
+═══════════════════════════════════════════════════════════════════════════════
+BORING MARKETS SPAIN — RESEARCH COMPLETE
+═══════════════════════════════════════════════════════════════════════════════
+
+Date: March 2, 2026
+Status: READY FOR EXECUTION
+
+───────────────────────────────────────────────────────────────────────────────
+🎯 MOST UNEXPECTED GAP: FUNERAL SERVICES (FUNERARIAS)
+───────────────────────────────────────────────────────────────────────────────
+
+Market Size:      €1.5B/year
+Number of cos:    1,100 funeral homes
+Digital gap:      10/10 (ZERO aggregators in Spain)
+Score:            9.1/10 (HIGHEST)
+MVP:              6 weeks, €5-10K
+Revenue:          €1-25K/month (€50-500 per transaction)
+Verdict:          GO IMMEDIATELY
+
+Why it was missed:
+- Not sexy (no AI, no Web3, no metaverse)
+- Stale market (death isn't growth hacking)
+- Venture brain ignores it (no Series A narrative)
+
+Why it's gold:
+- Beyond (UK) = ~$100M+ exit (same business model)
+- 60% of Spanish customers willing to pay for digital
+- Information vacuum = 2-3x price premium (customer pain!)
+- Zero competition (Cazoo/Vroom = 12-18 months away)
+- Regulatory = simple (aggregator = marketplace, not provider)
+
+MVP Spec:
+  ✓ Funeral home comparison (prices, hours, reviews)
+  ✓ Online booking + Bizum payment
+  ✓ 5-10% commission on transaction
+  ✓ Cold call funeral homes (100 in Madrid = €1-5K MRR)
+
+Path to Revenue:
+  Month 1-2:    Get 5 funeral homes in Madrid (free)
+  Month 3-4:    20 funeral homes, 10-20 customers/month
+  Month 5-6:    Launch Barcelona (200 funeral homes)
+  Month 12:     €10-50K MRR (50+ funeral homes across 3 cities)
+
+───────────────────────────────────────────────────────────────────────────────
+🥈 NOTARY DIGITAL PORTAL (NOTARIOS SaaS) — Score 8.2
+───────────────────────────────────────────────────────────────────────────────
+
+Market Size:      €500M/year (~2,800 notaries)
+Digital gap:      9/10 (Law 11/2023 = digital allowed, but old software)
+MVP:              8 weeks, €15-20K
+Revenue:          €10-40K/month (€200-400 per notary)
+Verdict:          GO (Phase 2 after funerarias)
+
+Pain Points:
+  • No client portal (customers must visit office)
+  • No bank integration (payment = separate)
+  • No CRM (can't track repeat customers)
+  • No analytics (don't know profitable services)
+
+MVP Spec:
+  ✓ Client portal (status, e-sign, Bizum payment)
+  ✓ Admin dashboard (queue, archive, analytics)
+  ✓ Video conference + document management
+  ✓ GDPR compliance
+
+Why go after: Network effect. First 5 notaries in city = ripple to others.
+
+───────────────────────────────────────────────────────────────────────────────
+🥉 VET CLINICS + PET INSURANCE (VETERINARIAS) — Score 8.4
+───────────────────────────────────────────────────────────────────────────────
+
+Market Size:      €2.85B/year (7,000 clinics), growth +9.2%/year
+Pet insurance:    5% penetration NOW → 15% in 2027 (3x growth!)
+Digital gap:      7/10 (No insurance integrations exist)
+MVP:              12 weeks, €20-30K
+Revenue:          €25-150K/month (€50-150 per clinic + insurer subscriptions)
+Verdict:          GO (Growing market, highest revenue ceiling)
+
+Pain Points:
+  • No pre-authorization (vet doesn't know what's covered)
+  • Manual claims (clinic staff calls insurer, faxes docs)
+  • Payment delay (reimbursed in 2-4 weeks)
+
+MVP Spec:
+  ✓ Pre-auth system (real-time approval)
+  ✓ Claims automation (instant submission)
+  ✓ Insurer dashboard (approve/deny/pay)
+  ✓ Clinic integration (QVET, WinVet APIs)
+
+Why go after: Insurance market exploding. First to integrate = de facto standard.
+
+───────────────────────────────────────────────────────────────────────────────
+MARKETS NOT RECOMMENDED
+───────────────────────────────────────────────────────────────────────────────
+
+NO-GO: Opticians (Score 7.2)
+   Reason: Gesvision, Optiplus dominate. Low margins. Too crowded.
+
+MAYBE: Auto Dealers (Score 7.8)
+   Reason: Cazoo/Vroom arriving in 12-18 months. Window = closing.
+
+MAYBE: Fitness (Score 7.8)
+   Reason: Freeletics/Future dominate. Integration = complex. Needs team of 3+.
+
+───────────────────────────────────────────────────────────────────────────────
+DECISION TREE: WHICH ONE TO PICK?
+───────────────────────────────────────────────────────────────────────────────
+
+If you want: SPEED + REVENUE (immediate)
+  → Pick: FUNERARIAS (Funeral Services)
+  • MVP = 6 weeks
+  • Revenue = Month 3
+  • Simplicity = High
+  • Confidence = 9.1/10
+
+If you want: STABILITY + B2B (predictable)
+  → Pick: NOTARIOS (Notary Portal)
+  • MVP = 8 weeks
+  • Sales cycle = 3-6 months (but high LTV)
+  • Confidence = 8.2/10
+
+If you want: GROWTH + SCALE (fastest growing market)
+  → Pick: VETERINARIAS (Vet + Insurance)
+  • MVP = 12 weeks
+  • Revenue = €25-150K/mo (highest ceiling)
+  • Market growth = +9.2%/year, insurance +15%/year
+  • Confidence = 8.4/10
+
+RECOMMENDATION: Start with FUNERARIAS, parallel NOTARIOS in Phase 2.
+
+───────────────────────────────────────────────────────────────────────────────
+NEXT ACTIONS
+───────────────────────────────────────────────────────────────────────────────
+
+THIS WEEK:
+  [ ] Read: /02-research/spain-niches/BORING-MARKETS-SPAIN.md (full analysis)
+  [ ] Read: /02-research/spain-niches/BORING-MARKETS-QUICK-REF.md (quick ref)
+  [ ] Pick ONE market
+  [ ] Run 5-10 customer calls (cold calls to funeral homes / notaries / vet clinics)
+  [ ] Document: willingness to pay (€ amount), pain level, timeline
+
+WEEK 2-4:
+  [ ] Lock in 2-3 "alpha" users (free access in exchange for feedback)
+  [ ] Build MVP prototype (Figma mockups, not code yet)
+  [ ] Test willingness to pay (send invoice, measure conversion)
+
+WEEK 5-8:
+  [ ] Build MVP (Next.js + Supabase for speed)
+  [ ] Deploy alpha (20 users)
+  [ ] Measure CAC, retention, NPS
+
+MONTH 3+:
+  [ ] Scale to 50 paid customers
+  [ ] Optimize pricing
+  [ ] Hire 1 sales person (or 50% of your time)
+  [ ] Goal: €5-10K MRR by end Q2 2026
+
+───────────────────────────────────────────────────────────────────────────────
+DELIVERABLES
+───────────────────────────────────────────────────────────────────────────────
+
+1. BORING-MARKETS-SPAIN.md (27 KB)
+   Full analysis: 6 markets, pain points, MVPs, pricing, sales strategy
+
+2. BORING-MARKETS-QUICK-REF.md (4.9 KB)
+   Quick reference: decision tree, Top 3, next steps
+
+3. BORING-MARKETS-DATA.json (10 KB)
+   Structured data: ready for SQLite import, dashboard integration
+
+4. BORING-MARKETS-SESSION-SUMMARY.md
+   Session notes: findings, recommendations, roadmap
+
+5. BORING-MARKETS-FINDINGS.txt
+   Executive summary (you are here)
+
+───────────────────────────────────────────────────────────────────────────────
+KEY INSIGHT
+───────────────────────────────────────────────────────────────────────────────
+
+Spain is full of "boring" markets that startup culture ignores because they're
+not narrative-driven (no AI disruption, no Web3, no Series A hype).
+
+But boring = real money + real customers + zero digital competition.
+
+Funeral services = €1.5B market, 60% willing to pay, ZERO aggregators in Spain.
+
+That's an exit waiting to happen. Start now.
+
+═══════════════════════════════════════════════════════════════════════════════

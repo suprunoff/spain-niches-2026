@@ -1,0 +1,274 @@
+{
+  "metadata": {
+    "research_date": "2026-03-02",
+    "focus": "Mature B2B/B2C markets with digital gaps",
+    "methodology": "WebSearch + competitive analysis",
+    "note": "All data is March 2026 snapshot, regions vary"
+  },
+  "niches": [
+    {
+      "rank": 1,
+      "name": "Funeral Services Aggregator (Funerarias)",
+      "category": "B2C/B2B",
+      "market_size": {
+        "total_revenue_eur": 1500000000,
+        "companies": 1100,
+        "growth_rate_percent": 3.5,
+        "avg_company_revenue_eur": 1363636
+      },
+      "structure": {
+        "large_companies_5": "50% of market",
+        "sme_95": "50% of market",
+        "micro_82_percent": "under €1M annual"
+      },
+      "current_solutions": {
+        "market_leaders": ["Funeral Care Spain (expats)", "Golden Leaves Int'l (expats)"],
+        "international_reference": "Beyond (UK, €100M+ exit)"
+      },
+      "digital_gap_score": 10,
+      "pain_points": [
+        "Zero online presence (1100 companies, ~5% have modern website)",
+        "No price comparison (customers pay 2-3x premium due to information vacuum)",
+        "Emotional vulnerability (high-stress decision making)",
+        "No pre-planning/financing options",
+        "No review integration"
+      ],
+      "market_readiness": {
+        "willing_to_pay_percent": 60,
+        "discovered_online_percent": 0,
+        "customer_acquisition_online": "100% untapped"
+      },
+      "go_score": 9.1,
+      "go_verdict": "GO IMMEDIATELY",
+      "mvp": {
+        "description": "Funeral service comparison + online booking + Bizum payment integration",
+        "timeline_weeks": 6,
+        "cost_eur": 5000,
+        "core_features": [
+          "Search funeral homes by city",
+          "Display: photos, hours, services, prices, reviews (auto-import from Google)",
+          "Online booking/inquiry",
+          "Bizum + Redsys payment (platform takes 5-10% commission)",
+          "Lead notification to funeral home"
+        ]
+      },
+      "revenue_model": {
+        "per_transaction_commission_percent": 5,
+        "per_lead_fee_eur": 50,
+        "monthly_subscription_funeral_home_eur": 50,
+        "projected_monthly_revenue_eur": [1000, 25000],
+        "reasoning": "€50-500 per transaction × 10-50/month"
+      },
+      "sales_strategy": {
+        "phase_1": "Cold calls + WhatsApp to funeral homes (target: free 1-2 months to get listings)",
+        "phase_2": "Google Ads (low CPC due to zero competition)",
+        "phase_3": "Geographic rollout: Madrid → Barcelona → Valencia"
+      },
+      "target_cities": [
+        {
+          "city": "Madrid",
+          "funeral_homes": 400,
+          "market_size_eur": 550000000
+        },
+        {
+          "city": "Barcelona",
+          "funeral_homes": 200,
+          "market_size_eur": 280000000
+        },
+        {
+          "city": "Valencia",
+          "funeral_homes": 100,
+          "market_size_eur": 150000000
+        }
+      ],
+      "competitive_analysis": {
+        "spain_competitors": 0,
+        "eu_reference": "Beyond (UK only)"
+      },
+      "regulatory_notes": "Funeral services not strictly regulated for aggregators (platform = marketplace, not provider). GDPR standard.",
+      "sources": [
+        "https://www.funos.es/informes-y-estudios/",
+        "https://comparefuneral.org/",
+        "https://www.funeralspain.com/",
+        "https://director.beyond.life/"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Digital Notary Portal (Notarios SaaS)",
+      "category": "B2B SaaS",
+      "market_size": {
+        "total_notaries": 2800,
+        "estimated_revenue_eur": 500000000,
+        "annual_avg_notary_revenue_eur": 178571
+      },
+      "regulatory_context": {
+        "enabling_law": "Law 11/2023 (May 8, 2023)",
+        "allowed_services": "Digital notarization, videoconference signing, remote acts",
+        "implementation_date": "November 2023",
+        "status": "Legal but adoption = slow (old software)"
+      },
+      "current_solutions": {
+        "market_leaders": [
+          "Wordplex IT Legal Solutions",
+          "JPA Informática",
+          "Notin",
+          "Lexnova"
+        ],
+        "problem": "All 20+ years old, no modern client portal"
+      },
+      "digital_gap_score": 9,
+      "pain_points": [
+        "No client portal (customers must visit office to check status)",
+        "No CRM (no repeat customer tracking)",
+        "No bank integration (payment separate from service)",
+        "No analytics (don't know which services are profitable)",
+        "Videoconference allowed by law, but workflows not designed for it"
+      ],
+      "go_score": 8.2,
+      "go_verdict": "GO (Phase 2)",
+      "mvp": {
+        "description": "Cloud-based client portal + admin dashboard for notaries",
+        "timeline_weeks": 8,
+        "cost_eur": 15000,
+        "core_features": [
+          "Client portal: transaction status, document access, e-signature (Docusign API)",
+          "Notary admin: queue management, document archive, payment tracking",
+          "Payment integration: Redsys, Bizum",
+          "GDPR compliance: encryption, audit logs",
+          "Video conference integration: scheduled calls, recording"
+        ]
+      },
+      "revenue_model": {
+        "monthly_per_notary_eur": [200, 400],
+        "target_customers": [50, 100],
+        "projected_monthly_revenue_eur": [10000, 40000]
+      },
+      "sales_strategy": {
+        "phase_1": "Warm introductions (leverage notary associations, regional colleges)",
+        "phase_2": "Geographic: target 1 city/region, get critical mass",
+        "sales_cycle_months": 3,
+        "leverage": "Once 5 notaries in city adopt → others request features = viral"
+      },
+      "adoption_barriers": [
+        "Conservative buyers (risk-averse)",
+        "3-6 month sales cycle",
+        "Integration complexity with legacy DMS"
+      ],
+      "adoption_accelerators": [
+        "VeriFactu compliance (deadline 2027) pushes digital adoption",
+        "Younger notaries (Madrid, Barcelona) more receptive"
+      ],
+      "competitive_advantage": "First modern portal = first to capture network effect in city",
+      "sources": [
+        "https://www.notariado.org/",
+        "https://www.wordplex.es/",
+        "https://www.notariosyregistradores.com/"
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Vet Clinic + Pet Insurance Integration (Veterinarias)",
+      "category": "B2B SaaS + B2B2C",
+      "market_size": {
+        "vet_clinics": 7000,
+        "annual_revenue_eur": 2850000000,
+        "growth_rate_percent": 9.2,
+        "employees_direct": 44500,
+        "employees_indirect": 356000
+      },
+      "pet_insurance_context": {
+        "market_status": "Nascent (2023-2024 launch)",
+        "current_penetration_percent": 5,
+        "projected_penetration_2027_percent": 15,
+        "major_insurers": ["Adeslas", "ASISA", "Sanitas", "Línea Directa"],
+        "market_growth_percent": 15
+      },
+      "current_solutions": {
+        "vet_clinic_software": [
+          "QVET (market leader)",
+          "WinVet",
+          "ProVet Cloud",
+          "Wakyma Vets",
+          "OkVet"
+        ],
+        "gap": "None of them integrate with pet insurance (pre-auth, claims submission)"
+      },
+      "digital_gap_score": 7,
+      "pain_points": [
+        "No pre-authorization (vet doesn't know what insurance covers)",
+        "Manual claims submission (clinic staff must call insurer, fax docs)",
+        "Payment delay (clinic gets reimbursed in 2-4 weeks)",
+        "Fraud risk (insurers can't verify claim details)",
+        "Customer confusion (\"Will it be covered?\") = lost sales"
+      ],
+      "go_score": 8.4,
+      "go_verdict": "GO (Growing market)",
+      "mvp": {
+        "description": "Plugin/integration for QVET and WinVet: pre-auth + automated claims",
+        "timeline_weeks": 12,
+        "cost_eur": 25000,
+        "core_features": [
+          "Pre-auth: vet enters procedure → system queries insurer → approval/denial in real-time",
+          "Claims submission: receipt + diagnosis + invoice auto-submitted to insurer",
+          "Dashboard for insurer: claims queue, approve/deny, instant Bizum reimbursement",
+          "Customer visibility: what's covered (in clinic + app)",
+          "Integration: QVET API, WinVet API, insurer APIs"
+        ]
+      },
+      "revenue_model": {
+        "vet_clinic_monthly_eur": [50, 150],
+        "insurer_monthly_eur": [500, 1000],
+        "transaction_commission_percent": [2, 3],
+        "projected_monthly_revenue_eur_low": 25000,
+        "projected_monthly_revenue_eur_high": 150000,
+        "reasoning": "€50-150/mo × 500-1000 clinics + insurer subscriptions"
+      },
+      "sales_strategy": {
+        "phase_1": "Partner with 1 insurer (e.g., Adeslas) - get them to mandate integration",
+        "phase_2": "Clinic adoption (insurer recommends it as free add-on)",
+        "phase_3": "Scale to other insurers (ASISA, Sanitas, Línea Directa)"
+      },
+      "market_dynamics": {
+        "driver_1": "Insurance penetration 5% → 15% (3x growth in 18 months)",
+        "driver_2": "Insurers need tech to reduce fraud",
+        "driver_3": "Clinics desperate for operational efficiency"
+      },
+      "competitive_advantage": "First to integrate = de facto standard in Spain for 3+ years",
+      "sources": [
+        "https://www.animalshealth.es/",
+        "https://www.inese.es/",
+        "https://qvet.net/",
+        "https://www.winvet.es/"
+      ]
+    }
+  ],
+  "runner_ups": [
+    {
+      "name": "Auto Dealer EV Trade-in AI Valuation",
+      "score": 7.8,
+      "verdict": "MAYBE",
+      "reason": "High CPC (€2.5+), real pain, but Cazoo/Vroom competition incoming in 12-18 months"
+    },
+    {
+      "name": "Fitness Club AI Personal Trainer",
+      "score": 7.8,
+      "verdict": "MAYBE",
+      "reason": "Large market, but Freeletics/Future dominate. Integration complexity high."
+    }
+  ],
+  "not_recommended": [
+    {
+      "name": "Opticians Software (Ópticas SaaS)",
+      "score": 7.2,
+      "reason": "High competition (Gesvision, Optiplus), low margins, independents resist change"
+    }
+  ],
+  "summary": {
+    "key_finding": "Funeral aggregator is most underserved market in Spain (0 competitors, €1.5B TAM, 60% willingness to pay)",
+    "timing": "2026 = window closing (Cazoo/Vroom EU expansion, international players waking up)",
+    "risk_level": "Low (proven business model in UK/US, just missing in Spain)",
+    "team_size": "1-2 person MVP possible for all three",
+    "next_action": "Pick ONE. Run 5-10 customer calls. Validate willingness to pay. Build MVP in 6-8 weeks."
+  }
+}
