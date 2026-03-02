@@ -6,3 +6,4 @@ tasks/*.output
 .cursor/
 .trae/
 .agents/
+*.db-journal
