@@ -14,6 +14,21 @@
 research/
 ├── CLAUDE.md                          # Этот файл — устав проекта
 ├── README.md                          # Навигация по документам
+├── index.html                         # Дашборд (статика, fetch → data/niches.json)
+├── niches.db                          # SQLite — источник правды (122 ниши, 5 таблиц)
+│
+├── data/
+│   └── niches.json                    # Экспорт из SQLite для дашборда (коммитится)
+│
+├── scripts/                           # Python CLI-инструменты
+│   ├── db.py                          # Shared: schema, connect(), calc_score(), пути
+│   ├── migrate_to_sqlite.py           # Одноразовая миграция HTML → SQLite
+│   ├── export_json.py                 # niches.db → data/niches.json
+│   ├── add_niches.py                  # staging JS → SQLite + авто-экспорт JSON
+│   ├── update_score.py                # CLI: пересчёт score + score_history
+│   ├── add_competitors.py             # CLI: добавление конкурентов
+│   ├── add_insights.py                # CLI: добавление инсайтов (Reddit, CustDev)
+│   └── query.py                       # CLI: запросы (--type, --min-score, --search, --full)
 │
 ├── 01-frameworks/                     # Методологии анализа
 │   ├── NICHE_ANALYSIS_FRAMEWORKS.md   # 12 фреймворков (TAM, JTBD, Porter, Blue Ocean...)
@@ -22,31 +37,20 @@ research/
 │
 ├── 02-research/                       # Исследования рынков
 │   ├── spain-macro/                   # Макро: экономика, регуляторика, digital adoption
-│   ├── spain-niches/                  # Скоринг ниш, ТОП-35
+│   ├── spain-niches/                  # Скоринг ниш
 │   ├── spain-proptech/                # PropTech deep dive
 │   ├── spain-tourism/                 # Tourism tech deep dive
 │   └── spain-national/                # Национальные особенности (бизнес-культура, психология)
 │
 ├── 03-competitors/                    # Конкурентный анализ по нишам
-│   └── {niche-name}/                  # Одна папка на нишу
-│
 ├── 04-mvp/                            # MVP-планы для выбранных ниш
-│   └── {niche-name}/                  # Спеки, wireframes, tech stack
-│
 ├── 05-validation/                     # Результаты валидации
-│   ├── interviews/                    # CustDev интервью
-│   ├── landing-pages/                 # А/Б тесты лендингов
-│   └── ads-tests/                     # Тесты рекламы
-│
-├── skills/                            # Claude Code skills для этого проекта
-│   ├── niche-scorer.md                # Скилл автоматического скоринга ниш
-│   ├── competitor-mapper.md           # Скилл маппинга конкурентов
-│   └── spain-context.md              # Контекст Испании для всех анализов
-│
-├── case-studies/                      # Кейсы (Duolingo, Airbnb, ConvertKit...)
+├── skills/                            # Claude Code skills
+├── case-studies/                      # Кейсы
 │
 └── tasks/                             # Текущие задачи
-    └── todo.md
+    ├── todo.md
+    └── staging/                       # Агенты пишут batch JS-файлы сюда
 ```
 
 ## Рабочий процесс
@@ -100,6 +104,39 @@ research/
 - **Локальный язык** — испанский ОБЯЗАТЕЛЕН. Каталанский +20% CR в Барселоне
 - **85% пробуют бесплатно** — free trial/freemium не опция, а необходимость
 
+## Data Pipeline
+
+```
+tasks/staging/batchN.js → scripts/add_niches.py → niches.db → scripts/export_json.py → data/niches.json → Vercel
+```
+
+### SQLite (niches.db) — источник правды
+- **5 таблиц:** niches, competitors, insights, score_history, validation
+- **122 ниши** (март 2026), цель 300+
+- Коммитится в git (<300KB)
+
+### Основные команды
+```bash
+# Добавить ниши из staging файла
+python3 scripts/add_niches.py tasks/staging/batchN.js --dry-run
+
+# Обновить скор
+python3 scripts/update_score.py --niche-id 42 --g 8 --reason "New data"
+
+# Запросы
+python3 scripts/query.py --type RegTech --min-score 8
+python3 scripts/query.py --niche-id 1 --full
+
+# Экспорт JSON (авто при add_niches/update_score)
+python3 scripts/export_json.py
+```
+
+### Правила работы с данными
+- **Никогда не редактировать index.html для данных** — только через SQLite
+- **Никогда не редактировать data/niches.json вручную** — генерируется из БД
+- Score в БД хранится as-is (не пересчитывается автоматически при чтении)
+- `calc_score()` в db.py использует weighted average — применяется только через `update_score.py`
+
 ## Инструменты и скиллы
 
 ### Claude Code skills (установлены)
@@ -138,9 +175,14 @@ research/
 
 **Правило:** researcher собирает → analyst думает. Не смешивать роли.
 
+## Деплой
+
+- **Repo:** https://github.com/suprunoff/spain-niches-2026
+- **Хостинг:** Vercel (статика, авто-деплой из `main`)
+- **Дашборд:** `index.html` загружает `data/niches.json` через fetch
+
 ## Логирование
 
-- **Артефакты и прогресс:** `tasks/artifacts.log` — автоматически через хуки
 - **Детальный лог сессий:** `CHANGELOG.md`
 - **Контекст для новой сессии:** `.claude/session-context.md`
 
@@ -151,3 +193,5 @@ research/
 - Скоринг всегда по единой методологии (`01-frameworks/NICHE_SCORING_TEMPLATES.md`)
 - Каждую нишу оценивать через призму "как это работает В ИСПАНИИ", не абстрактно
 - Spain-context обязателен перед любым анализом: `02-research/spain-national/`
+- Данные ниш — только через SQLite pipeline (`scripts/`), никогда напрямую в HTML/JSON
+- После любых изменений данных — `python3 scripts/export_json.py` (или авто через add_niches/update_score)

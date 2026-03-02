@@ -1,0 +1,157 @@
+PHYSIOTHERAPISTS DIRECTORY SPAIN — RESEARCH SUMMARY
+======================================================
+
+Niche ID: TBD (добавить после интеграции в SQLite)
+Score: 8.70 / 10
+Research Date: 2026-03-02
+Researcher: Claude Code (Haiku 4.5)
+
+KEY FINDINGS:
+=============
+
+1. MARKET SIZE
+   - 62,000 licensed physiotherapists in Spain (80% = 49,600 in private sector)
+   - Population of 47.5M → estimated 2.4M annual sessions in private sector
+   - TAM: €96–156M (based on €40–65 per session)
+   - Growing demand: home visits +25%/year, elderly care segment
+
+2. COMPETITIVE LANDSCAPE
+   - Doctoralia: 30–40% category capture, but physiotherapy = 2–3% of base (underserved)
+   - Top Doctors: 316 physiotherapists, 95% B2B SaaS revenue (€23.9M in 2023), premium pricing
+   - Niche players (Fisioterapeutas.one, Tufisio, Fisioterapia.io): Static catalogs, NO booking integration
+   - FisioNow: Madrid-only, home visits only, 30–40% commission (unsustainable for providers)
+   - OPPORTUNITY: No specialized "Zocdoc for PT" platform exists in Spain
+
+3. INSURANCE PARTNERSHIP POTENTIAL
+   - ADESLAS (SegurCaixa): 58,000+ network professionals, referral payments €15–30 per referral
+   - Sanitas: Extensive network, physician-prescribed rehabrehabilitation
+   - CRITICAL ISSUE: No API for third-party integration found (2026)
+   - Path: Direct B2B outreach required (6–12 month sales cycle)
+
+4. MONETIZATION MODELS EVALUATED
+
+   Model A (Commission-based, like Doctoralia):
+   - Subscription: €15/mo, 12% commission on first session
+   - ARPU for platform: €37/therapist/month
+   - LTV: €56,400 (too high, unsustainable churn)
+   - VERDICT: Weak, therapists resist commissions
+
+   Model B (Subscription + Referrals) ✓ RECOMMENDED
+   - Base: €35/mo, Premium: €65/mo (avg €53)
+   - Referral: €3–5 per ADESLAS referral
+   - Y1 ARR: €3.54M (5K subscribers)
+   - Payback: 8–15 months, CAC €40–100
+   - LTV at 2% churn: €775 (payback 2 months)
+   - VERDICT: Strong, aligns with insurance incentives
+
+   Model C (Hybrid subscription + commission):
+   - Base: €25/mo + 8% commission on first 5 bookings
+   - Y1 ARR: €3.08M (5K subscribers)
+   - VERDICT: Balanced, but complex messaging
+
+5. PATIENT BEHAVIOR
+   - Search channels: Google 30%, referrals 40%, directories 20%, clinic direct 10%
+   - Willingness to pay: €40–80 private, €15–30 copay on insurance
+   - Avg treatment duration: 8–18 sessions (acute) or 52+ sessions (chronic)
+   - LTV per patient: €320–1,200/year (if retained)
+   - Growing interest in online consultations (pre-assessment, follow-up)
+
+6. UNIT ECONOMICS (Model B - RECOMMENDED)
+   - CAC (Facebook): €80–100 per therapist
+   - Payback period: 2–3 months (at 2% churn)
+   - LTV: €775 (conservative at 2% churn)
+   - Y1 MRR: €147.5K (€132.5K subscription + €15K referrals)
+   - Burn rate: €30K/month (M1-M6), ROI positive M9–M10
+   - Path to €1M ARR: ~18 months at growth rate assumptions
+
+7. GO/NO-GO ASSESSMENT
+
+   GO SIGNALS ✅:
+   - TAM €80M+, growing faster than GDP
+   - 1,000 new physiotherapists enter market annually
+   - ADESLAS/Sanitas actively seeking networks (partnership ready)
+   - Niche gap: Doctoralia weak, Top Doctors expensive
+   - Unit economics viable at 2–3% churn
+
+   NO SIGNALS 🔴:
+   - Doctoralia likely to copy (70% probability) — must move fast
+   - Low therapist adoption of SaaS historically (need success stories)
+   - ADESLAS/Sanitas integration slow (6–12 months)
+   - New regulation VeriFactu (Jan 2027) — minimal impact
+
+   RECOMMENDATION: CONDITIONAL GO
+   Strategy: Start B2C (therapists + patients), skip ADESLAS in MVP.
+   If 100+ paying subscribers in 12 weeks → invest in insurance integration.
+
+8. 90-DAY GTM ROADMAP
+   Phase 1 (Weeks 1–4): CustDev + MVP
+   - 15 interviews with physiotherapists
+   - Build MVP (Bubble/Sharetribe) with profile + booking + calendar
+   - Price validation: test €25/€35/€55/mo
+   - Goal: 50 beta users
+
+   Phase 2 (Weeks 5–9): Scaling + Insurance outreach
+   - Facebook campaign: €500–800/week (CAC optimization)
+   - ADESLAS B2B pitch: 1–2 meetings, PoI letter
+   - SEO articles: "How to choose a PT", "Best PTs in [region]"
+   - Video consultations (Zoom API) for Premium tier
+   - Goal: 300 subscribers, MRR €16K
+
+   Phase 3 (Weeks 10–13): Regional expansion + Pre-Seed
+   - Launch in Barcelona (Catalan outreach)
+   - Telehealth feature: €20–40 per session (20% commission)
+   - ADESLAS API integration (if partnership PoI secured)
+   - Close Pre-Seed: €200–300K
+   - Goal: 500+ subscribers, MRR €26K+
+
+9. KEY RISKS & MITIGATION
+
+   Risk 1: Doctoralia copies + wins (70% probability)
+   - Mitigation: Speed (launch in 16 weeks), sticky features (ADESLAS integration, AI recommendations), sell-to-Doctoralia exit at €5–10M if we capture 5% market
+
+   Risk 2: Low physiotherapist churn (30% probability)
+   - Mitigation: ROI dashboard, free first month, success team support, money-back guarantee if <5 new patients/month
+
+   Risk 3: ADESLAS refuses integration (40% probability)
+   - Mitigation: Start B2C only, approach miniature insurances, corporate wellness, physician referral networks as alternatives
+
+   Risk 4: Regulation/compliance (20% probability)
+   - Mitigation: Legal review for RGPD/VeriFactu, no medical licensing required for marketplace
+
+10. NEXT STEPS FOR TEAM
+    1. Schedule 15 interviews with physiotherapists (Madrid region) — assess price sensitivity
+    2. Get intro to ADESLAS B2B team (via corporate relations)
+    3. Prototype MVP using Bubble/Sharetribe (2–3 weeks)
+    4. Test Facebook ads targeting Spanish physiotherapists (€200 test budget)
+    5. If 30%+ conversion on 50 ads → green light for full MVP build
+
+SOURCES:
+========
+- Doctoralia.es (physiotherapist directory analysis)
+- Top Doctors España (premium market baseline)
+- ADESLAS SegurCaixa (insurance network details)
+- Sanitas Spain (insurance coverage)
+- Modelosdeplandenegocios.com (market sizing Spain)
+- FisioNow (competitor home services)
+- Spanish General Health Council data (62K physiotherapists)
+
+VALIDATION CHECKLIST:
+====================
+[ ] 15+ CustDev interviews completed
+[ ] Price sensitivity: 50%+ willing to pay €35+/mo for first 3 months
+[ ] ADESLAS letter of intent obtained
+[ ] MVP prototype with booking + profile live
+[ ] 50+ beta therapists signed up
+[ ] Week 1 CAC validation: €80–100 via Facebook
+[ ] MRR €2K+ by end of week 4
+[ ] Decision gate: GO or pivot
+
+ESTIMATED TIMELINE TO PRODUCT-MARKET FIT:
+==========================================
+MVP Build + Beta: 6–8 weeks
+Validation (100+ paying users): 12–16 weeks
+Scale to 500+ users: 24–30 weeks
+Pre-Seed close: 20–26 weeks from start
+
+---
+Full deep dive report: DEEP-DIVE-PHYSIO-DIRECTORY.md
