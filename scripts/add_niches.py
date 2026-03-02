@@ -1,112 +1,117 @@
 #!/usr/bin/env python3
 """
-Assembler: вставляет JS-объекты ниш из staging файла в index.html.
-Использование: python3 scripts/add_niches.py tasks/staging/batchN.js [--label "BATCH N: description"]
-
-Принцип:
-- Находит закрывающий ]; массива D в index.html
-- Вставляет перед ним новые объекты из staging файла
-- Автоматически назначает следующие rank-номера
-- Не требует чтения файла в LLM-контекст
+Assembler: парсит JS-объекты ниш из staging файла → INSERT в SQLite → экспорт JSON.
+Использование: python3 scripts/add_niches.py tasks/staging/batchN.js [--label "BATCH N: description"] [--dry-run]
 """
 
 import re
 import sys
 import os
 
-DASHBOARD = '/Users/sprnff/Projects/research/index.html'
+sys.path.insert(0, os.path.dirname(__file__))
+from db import connect, init_db
+from export_json import export
+from migrate_to_sqlite import parse_js_object
 
-def get_max_rank(html):
-    ranks = [int(m.group(1)) for m in re.finditer(r'\{rank:(\d+),', html)]
-    return max(ranks) if ranks else 0
 
-def get_niches_from_staging(path):
-    """Читает staging JS файл, возвращает список объектов как строки."""
+def get_niches_from_staging(path: str) -> list[str]:
+    """Читает staging JS файл, возвращает список объект-строк."""
     with open(path) as f:
         content = f.read()
-    # Убираем комментарии и извлекаем объекты {rank:..., ...}
-    # Поддерживает форматы: [{...},{...}] или просто {...},{...}
-    content = re.sub(r'//[^\n]*', '', content)  # убрать // комментарии
-    content = re.sub(r'/\*.*?\*/', '', content, flags=re.DOTALL)  # /* */
-    # Найти все объекты
-    objects = re.findall(r'\{rank:[^}]+(?:\}[^,\n\]]*)*\}', content)
-    if not objects:
-        # Попробуем найти в массиве
-        m = re.search(r'\[([^\[\]]*(?:\{[^}]*\}[^\[\]]*)*)\]', content, re.DOTALL)
-        if m:
-            objects = re.findall(r'\{[^{}]+\}', m.group(1))
+    content = re.sub(r'//[^\n]*', '', content)
+    content = re.sub(r'/\*.*?\*/', '', content, flags=re.DOTALL)
+    # Find all {...} objects
+    objects = []
+    depth = 0
+    start = -1
+    for i, ch in enumerate(content):
+        if ch == '{':
+            if depth == 0:
+                start = i
+            depth += 1
+        elif ch == '}':
+            depth -= 1
+            if depth == 0 and start >= 0:
+                objects.append(content[start:i + 1])
+                start = -1
     return objects
 
-def fix_ranks(objects, start_rank):
-    """Перенумеровывает rank в объектах начиная с start_rank."""
-    fixed = []
-    for i, obj in enumerate(objects):
-        rank = start_rank + i
-        obj = re.sub(r'rank:\d+', f'rank:{rank}', obj)
-        fixed.append(obj)
-    return fixed
 
-def insert_niches(staging_path, label=None):
-    with open(DASHBOARD) as f:
-        html = f.read()
+def insert_niches(staging_path: str, label: str | None = None, dry_run: bool = False):
+    init_db()
+    conn = connect()
 
-    # Найти конец массива D
-    start = html.find('const D = [')
-    if start == -1:
-        print("ERROR: 'const D = [' not found in index.html")
-        sys.exit(1)
-
-    arr_start = html.find('[', start)
-    depth = 0
-    arr_end = -1
-    for i in range(arr_start, len(html)):
-        if html[i] == '[': depth += 1
-        elif html[i] == ']':
-            depth -= 1
-            if depth == 0:
-                arr_end = i
-                break
-
-    if arr_end == -1:
-        print("ERROR: Could not find end of D array")
-        sys.exit(1)
-
-    max_rank = get_max_rank(html[arr_start:arr_end+1])
+    max_rank = conn.execute("SELECT COALESCE(MAX(rank), 0) FROM niches").fetchone()[0]
     print(f"Current max rank: {max_rank}")
 
-    objects = get_niches_from_staging(staging_path)
-    if not objects:
+    raw_objects = get_niches_from_staging(staging_path)
+    if not raw_objects:
         print(f"ERROR: No niche objects found in {staging_path}")
         sys.exit(1)
 
-    print(f"Found {len(objects)} niches in staging file")
-    objects = fix_ranks(objects, max_rank + 1)
+    niches = []
+    for obj_str in raw_objects:
+        d = parse_js_object(obj_str)
+        if d and ('name' in d or 'rank' in d):
+            niches.append(d)
 
-    # Строим вставку
-    comment = f"\n\n  // {label}" if label else f"\n\n  // {os.path.basename(staging_path)}"
-    insertion = comment + '\n  ' + ',\n  '.join(objects) + ','
+    print(f"Found {len(niches)} niches in staging file")
 
-    # Вставляем перед закрывающим ]
-    new_html = html[:arr_end] + insertion + '\n' + html[arr_end:]
+    cols = ['rank', 'name', 'sub', 'type',
+            'd', 'g', 'r', 's', 'm', 'a', 'f', 't',
+            'score', 'mi', 'mx', 'tam', 'cac', 'ltv', 'churn',
+            'y1', 'y1n', 'gap', 'risks', 'gtm', 'mvpScope', 'dd']
 
-    with open(DASHBOARD, 'w') as f:
-        f.write(new_html)
+    for i, n in enumerate(niches):
+        rank = max_rank + 1 + i
+        n['rank'] = rank
 
-    # Проверка
-    new_count = new_html.count('{rank:')
-    print(f"Done! Dashboard now has {new_count} niches (added {len(objects)})")
-    print(f"New ranks: {max_rank+1} — {max_rank+len(objects)}")
+        if dry_run:
+            print(f"  [DRY] #{rank}: {n.get('name', '?')} (score={n.get('score', '?')})")
+            continue
+
+        values = []
+        for col in cols:
+            v = n.get(col)
+            if col == 'dd':
+                v = 1 if v else 0
+            values.append(v)
+
+        placeholders = ', '.join(['?'] * len(cols))
+        col_names = ', '.join(cols)
+        conn.execute(
+            f"INSERT INTO niches ({col_names}) VALUES ({placeholders})",
+            values
+        )
+
+    if dry_run:
+        print(f"\n[DRY RUN] Would add {len(niches)} niches (ranks {max_rank+1}-{max_rank+len(niches)})")
+        conn.close()
+        return
+
+    conn.commit()
+    total = conn.execute("SELECT COUNT(*) FROM niches").fetchone()[0]
+    conn.close()
+
+    print(f"Inserted {len(niches)} niches. Total: {total}")
+    print(f"New ranks: {max_rank+1} — {max_rank+len(niches)}")
+
+    # Auto-export JSON
+    export()
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("Usage: python3 scripts/add_niches.py tasks/staging/batchN.js [--label 'description']")
+        print("Usage: python3 scripts/add_niches.py tasks/staging/batchN.js [--label 'desc'] [--dry-run]")
         sys.exit(1)
 
     staging = sys.argv[1]
     label = None
+    dry_run = '--dry-run' in sys.argv
+
     if '--label' in sys.argv:
         idx = sys.argv.index('--label')
         if idx + 1 < len(sys.argv):
             label = sys.argv[idx + 1]
 
-    insert_niches(staging, label)
+    insert_niches(staging, label, dry_run)
