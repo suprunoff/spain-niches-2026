@@ -4,23 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spain Niches 2026 — Intelligence Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Geist:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #FAFAF8;
+    --bg: #F8F7F4;
     --surface: #FFFFFF;
-    --border: #E5E2DC;
-    --text: #1A1614;
-    --muted: #6B6560;
+    --surface2: #F1EFE9;
+    --border: #E2DDD6;
+    --text: #18130F;
+    --muted: #7A7168;
     --accent: #C84B31;
     --t1: #16A34A;
-    --t2: #D97706;
-    --t3: #EA580C;
+    --t2: #B45309;
+    --t3: #C2410C;
     --t4: #94A3B8;
     --t1bg: rgba(22, 163, 74, 0.08);
-    --t2bg: rgba(217, 119, 6, 0.08);
-    --t3bg: rgba(234, 88, 12, 0.08);
+    --t2bg: rgba(180, 83, 9, 0.08);
+    --t3bg: rgba(194, 65, 12, 0.08);
     --t4bg: rgba(148, 163, 184, 0.08);
     --type-regtech: #0284C7;
     --type-ai: #7C3AED;
@@ -33,25 +34,17 @@
     --type-fintech: #65A30D;
     --type-hrtech: #BE185D;
     --type-proptech: #0369A1;
-    --type-cleantech: #16A34A;
-    --type-healthtech: #DC2626;
-    --type-maritime: #4F46E5;
-    --type-agritech: #B45309;
-    --type-traveltech: #6D28D9;
-    --type-creatortech: #BE123C;
-    --type-legaltech: #475569;
   }
 
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Geist', system-ui, sans-serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-size: 13px;
     line-height: 1.6;
     letter-spacing: 0.2px;
   }
 
-  /* Light grain texture overlay */
   body::before {
     content: '';
     position: fixed;
@@ -88,7 +81,7 @@
   }
 
   .hero-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 52px;
     font-weight: 700;
     letter-spacing: -0.5px;
@@ -97,7 +90,7 @@
 
   .hero-year {
     color: var(--accent);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .hero-sub {
@@ -171,7 +164,7 @@
   }
 
   .chart-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 13px;
     font-weight: 600;
     color: var(--accent);
@@ -274,7 +267,7 @@
     font-size: 12px;
     cursor: pointer;
     transition: all 0.15s ease;
-    font-family: 'Geist', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 500;
   }
 
@@ -303,7 +296,7 @@
     border-radius: 6px;
     font-size: 12px;
     cursor: pointer;
-    font-family: 'Geist', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     transition: all 0.2s ease;
   }
 
@@ -313,7 +306,6 @@
     box-shadow: 0 0 0 2px rgba(200, 75, 49, 0.1);
   }
 
-  /* Result count display */
   .result-info {
     font-size: 12px;
     color: var(--muted);
@@ -455,8 +447,8 @@
   }
 
   .tier-1 { background: var(--t1bg); color: var(--t1); border: 1px solid rgba(22, 163, 74, 0.25); }
-  .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(217, 119, 6, 0.25); }
-  .tier-3 { background: var(--t3bg); color: var(--t3); border: 1px solid rgba(234, 88, 12, 0.25); }
+  .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(180, 83, 9, 0.25); }
+  .tier-3 { background: var(--t3bg); color: var(--t3); border: 1px solid rgba(194, 65, 12, 0.25); }
   .tier-4 { background: var(--t4bg); color: var(--t4); border: 1px solid rgba(148, 163, 184, 0.25); }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FACTOR BARS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -508,8 +500,8 @@
   }
 
   .mvp-fast { background: rgba(22, 163, 74, 0.15); color: #15803d; }
-  .mvp-med { background: rgba(217, 119, 6, 0.15); color: #b45309; }
-  .mvp-slow { background: rgba(234, 88, 12, 0.15); color: #c2410c; }
+  .mvp-med { background: rgba(180, 83, 9, 0.15); color: #b45309; }
+  .mvp-slow { background: rgba(194, 65, 12, 0.15); color: #c2410c; }
 
   .tam {
     color: var(--muted);
@@ -710,123 +702,125 @@
 </div>
 
 <script>
-let D=[];
+let D = [];
 
-let sortCol='score', sortAsc=false, tierF='all', searchF='', typeF='', mvpF='';
+let sortCol = 'score', sortAsc = false, tierF = 'all', searchF = '', typeF = '', mvpF = '';
 
-const tier=s=>s>=8?1:s>=7.5?2:s>=6.5?3:4;
-const tc=s=>'tier-'+tier(s);
-const sc=s=>'score-t'+tier(s);
-const fc=v=>v>=9?'#16A34A':v>=7?'#D97706':v>=5?'#EA580C':'#DC2626';
-const typeClass=t=>{
-  const map={
-    'RegTech':'regtech','AI':'ai','Content':'content','Platform':'platform','Marketplace':'marketplace',
-    'Vertical':'vertical','Directory':'directory','EdTech':'edtech','FinTech':'fintech','HRTech':'hrtech','PropTech':'proptech'
+// Score tier logic
+const tierNum = s => s >= 8 ? 1 : s >= 7.5 ? 2 : s >= 6.5 ? 3 : 4;
+const tierClass = s => 'tier-' + tierNum(s);
+const scoreClass = s => 'score-t' + tierNum(s);
+const factorColor = v => v >= 9 ? '#16A34A' : v >= 7 ? '#B45309' : v >= 5 ? '#C2410C' : '#EF4444';
+
+const typeClass = t => {
+  const map = {
+    'RegTech': 'regtech', 'AI': 'ai', 'Content': 'content', 'Platform': 'platform',
+    'Marketplace': 'marketplace', 'Vertical': 'vertical', 'Directory': 'directory',
+    'EdTech': 'edtech', 'FinTech': 'fintech', 'HRTech': 'hrtech', 'PropTech': 'proptech'
   };
-  return map[t]||'';
+  return map[t] || '';
 };
 
-function bars(n){
-  const fs=[['d','D'],['g','G'],['r','R'],['s','S'],['m','M'],['a','A'],['f','F'],['t','T']];
-  return '<div class="factors">'+fs.map(([k,l])=>{
-    const v=n[k];
-    return `<div class="factor-wrap"><div class="factor-bar"><div class="factor-fill" style="height:${v*10}%;background:${fc(v)}"></div></div><div class="factor-label">${l}</div></div>`;
-  }).join('')+'</div>';
+function bars(n) {
+  const fs = [['d', 'D'], ['g', 'G'], ['r', 'R'], ['s', 'S'], ['m', 'M'], ['a', 'A'], ['f', 'F'], ['t', 'T']];
+  return '<div class="factors">' + fs.map(([k, l]) => {
+    const v = n[k];
+    return `<div class="factor-wrap"><div class="factor-bar"><div class="factor-fill" style="height:${v*10}%;background:${factorColor(v)}"></div></div><div class="factor-label">${l}</div></div>`;
+  }).join('') + '</div>';
 }
 
-function mvpC(n){
-  const mid=(n.mi+n.mx)/2;
-  const cls=mid<=6?'mvp-fast':mid<=12?'mvp-med':'mvp-slow';
+function mvpC(n) {
+  const mid = (n.mi + n.mx) / 2;
+  const cls = mid <= 6 ? 'mvp-fast' : mid <= 12 ? 'mvp-med' : 'mvp-slow';
   return `<span class="mvp-chip ${cls}">${n.mi}-${n.mx} w</span>`;
 }
 
-function unitCell(n){
-  if(!n.cac) return '<span class="no-dd">—</span>';
-  const ratio=(n.ltv/n.cac).toFixed(1);
+function unitCell(n) {
+  if (!n.cac) return '<span class="no-dd">—</span>';
+  const ratio = (n.ltv / n.cac).toFixed(1);
   return `<div class="unit-cell"><span class="unit-cac">€${n.cac}</span> / <span class="unit-ltv">€${n.ltv}</span><span class="unit-ratio">${ratio}x</span></div>`;
 }
 
-function y1Cell(n){
-  if(!n.y1) return '<span class="no-dd">—</span>';
+function y1Cell(n) {
+  if (!n.y1) return '<span class="no-dd">—</span>';
   return `<span class="y1-cell">${n.y1}</span>`;
 }
 
-function detailPanel(n){
-  if(!n.dd) return '';
+function detailPanel(n) {
+  if (!n.dd) return '';
   return `<tr class="detail-row" id="dp-${n.rank}" style="display:none"><td colspan="10">
     <div class="detail-panel">
-      <div class="detail-card" style="border-left-color:#7C3AED"><h4>Unit Economics</h4><p>CAC <strong>€${n.cac}</strong> · LTV <strong>€${n.ltv}</strong><br>Churn ${n.churn||'—'} · Y1 <strong>${n.y1||'—'}</strong></p></div>
-      <div class="detail-card" style="border-left-color:#DC2626"><h4>GTM Strategy</h4><p>${n.gtm||'—'}</p></div>
-      <div class="detail-card" style="border-left-color:#2563EB"><h4>MVP Scope</h4><p>${n.mvpScope||'—'}</p></div>
-      <div class="detail-card" style="border-left-color:#EA580C"><h4>Key Risks</h4><p>${n.risks||'—'}</p></div>
+      <div class="detail-card" style="border-left-color:#7C3AED"><h4>Unit Economics</h4><p>CAC <strong>€${n.cac}</strong> · LTV <strong>€${n.ltv}</strong><br>Churn ${n.churn || '—'} · Y1 <strong>${n.y1 || '—'}</strong></p></div>
+      <div class="detail-card" style="border-left-color:#DC2626"><h4>GTM Strategy</h4><p>${n.gtm || '—'}</p></div>
+      <div class="detail-card" style="border-left-color:#2563EB"><h4>MVP Scope</h4><p>${n.mvpScope || '—'}</p></div>
+      <div class="detail-card" style="border-left-color:#EA580C"><h4>Key Risks</h4><p>${n.risks || '—'}</p></div>
     </div>
   </td></tr>`;
 }
 
-function toggleDetail(rank){
-  const el=document.getElementById('dp-'+rank);
-  if(el) el.style.display=el.style.display==='none'?'table-row':'none';
+function toggleDetail(rank) {
+  const el = document.getElementById('dp-' + rank);
+  if (el) el.style.display = el.style.display === 'none' ? 'table-row' : 'none';
 }
 
-function go(){
-  searchF=document.getElementById('s').value.toLowerCase();
-  typeF=document.getElementById('tf').value;
-  mvpF=document.getElementById('mf').value;
+function go() {
+  searchF = document.getElementById('s').value.toLowerCase();
+  typeF = document.getElementById('tf').value;
+  mvpF = document.getElementById('mf').value;
   render();
 }
 
-function setTier(t,btn){
-  tierF=t;
-  document.querySelectorAll('[data-tier]').forEach(b=>b.classList.remove('active'));
+function setTier(t, btn) {
+  tierF = t;
+  document.querySelectorAll('[data-tier]').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   go();
 }
 
-function srt(col){
-  if(sortCol===col)sortAsc=!sortAsc;
-  else{sortCol=col;sortAsc=col!=='score';}
-  ['rank','name','type','score','mvp','tam','cac','y1'].forEach(c=>{
-    const el=document.getElementById('a-'+c);
-    if(el)el.textContent=c===sortCol?(sortAsc?'↑':'↓'):'↕';
+function srt(col) {
+  if (sortCol === col) sortAsc = !sortAsc;
+  else { sortCol = col; sortAsc = col !== 'score'; }
+  ['rank', 'name', 'type', 'score', 'mvp', 'tam', 'cac', 'y1'].forEach(c => {
+    const el = document.getElementById('a-' + c);
+    if (el) el.textContent = c === sortCol ? (sortAsc ? '↑' : '↓') : '↕';
   });
-  document.querySelectorAll('th[data-c]').forEach(th=>{
-    th.classList.toggle('sorted',th.dataset.c===sortCol);
+  document.querySelectorAll('th[data-c]').forEach(th => {
+    th.classList.toggle('sorted', th.dataset.c === sortCol);
   });
   go();
 }
 
-function render(){
-  let data=[...D];
-  if(tierF!=='all')data=data.filter(n=>tier(n.score)===+tierF);
-  if(searchF)data=data.filter(n=>n.name.toLowerCase().includes(searchF)||n.sub.toLowerCase().includes(searchF)||n.type.toLowerCase().includes(searchF)||n.gap.toLowerCase().includes(searchF));
-  if(typeF)data=data.filter(n=>n.type===typeF);
-  if(mvpF==='fast')data=data.filter(n=>n.mx<=6);
-  else if(mvpF==='med')data=data.filter(n=>n.mi>=7&&n.mx<=12);
-  else if(mvpF==='slow')data=data.filter(n=>n.mi>12);
+function render() {
+  let data = [...D];
+  if (tierF !== 'all') data = data.filter(n => tierNum(n.score) === +tierF);
+  if (searchF) data = data.filter(n => n.name.toLowerCase().includes(searchF) || n.sub.toLowerCase().includes(searchF) || n.type.toLowerCase().includes(searchF) || n.gap.toLowerCase().includes(searchF));
+  if (typeF) data = data.filter(n => n.type === typeF);
+  if (mvpF === 'fast') data = data.filter(n => n.mx <= 6);
+  else if (mvpF === 'med') data = data.filter(n => n.mi >= 7 && n.mx <= 12);
+  else if (mvpF === 'slow') data = data.filter(n => n.mi > 12);
 
-  data.sort((a,b)=>{
-    let va=a[sortCol],vb=b[sortCol];
-    if(sortCol==='mvp'){va=a.mi;vb=b.mi;}
-    if(sortCol==='cac'){va=a.cac||9999;vb=b.cac||9999;}
-    if(sortCol==='y1'){va=a.y1n||0;vb=b.y1n||0;}
-    if(typeof va==='string')return sortAsc?va.localeCompare(vb):vb.localeCompare(va);
-    return sortAsc?(va-vb):(vb-va);
+  data.sort((a, b) => {
+    let va = a[sortCol], vb = b[sortCol];
+    if (sortCol === 'mvp') { va = a.mi; vb = b.mi; }
+    if (sortCol === 'cac') { va = a.cac || 9999; vb = b.cac || 9999; }
+    if (sortCol === 'y1') { va = a.y1n || 0; vb = b.y1n || 0; }
+    if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+    return sortAsc ? (va - vb) : (vb - va);
   });
 
-  const t1cnt=D.filter(n=>n.score>=8).length;
-  document.getElementById('totalCountFooter').textContent=D.length;
-  document.getElementById('visibleCount').textContent=data.length+' niche'+(data.length!==1?'s':'');
-  document.getElementById('nr').style.display=data.length?'none':'block';
-  document.getElementById('tb').innerHTML=data.map((n,i)=>{
-    const ddBadge=n.dd?'<span class="dd-badge">DD ✓</span>':'';
-    const tc=typeClass(n.type);
-    const typeBadge=`<span class="type-badge ${tc}">${n.type}</span>`;
-    const clickAttr=n.dd?`class="has-dd" onclick="toggleDetail(${n.rank})"`:'' ;
+  document.getElementById('totalCountFooter').textContent = D.length;
+  document.getElementById('visibleCount').textContent = data.length + ' niche' + (data.length !== 1 ? 's' : '');
+  document.getElementById('nr').style.display = data.length ? 'none' : 'block';
+  document.getElementById('tb').innerHTML = data.map((n, i) => {
+    const ddBadge = n.dd ? '<span class="dd-badge">DD ✓</span>' : '';
+    const typeC = typeClass(n.type);
+    const typeBadge = `<span class="type-badge ${typeC}">${n.type}</span>`;
+    const clickAttr = n.dd ? `class="has-dd" onclick="toggleDetail(${n.rank})"` : '';
     return `<tr ${clickAttr}>
-      <td class="rank">${i+1}</td>
+      <td class="rank">${i + 1}</td>
       <td class="niche-name">${n.name}${ddBadge}<small>${n.sub}</small></td>
       <td>${typeBadge}</td>
-      <td><span class="score-cell ${sc(n.score)}">${n.score.toFixed(2)}</span><span class="tier-badge ${tc(n.score)}">T${tier(n.score)}</span></td>
+      <td><span class="score-cell ${scoreClass(n.score)}">${n.score.toFixed(2)}</span><span class="tier-badge ${tierClass(n.score)}">T${tierNum(n.score)}</span></td>
       <td>${bars(n)}</td>
       <td>${mvpC(n)}</td>
       <td class="tam">${n.tam}</td>
@@ -837,35 +831,35 @@ function render(){
   }).join('');
 }
 
-function buildCharts(){
-  const ranges=[
-    {l:'8.0–10 (T1)',c:'#16A34A',cnt:D.filter(n=>n.score>=8).length},
-    {l:'7.5–7.9 (T2)',c:'#D97706',cnt:D.filter(n=>n.score>=7.5&&n.score<8).length},
-    {l:'6.5–7.4 (T3)',c:'#EA580C',cnt:D.filter(n=>n.score>=6.5&&n.score<7.5).length},
-    {l:'< 6.5 (T4)',c:'#94A3B8',cnt:D.filter(n=>n.score<6.5).length},
+function buildCharts() {
+  const ranges = [
+    { l: '8.0–10 (T1)', c: '#16A34A', cnt: D.filter(n => n.score >= 8).length },
+    { l: '7.5–7.9 (T2)', c: '#B45309', cnt: D.filter(n => n.score >= 7.5 && n.score < 8).length },
+    { l: '6.5–7.4 (T3)', c: '#C2410C', cnt: D.filter(n => n.score >= 6.5 && n.score < 7.5).length },
+    { l: '< 6.5 (T4)', c: '#94A3B8', cnt: D.filter(n => n.score < 6.5).length },
   ];
-  const m1=Math.max(...ranges.map(r=>r.cnt));
-  const types={};
-  D.forEach(n=>{types[n.type]=(types[n.type]||0)+1;});
-  const typeEntries=Object.entries(types).sort((a,b)=>b[1]-a[1]);
-  const m2=typeEntries[0][1];
-  const mvpCnts={fast:D.filter(n=>n.mx<=6).length,med:D.filter(n=>n.mi>=7&&n.mx<=12).length,slow:D.filter(n=>n.mi>12).length};
-  const maxMvp=Math.max(...Object.values(mvpCnts));
+  const m1 = Math.max(...ranges.map(r => r.cnt));
+  const types = {};
+  D.forEach(n => { types[n.type] = (types[n.type] || 0) + 1; });
+  const typeEntries = Object.entries(types).sort((a, b) => b[1] - a[1]);
+  const m2 = typeEntries[0][1];
+  const mvpCnts = { fast: D.filter(n => n.mx <= 6).length, med: D.filter(n => n.mi >= 7 && n.mx <= 12).length, slow: D.filter(n => n.mi > 12).length };
+  const maxMvp = Math.max(...Object.values(mvpCnts));
 
-  document.getElementById('charts').innerHTML=`
+  document.getElementById('charts').innerHTML = `
   <div class="chart-box">
     <div class="chart-title">Score Distribution</div>
-    ${ranges.map(r=>`<div class="chart-bar">
+    ${ranges.map(r => `<div class="chart-bar">
       <span class="chart-label">${r.l}</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${r.cnt/m1*100}%;background:${r.c}"></div></div>
+      <div class="chart-track"><div class="chart-fill" style="width:${r.cnt / m1 * 100}%;background:${r.c}"></div></div>
       <span class="chart-value" style="color:${r.c}">${r.cnt}</span>
     </div>`).join('')}
   </div>
   <div class="chart-box">
     <div class="chart-title">By Type</div>
-    ${typeEntries.map(([k,v])=>`<div class="chart-bar">
+    ${typeEntries.map(([k, v]) => `<div class="chart-bar">
       <span class="chart-label">${k}</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${v/m2*100}%;background:#C84B31"></div></div>
+      <div class="chart-track"><div class="chart-fill" style="width:${v / m2 * 100}%;background:#C84B31"></div></div>
       <span class="chart-value" style="color:#C84B31">${v}</span>
     </div>`).join('')}
   </div>
@@ -873,27 +867,27 @@ function buildCharts(){
     <div class="chart-title">MVP Speed</div>
     <div class="chart-bar">
       <span class="chart-label">≤6 weeks</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.fast/maxMvp*100}%;background:#16A34A"></div></div>
+      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.fast / maxMvp * 100}%;background:#16A34A"></div></div>
       <span class="chart-value" style="color:#16A34A">${mvpCnts.fast}</span>
     </div>
     <div class="chart-bar">
       <span class="chart-label">7–12 weeks</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.med/maxMvp*100}%;background:#D97706"></div></div>
-      <span class="chart-value" style="color:#D97706">${mvpCnts.med}</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.med / maxMvp * 100}%;background:#B45309"></div></div>
+      <span class="chart-value" style="color:#B45309">${mvpCnts.med}</span>
     </div>
     <div class="chart-bar">
       <span class="chart-label">>12 weeks</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.slow/maxMvp*100}%;background:#EA580C"></div></div>
-      <span class="chart-value" style="color:#EA580C">${mvpCnts.slow}</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.slow / maxMvp * 100}%;background:#C2410C"></div></div>
+      <span class="chart-value" style="color:#C2410C">${mvpCnts.slow}</span>
     </div>
   </div>`;
 
-  const t1=D.filter(n=>n.score>=8).length;
-  const t2=D.filter(n=>n.score>=7.5&&n.score<8).length;
-  const t3=D.filter(n=>n.score>=6.5&&n.score<7.5).length;
-  const avgScore=(D.reduce((sum,n)=>sum+n.score,0)/D.length).toFixed(2);
+  const t1 = D.filter(n => n.score >= 8).length;
+  const t2 = D.filter(n => n.score >= 7.5 && n.score < 8).length;
+  const t3 = D.filter(n => n.score >= 6.5 && n.score < 7.5).length;
+  const avgScore = (D.reduce((sum, n) => sum + n.score, 0) / D.length).toFixed(2);
 
-  document.getElementById('stats').innerHTML=`
+  document.getElementById('stats').innerHTML = `
     <div class="stat-card t1">
       <div class="stat-number">${t1}</div>
       <div class="stat-label">Tier 1 ≥8.0</div>
@@ -913,7 +907,7 @@ function buildCharts(){
   `;
 }
 
-fetch('./data/niches.json').then(r=>r.json()).then(d=>{D=d;buildCharts();render();});
+fetch('./data/niches.json').then(r => r.json()).then(d => { D = d; buildCharts(); render(); });
 </script>
 
 </body>
