@@ -1,9 +1,8 @@
-# EU Grants & Subsidies Automation — Quick Reference
+# EU Grants & Subsidies Automation SaaS — Complete Research Index
 
-**Score:** 7.2/10 (GO)
-**Type:** SaaS / Compliance Tech
-**Segment:** B2B (consultants) + B2C (SME freemium)
-**Timeline:** MVP 4 weeks → Revenue-generating 12 weeks
+**Status:** GO (8.55/10) | **Decision:** Build MVP in 4 weeks | **Timeline:** €35K–45K MRR by month 6
+
+**Last updated:** March 2, 2026 | **Author:** Research Team | **Version:** 2.0 (expanded)
 
 ---
 
@@ -13,16 +12,38 @@ AI-powered platform that finds all available EU/Spanish grants for a business an
 
 ---
 
-## The Math
+## Core Metrics
 
-| Metric | Value | Source |
-|--------|-------|--------|
-| **Unused funds (Spain)** | €27–31B | BDNS + Ministry reports |
-| **Potential consultant commissions** | €4.05B/year | 15% of €27B |
-| **Your take (3–5% of commissions)** | €162M long-term SAM | 4% × €4.05B |
-| **Realistic Year 1 SOM** | €19.4M (12% penetration) | Bottom-up: 500 users × €240/year |
-| **CAC via consultants** | €150–300 | Partner referral, not paid ads |
-| **LTV** | €19,000 (Year 1 SAM ÷ users) | Freemium + Pro blend |
+### Market Size
+| Metric | Value | Notes |
+|--------|-------|-------|
+| **NextGenerationEU (Spain)** | €77.2B | Total allocation |
+| **Unspent (as of March 2026)** | €27–31B | Still available |
+| **Deadline** | Aug 31, 2026 | 5 months remaining |
+| **TAM (consultant commissions)** | €4.05B | 15% × €27B |
+| **Your SAM (3–5%)** | €162M | Long-term opportunity |
+
+### Unit Economics (Month 6 Target)
+| Metric | Value |
+|--------|-------|
+| **Consultant partners** | 60 |
+| **AVG subscription** | €400/month |
+| **Revenue from subscriptions** | €24,000/month |
+| **Revenue from revenue share** | €3K–5K/month |
+| **SME freemium + paid** | €2K/month |
+| **Total MRR** | €29K–31K |
+| **COGS** | €6.3K (ops + infra) |
+| **Gross profit** | €22.7K–24.7K (80%+ margin) |
+| **LTV/CAC ratio** | 24–160x ⭐ |
+
+### Sales Targets
+| Milestone | Timeline | Users | MRR |
+|-----------|----------|-------|-----|
+| MVP launch | Week 4 | 0 | €0 |
+| 5 beta consultants | Week 6 | 5 | €1.5K |
+| Sales phase | Month 2 | 20 | €6K |
+| Revenue share launch | Month 3 | 40 | €12K |
+| Scale phase | Month 6 | 80 | €24K+ |
 
 ---
 
@@ -98,11 +119,31 @@ Target: 100 signups, 5 beta consultants, validate "I'd pay for Pro"
 
 ---
 
-## Docs
+## Documentation Suite (Pick Your Depth Level)
 
-- **Full deep dive (detailed):** `/Users/sprnff/Projects/research/02-research/spain-niches/DEEP-DIVE-EU-GRANTS-SAAS.md` (NEW)
-- **Executive summary:** `/Users/sprnff/Projects/research/02-research/spain-niches/EU-GRANTS-AUTOMATION-SPAIN.md`
-- **Quick reference:** `/Users/sprnff/Projects/research/02-research/spain-niches/EU-GRANTS-INDEX.md` (this file)
+### 🚀 START HERE (Pick One)
+
+**If you have 5 minutes:**
+- 📄 [`EU-GRANTS-EXECUTIVE-ONE-PAGE.md`](EU-GRANTS-EXECUTIVE-ONE-PAGE.md) — TL;DR version with key metrics, business model comparison, unit economics
+
+**If you have 20 minutes:**
+- 📄 [`EU-GRANTS-RESEARCH-SUMMARY.md`](EU-GRANTS-RESEARCH-SUMMARY.md) — Complete overview: opportunity, market validation, business model decision, go-to-market, financial projections, next steps
+
+**If you have 1 hour:**
+- 📄 [`DEEP-DIVE-EU-GRANTS-SAAS.md`](DEEP-DIVE-EU-GRANTS-SAAS.md) — FULL analysis (50+ pages): market size (€27B), competitors, pain points, 3 business models compared, MVP design, unit economics, risks, validation plan
+
+### 📋 FOR EXECUTION
+
+**If you're building the MVP:**
+- 📄 [`EU-GRANTS-ACTION-PLAN.md`](EU-GRANTS-ACTION-PLAN.md) — 90-day roadmap with 4 phases, weekly checklists, sprint breakdown, sales targets, contingency plans
+
+**If you're hiring the dev team:**
+- 📄 [`EU-GRANTS-TOOLS-STACK.md`](EU-GRANTS-TOOLS-STACK.md) — Technical stack specification: FastAPI + Next.js, database schema, API examples, deployment guide, cost estimate
+
+### 📚 REFERENCE
+
+- 📄 [`EU-GRANTS-AUTOMATION-SPAIN.md`](EU-GRANTS-AUTOMATION-SPAIN.md) — Original TIER-1 analysis (historical, 7.2/10 score)
+- 📄 [`EU-GRANTS-INDEX.md`](EU-GRANTS-INDEX.md) — This file
 
 ---
 

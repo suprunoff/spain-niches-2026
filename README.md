@@ -56,6 +56,11 @@ tasks/                  — План и задачи
 | 9 | **Autónomo Compliance Bundle** | **8.65** | €80-200M | ✅ Complete | `DEEP-DIVE-AUTONOMO-COMPLIANCE.md` |
 | 10 | **Corporate L&D + FUNDAE SaaS** | **8.29** | €800M-1B | ✅ Complete | `DEEP-DIVE-FUNDAE-SAAS.md` |
 
-⭐ = **Новая ниша с исключительными unit economics (LTV:CAC = 275x)**
+**FinTech Batch (новое исследование 2026-03-02):**
+| 1 | **Rental Insurance Comparador** | **8.5** | €1-2B | ✅ Complete | `FINTECH-INDEX.md` |
+| 2 | **Non-Resident Mortgage Broker** | **8.2** | €300-600M | ✅ Complete | `FINTECH-INDEX.md` |
+| 3 | **VeriFactu SaaS (RegTech)** | **8.0** | €250-500M | ✅ Complete | `FINTECH-INDEX.md` |
+
+⭐ = **Исследование включает 5 нишь (3 GO, 2 EXPLORE) + CustDev templates + MVP plans**
 | 4 | Telegram-медиа империя (ES) | 8.75/10 | DEEP DIVE | `TIER1_ANALYSIS_INDEX.md` |
 | 5 | Tourist rental compliance | 9.1/10 | VALIDATED | `DELIVERABLES_TIER1_DEEPDIVE.md` |
