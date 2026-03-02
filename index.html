@@ -3,75 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spain Niches 2026 — Intelligence Terminal</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Spain Niches 2026 — Intelligence Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Geist:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #080B10;
-    --surface: #0F1318;
-    --border: #1A2030;
-    --text: #E8EAF0;
-    --muted: #6B7280;
-    --accent: #00D4FF;
-    --t1: #00FF94;
-    --t2: #FFB800;
-    --t3: #FF6B35;
-    --t4: #4A5568;
-    --t1bg: rgba(0, 255, 148, 0.08);
-    --t2bg: rgba(255, 184, 0, 0.08);
-    --t3bg: rgba(255, 107, 53, 0.08);
-    --t4bg: rgba(74, 85, 104, 0.08);
-    --type-regtech: #00D4FF;
-    --type-ai: #A855F7;
-    --type-content: #EC4899;
-    --type-platform: #3B82F6;
-    --type-marketplace: #F97316;
-    --type-vertical: #14B8A6;
-    --type-directory: #10B981;
-    --type-edtech: #EAB308;
-    --type-fintech: #84CC16;
-    --type-hrtech: #F43F5E;
-    --type-proptech: #0EA5E9;
-    --type-cleantech: #22C55E;
-    --type-healthtech: #EF4444;
-    --type-maritime: #6366F1;
-    --type-agritech: #D97706;
-    --type-traveltech: #8B5CF6;
-    --type-creatortech: #D946EF;
-    --type-legaltech: #64748B;
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --border: #E5E2DC;
+    --text: #1A1614;
+    --muted: #6B6560;
+    --accent: #C84B31;
+    --t1: #16A34A;
+    --t2: #D97706;
+    --t3: #EA580C;
+    --t4: #94A3B8;
+    --t1bg: rgba(22, 163, 74, 0.08);
+    --t2bg: rgba(217, 119, 6, 0.08);
+    --t3bg: rgba(234, 88, 12, 0.08);
+    --t4bg: rgba(148, 163, 184, 0.08);
+    --type-regtech: #0284C7;
+    --type-ai: #7C3AED;
+    --type-content: #DC2626;
+    --type-platform: #2563EB;
+    --type-marketplace: #EA580C;
+    --type-vertical: #0891B2;
+    --type-directory: #059669;
+    --type-edtech: #CA8A04;
+    --type-fintech: #65A30D;
+    --type-hrtech: #BE185D;
+    --type-proptech: #0369A1;
+    --type-cleantech: #16A34A;
+    --type-healthtech: #DC2626;
+    --type-maritime: #4F46E5;
+    --type-agritech: #B45309;
+    --type-traveltech: #6D28D9;
+    --type-creatortech: #BE123C;
+    --type-legaltech: #475569;
   }
 
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Geist', system-ui, sans-serif;
     font-size: 13px;
-    line-height: 1.5;
-    letter-spacing: 0.3px;
+    line-height: 1.6;
+    letter-spacing: 0.2px;
+  }
+
+  /* Light grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='2' /%3E%3CfeColorMatrix type='saturate' values='0.3' /%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noiseFilter)' opacity='0.02' /%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO HEADER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .hero {
     position: relative;
-    padding: 48px 32px;
+    padding: 56px 48px;
     border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-      linear-gradient(0deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent),
-      linear-gradient(90deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent);
-    background-size: 60px 60px;
-    pointer-events: none;
-    opacity: 0.3;
+    background: linear-gradient(135deg, rgba(200, 75, 49, 0.02) 0%, transparent 100%);
   }
 
   .hero-content {
@@ -80,32 +78,33 @@
     max-width: 1200px;
     display: flex;
     align-items: baseline;
-    gap: 16px;
-    margin-bottom: 32px;
+    gap: 20px;
+    margin-bottom: 40px;
   }
 
   .hero-flag {
-    font-size: 48px;
+    font-size: 52px;
     line-height: 1;
   }
 
   .hero-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 48px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
     color: var(--text);
-    text-transform: uppercase;
   }
 
   .hero-year {
     color: var(--accent);
+    font-weight: 600;
   }
 
   .hero-sub {
     color: var(--muted);
     font-size: 13px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    margin-bottom: 32px;
   }
 
   .hero-stats {
@@ -113,82 +112,92 @@
     z-index: 2;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
+    gap: 16px;
   }
 
   .stat-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-top: 2px solid var(--accent);
-    padding: 16px;
-    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+  }
+
+  .stat-card:hover {
+    border-color: var(--border);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   }
 
   .stat-number {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 600;
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .stat-label {
     font-size: 11px;
     color: var(--muted);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
     text-transform: uppercase;
+    font-weight: 500;
   }
 
-  .stat-card.t1 { border-top-color: var(--t1); }
+  .stat-card.t1 { border-left-color: var(--t1); }
   .stat-card.t1 .stat-number { color: var(--t1); }
-  .stat-card.t2 { border-top-color: var(--t2); }
+  .stat-card.t2 { border-left-color: var(--t2); }
   .stat-card.t2 .stat-number { color: var(--t2); }
-  .stat-card.t3 { border-top-color: var(--t3); }
+  .stat-card.t3 { border-left-color: var(--t3); }
   .stat-card.t3 .stat-number { color: var(--t3); }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CHARTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .charts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 12px;
-    padding: 16px 32px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 32px 48px;
     border-bottom: 1px solid var(--border);
   }
 
   .chart-box {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 16px;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
   .chart-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
     font-weight: 600;
     color: var(--accent);
-    letter-spacing: 1px;
+    letter-spacing: 0.3px;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
 
   .chart-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 12px;
+    margin-bottom: 12px;
   }
 
   .chart-label {
-    flex: 0 0 100px;
-    font-size: 11px;
+    flex: 0 0 110px;
+    font-size: 12px;
     color: var(--muted);
+    font-weight: 500;
   }
 
   .chart-track {
     flex: 1;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.05);
+    height: 5px;
+    background: #F7F5F2;
     border-radius: 2px;
     overflow: hidden;
   }
@@ -200,33 +209,35 @@
   }
 
   .chart-value {
-    flex: 0 0 28px;
+    flex: 0 0 32px;
     text-align: right;
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CONTROLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .controls {
     display: flex;
-    gap: 12px;
+    gap: 16px;
     align-items: center;
-    padding: 16px 32px;
+    padding: 20px 48px;
     border-bottom: 1px solid var(--border);
     flex-wrap: wrap;
+    background: var(--surface);
   }
 
   .search-box {
     flex: 1;
-    min-width: 200px;
-    background: var(--surface);
+    min-width: 220px;
+    background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 8px 12px;
+    border-radius: 6px;
+    padding: 10px 14px;
     color: var(--text);
     font-size: 13px;
     font-family: 'IBM Plex Mono', monospace;
+    transition: all 0.2s ease;
   }
 
   .search-box::placeholder {
@@ -236,12 +247,13 @@
   .search-box:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.1);
+    background: var(--surface);
+    box-shadow: 0 0 0 2px rgba(200, 75, 49, 0.1);
   }
 
   .filter-group {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     align-items: center;
   }
 
@@ -249,7 +261,7 @@
     font-size: 11px;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     font-weight: 600;
   }
 
@@ -257,51 +269,62 @@
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--muted);
-    padding: 6px 12px;
-    border-radius: 4px;
+    padding: 7px 14px;
+    border-radius: 6px;
     font-size: 12px;
     cursor: pointer;
     transition: all 0.15s ease;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-weight: 500;
   }
 
   .filter-btn:hover {
     border-color: var(--accent);
     color: var(--text);
+    background: var(--bg);
   }
 
   .filter-btn.active {
     border-color: var(--accent);
-    background: rgba(0, 212, 255, 0.1);
-    color: var(--accent);
+    background: var(--accent);
+    color: white;
   }
 
-  .filter-btn.t1.active { border-color: var(--t1); background: var(--t1bg); color: var(--t1); }
-  .filter-btn.t2.active { border-color: var(--t2); background: var(--t2bg); color: var(--t2); }
-  .filter-btn.t3.active { border-color: var(--t3); background: var(--t3bg); color: var(--t3); }
-  .filter-btn.t4.active { border-color: var(--t4); background: var(--t4bg); color: var(--t4); }
+  .filter-btn.t1.active { border-color: var(--t1); background: var(--t1); color: white; }
+  .filter-btn.t2.active { border-color: var(--t2); background: var(--t2); color: white; }
+  .filter-btn.t3.active { border-color: var(--t3); background: var(--t3); color: white; }
+  .filter-btn.t4.active { border-color: var(--t4); background: var(--t4); color: white; }
 
   .filter-select {
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 6px 10px;
-    border-radius: 4px;
+    padding: 7px 12px;
+    border-radius: 6px;
     font-size: 12px;
     cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Geist', sans-serif;
+    transition: all 0.2s ease;
   }
 
   .filter-select:focus {
     outline: none;
     border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(200, 75, 49, 0.1);
+  }
+
+  /* Result count display */
+  .result-info {
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: auto;
+    font-weight: 500;
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TABLE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .table-wrap {
     overflow-x: auto;
-    padding: 0 32px 32px;
+    padding: 0 48px 48px;
   }
 
   table {
@@ -313,17 +336,21 @@
 
   th {
     text-align: left;
-    padding: 10px 8px;
+    padding: 12px 10px;
     font-size: 11px;
     font-weight: 600;
     color: var(--muted);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
     white-space: nowrap;
     cursor: pointer;
     user-select: none;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     text-transform: uppercase;
     font-family: 'IBM Plex Mono', monospace;
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
   th:hover {
@@ -335,17 +362,18 @@
   }
 
   td {
-    padding: 10px 8px;
-    border-bottom: 1px solid rgba(26, 32, 48, 0.8);
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--border);
     vertical-align: middle;
+    background: var(--surface);
   }
 
   tr {
     transition: all 0.15s ease;
   }
 
-  tr:hover td {
-    background: rgba(0, 212, 255, 0.02);
+  tbody tr:hover td {
+    background: #F7F5F2;
   }
 
   tr.has-dd {
@@ -353,22 +381,23 @@
   }
 
   tr.has-dd:hover td {
-    background: rgba(0, 212, 255, 0.04);
-    border-left: 2px solid var(--accent);
-    padding-left: 6px;
+    background: #F7F5F2;
+    border-left: 3px solid var(--accent);
+    padding-left: 7px;
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TABLE CELLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .rank {
     color: var(--muted);
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 600;
     width: 32px;
   }
 
   .niche-name {
     font-weight: 600;
-    max-width: 240px;
+    max-width: 260px;
   }
 
   .niche-name small {
@@ -376,36 +405,36 @@
     color: var(--muted);
     font-size: 11px;
     font-weight: 400;
-    margin-top: 2px;
-    line-height: 1.3;
+    margin-top: 3px;
+    line-height: 1.4;
   }
 
   .type-badge {
     display: inline-block;
-    padding: 4px 8px;
-    border-radius: 3px;
+    padding: 5px 10px;
+    border-radius: 4px;
     font-size: 10px;
     font-weight: 600;
     white-space: nowrap;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
   }
 
-  .type-badge.regtech { background: rgba(0, 212, 255, 0.15); color: var(--type-regtech); }
-  .type-badge.ai { background: rgba(168, 85, 247, 0.15); color: var(--type-ai); }
-  .type-badge.content { background: rgba(236, 72, 153, 0.15); color: var(--type-content); }
-  .type-badge.platform { background: rgba(59, 130, 246, 0.15); color: var(--type-platform); }
-  .type-badge.marketplace { background: rgba(249, 115, 22, 0.15); color: var(--type-marketplace); }
-  .type-badge.vertical { background: rgba(20, 184, 166, 0.15); color: var(--type-vertical); }
-  .type-badge.directory { background: rgba(16, 185, 129, 0.15); color: var(--type-directory); }
-  .type-badge.edtech { background: rgba(234, 179, 8, 0.15); color: var(--type-edtech); }
-  .type-badge.fintech { background: rgba(132, 204, 22, 0.15); color: var(--type-fintech); }
-  .type-badge.hrtech { background: rgba(244, 63, 94, 0.15); color: var(--type-hrtech); }
-  .type-badge.proptech { background: rgba(14, 165, 233, 0.15); color: var(--type-proptech); }
+  .type-badge.regtech { background: rgba(2, 132, 199, 0.12); color: var(--type-regtech); }
+  .type-badge.ai { background: rgba(124, 58, 237, 0.12); color: var(--type-ai); }
+  .type-badge.content { background: rgba(220, 38, 38, 0.12); color: var(--type-content); }
+  .type-badge.platform { background: rgba(37, 99, 235, 0.12); color: var(--type-platform); }
+  .type-badge.marketplace { background: rgba(234, 88, 12, 0.12); color: var(--type-marketplace); }
+  .type-badge.vertical { background: rgba(8, 145, 178, 0.12); color: var(--type-vertical); }
+  .type-badge.directory { background: rgba(5, 150, 105, 0.12); color: var(--type-directory); }
+  .type-badge.edtech { background: rgba(202, 138, 4, 0.12); color: var(--type-edtech); }
+  .type-badge.fintech { background: rgba(101, 163, 13, 0.12); color: var(--type-fintech); }
+  .type-badge.hrtech { background: rgba(190, 24, 93, 0.12); color: var(--type-hrtech); }
+  .type-badge.proptech { background: rgba(3, 105, 161, 0.12); color: var(--type-proptech); }
 
   .score-cell {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     min-width: 48px;
   }
 
@@ -416,24 +445,24 @@
 
   .tier-badge {
     display: inline-block;
-    padding: 2px 7px;
-    border-radius: 3px;
+    padding: 3px 8px;
+    border-radius: 4px;
     font-size: 10px;
     font-weight: 700;
     white-space: nowrap;
-    margin-left: 6px;
-    letter-spacing: 0.3px;
+    margin-left: 8px;
+    letter-spacing: 0.2px;
   }
 
-  .tier-1 { background: var(--t1bg); color: var(--t1); border: 1px solid rgba(0, 255, 148, 0.3); }
-  .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(255, 184, 0, 0.3); }
-  .tier-3 { background: var(--t3bg); color: var(--t3); border: 1px solid rgba(255, 107, 53, 0.3); }
-  .tier-4 { background: var(--t4bg); color: var(--t4); border: 1px solid rgba(74, 85, 104, 0.3); }
+  .tier-1 { background: var(--t1bg); color: var(--t1); border: 1px solid rgba(22, 163, 74, 0.25); }
+  .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(217, 119, 6, 0.25); }
+  .tier-3 { background: var(--t3bg); color: var(--t3); border: 1px solid rgba(234, 88, 12, 0.25); }
+  .tier-4 { background: var(--t4bg); color: var(--t4); border: 1px solid rgba(148, 163, 184, 0.25); }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FACTOR BARS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .factors {
     display: flex;
-    gap: 4px;
+    gap: 5px;
     align-items: flex-end;
   }
 
@@ -447,11 +476,11 @@
     width: 18px;
     height: 36px;
     border-radius: 2px;
-    background: rgba(255, 255, 255, 0.04);
+    background: #F7F5F2;
     display: flex;
     flex-direction: column-reverse;
     overflow: hidden;
-    border: 1px solid rgba(26, 32, 48, 0.8);
+    border: 1px solid var(--border);
   }
 
   .factor-fill {
@@ -462,15 +491,15 @@
   .factor-label {
     font-size: 9px;
     color: var(--muted);
-    margin-top: 3px;
-    font-weight: 500;
+    margin-top: 4px;
+    font-weight: 600;
     font-family: 'IBM Plex Mono', monospace;
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CHIPS & CELLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .mvp-chip {
     display: inline-block;
-    padding: 4px 10px;
+    padding: 5px 11px;
     border-radius: 12px;
     font-size: 11px;
     font-weight: 600;
@@ -478,15 +507,16 @@
     font-family: 'IBM Plex Mono', monospace;
   }
 
-  .mvp-fast { background: rgba(0, 255, 148, 0.15); color: #4ade80; }
-  .mvp-med { background: rgba(255, 184, 0, 0.15); color: #fbbf24; }
-  .mvp-slow { background: rgba(255, 107, 53, 0.15); color: #f87171; }
+  .mvp-fast { background: rgba(22, 163, 74, 0.15); color: #15803d; }
+  .mvp-med { background: rgba(217, 119, 6, 0.15); color: #b45309; }
+  .mvp-slow { background: rgba(234, 88, 12, 0.15); color: #c2410c; }
 
   .tam {
     color: var(--muted);
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
     white-space: nowrap;
+    font-weight: 500;
   }
 
   .unit-cell {
@@ -494,14 +524,14 @@
   }
 
   .unit-cac {
-    color: #34d399;
+    color: #059669;
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
     display: block;
   }
 
   .unit-ltv {
-    color: #60a5fa;
+    color: #0284C7;
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
   }
@@ -517,39 +547,39 @@
     font-size: 12px;
     font-weight: 600;
     font-family: 'IBM Plex Mono', monospace;
-    color: #c084fc;
+    color: #7C3AED;
   }
 
   .gap-text {
     color: var(--muted);
     font-size: 11px;
-    line-height: 1.4;
-    max-width: 220px;
+    line-height: 1.5;
+    max-width: 240px;
   }
 
   .dd-badge {
     display: inline-block;
-    padding: 2px 6px;
+    padding: 3px 7px;
     border-radius: 3px;
     font-size: 9px;
     font-weight: 700;
-    background: rgba(0, 212, 255, 0.2);
+    background: rgba(200, 75, 49, 0.15);
     color: var(--accent);
-    border: 1px solid rgba(0, 212, 255, 0.4);
-    margin-left: 4px;
+    border: 1px solid rgba(200, 75, 49, 0.3);
+    margin-left: 6px;
     vertical-align: middle;
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ DETAIL PANEL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .detail-row td {
-    background: rgba(0, 212, 255, 0.03) !important;
-    border-bottom: 2px solid rgba(0, 212, 255, 0.1) !important;
-    padding: 16px 8px !important;
+    background: rgba(200, 75, 49, 0.03) !important;
+    border-bottom: 2px solid rgba(200, 75, 49, 0.15) !important;
+    padding: 20px 10px !important;
   }
 
   .detail-panel {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 16px;
   }
 
@@ -557,16 +587,16 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-left: 3px solid var(--accent);
-    padding: 12px 14px;
-    border-radius: 4px;
+    padding: 14px 16px;
+    border-radius: 6px;
   }
 
   .detail-card h4 {
     font-size: 10px;
     color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+    margin-bottom: 10px;
     font-weight: 700;
     font-family: 'IBM Plex Mono', monospace;
   }
@@ -590,23 +620,25 @@
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   .no-results {
     text-align: center;
-    padding: 48px 32px;
+    padding: 60px 48px;
     color: var(--muted);
     font-size: 14px;
   }
 
   .footer {
     text-align: center;
-    padding: 16px 32px;
+    padding: 20px 48px;
     color: var(--muted);
     font-size: 11px;
     border-top: 1px solid var(--border);
     letter-spacing: 0.3px;
+    background: var(--surface);
   }
 
   .footer-timestamp {
     font-family: 'IBM Plex Mono', monospace;
     color: var(--accent);
+    font-weight: 600;
   }
 </style>
 </head>
@@ -615,9 +647,11 @@
 <header class="hero">
   <div class="hero-content">
     <div class="hero-flag">🇪🇸</div>
-    <h1 class="hero-title">SPAIN NICHES <span class="hero-year">2026</span></h1>
+    <div>
+      <h1 class="hero-title">Spain Niches <span class="hero-year">2026</span></h1>
+    </div>
   </div>
-  <p class="hero-sub">8-factor scoring · <span id="totalCount">83</span> niches · <span id="t1c-text">18</span> Tier 1 opportunities · Deep Dives: 7 T1 niches</p>
+  <p class="hero-sub">Intelligence dashboard for profitable online niches in Spain · 8-factor scoring methodology</p>
   <div class="hero-stats" id="stats"></div>
 </header>
 
@@ -649,6 +683,7 @@
     <option value="med">7–12 weeks</option>
     <option value="slow">>12 weeks</option>
   </select>
+  <div class="result-info">Showing <span id="visibleCount">—</span></div>
 </div>
 
 <div class="table-wrap">
@@ -671,19 +706,18 @@
 </div>
 
 <div class="footer">
-  Spain Niches 2026 Intelligence Terminal · v2 methodology · <span id="totalCountFooter">83</span> niches · <span class="footer-timestamp" id="timestamp">2026-03-02</span>
+  Spain Niches Intelligence Dashboard · <span id="totalCountFooter">—</span> niches analyzed · Methodology v2 · Last updated <span class="footer-timestamp" id="timestamp">2026-03-02</span>
 </div>
 
 <script>
 let D=[];
-
 
 let sortCol='score', sortAsc=false, tierF='all', searchF='', typeF='', mvpF='';
 
 const tier=s=>s>=8?1:s>=7.5?2:s>=6.5?3:4;
 const tc=s=>'tier-'+tier(s);
 const sc=s=>'score-t'+tier(s);
-const fc=v=>v>=9?'#22c55e':v>=7?'#f59e0b':v>=5?'#f97316':'#ef4444';
+const fc=v=>v>=9?'#16A34A':v>=7?'#D97706':v>=5?'#EA580C':'#DC2626';
 const typeClass=t=>{
   const map={
     'RegTech':'regtech','AI':'ai','Content':'content','Platform':'platform','Marketplace':'marketplace',
@@ -721,10 +755,10 @@ function detailPanel(n){
   if(!n.dd) return '';
   return `<tr class="detail-row" id="dp-${n.rank}" style="display:none"><td colspan="10">
     <div class="detail-panel">
-      <div class="detail-card" style="border-left-color:#A855F7"><h4>Unit Economics</h4><p>CAC <strong>€${n.cac}</strong> · LTV <strong>€${n.ltv}</strong><br>Churn ${n.churn||'—'} · Y1 <strong>${n.y1||'—'}</strong></p></div>
-      <div class="detail-card" style="border-left-color:#EC4899"><h4>GTM Strategy</h4><p>${n.gtm||'—'}</p></div>
-      <div class="detail-card" style="border-left-color:#3B82F6"><h4>MVP Scope</h4><p>${n.mvpScope||'—'}</p></div>
-      <div class="detail-card" style="border-left-color:#F97316"><h4>Key Risks</h4><p>${n.risks||'—'}</p></div>
+      <div class="detail-card" style="border-left-color:#7C3AED"><h4>Unit Economics</h4><p>CAC <strong>€${n.cac}</strong> · LTV <strong>€${n.ltv}</strong><br>Churn ${n.churn||'—'} · Y1 <strong>${n.y1||'—'}</strong></p></div>
+      <div class="detail-card" style="border-left-color:#DC2626"><h4>GTM Strategy</h4><p>${n.gtm||'—'}</p></div>
+      <div class="detail-card" style="border-left-color:#2563EB"><h4>MVP Scope</h4><p>${n.mvpScope||'—'}</p></div>
+      <div class="detail-card" style="border-left-color:#EA580C"><h4>Key Risks</h4><p>${n.risks||'—'}</p></div>
     </div>
   </td></tr>`;
 }
@@ -780,10 +814,8 @@ function render(){
   });
 
   const t1cnt=D.filter(n=>n.score>=8).length;
-  document.getElementById('totalCount').textContent=D.length;
-  document.getElementById('t1c-text').textContent=t1cnt;
   document.getElementById('totalCountFooter').textContent=D.length;
-  document.getElementById('visibleCount').textContent=data.length+' niches';
+  document.getElementById('visibleCount').textContent=data.length+' niche'+(data.length!==1?'s':'');
   document.getElementById('nr').style.display=data.length?'none':'block';
   document.getElementById('tb').innerHTML=data.map((n,i)=>{
     const ddBadge=n.dd?'<span class="dd-badge">DD ✓</span>':'';
@@ -807,10 +839,10 @@ function render(){
 
 function buildCharts(){
   const ranges=[
-    {l:'8.0–10 (T1)',c:'#00FF94',cnt:D.filter(n=>n.score>=8).length},
-    {l:'7.5–7.9 (T2)',c:'#FFB800',cnt:D.filter(n=>n.score>=7.5&&n.score<8).length},
-    {l:'6.5–7.4 (T3)',c:'#FF6B35',cnt:D.filter(n=>n.score>=6.5&&n.score<7.5).length},
-    {l:'< 6.5 (T4)',c:'#4A5568',cnt:D.filter(n=>n.score<6.5).length},
+    {l:'8.0–10 (T1)',c:'#16A34A',cnt:D.filter(n=>n.score>=8).length},
+    {l:'7.5–7.9 (T2)',c:'#D97706',cnt:D.filter(n=>n.score>=7.5&&n.score<8).length},
+    {l:'6.5–7.4 (T3)',c:'#EA580C',cnt:D.filter(n=>n.score>=6.5&&n.score<7.5).length},
+    {l:'< 6.5 (T4)',c:'#94A3B8',cnt:D.filter(n=>n.score<6.5).length},
   ];
   const m1=Math.max(...ranges.map(r=>r.cnt));
   const types={};
@@ -833,26 +865,26 @@ function buildCharts(){
     <div class="chart-title">By Type</div>
     ${typeEntries.map(([k,v])=>`<div class="chart-bar">
       <span class="chart-label">${k}</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${v/m2*100}%;background:#00D4FF"></div></div>
-      <span class="chart-value" style="color:#00D4FF">${v}</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${v/m2*100}%;background:#C84B31"></div></div>
+      <span class="chart-value" style="color:#C84B31">${v}</span>
     </div>`).join('')}
   </div>
   <div class="chart-box">
     <div class="chart-title">MVP Speed</div>
     <div class="chart-bar">
       <span class="chart-label">≤6 weeks</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.fast/maxMvp*100}%;background:#00FF94"></div></div>
-      <span class="chart-value" style="color:#00FF94">${mvpCnts.fast}</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.fast/maxMvp*100}%;background:#16A34A"></div></div>
+      <span class="chart-value" style="color:#16A34A">${mvpCnts.fast}</span>
     </div>
     <div class="chart-bar">
       <span class="chart-label">7–12 weeks</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.med/maxMvp*100}%;background:#FFB800"></div></div>
-      <span class="chart-value" style="color:#FFB800">${mvpCnts.med}</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.med/maxMvp*100}%;background:#D97706"></div></div>
+      <span class="chart-value" style="color:#D97706">${mvpCnts.med}</span>
     </div>
     <div class="chart-bar">
       <span class="chart-label">>12 weeks</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.slow/maxMvp*100}%;background:#FF6B35"></div></div>
-      <span class="chart-value" style="color:#FF6B35">${mvpCnts.slow}</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.slow/maxMvp*100}%;background:#EA580C"></div></div>
+      <span class="chart-value" style="color:#EA580C">${mvpCnts.slow}</span>
     </div>
   </div>`;
 
@@ -875,7 +907,7 @@ function buildCharts(){
       <div class="stat-label">Tier 3 6.5–7.4</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number" style="color:#00D4FF">${avgScore}</div>
+      <div class="stat-number" style="color:#C84B31">${avgScore}</div>
       <div class="stat-label">Avg Score</div>
     </div>
   `;
