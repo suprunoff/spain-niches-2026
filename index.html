@@ -763,7 +763,7 @@
       <th onclick="srt('name')" data-c="name">Niche <span id="a-name">↕</span></th>
       <th onclick="srt('type')" data-c="type">Type <span id="a-type">↕</span></th>
       <th onclick="srt('score')" data-c="score" class="sorted" data-tip="Weighted score 1–10 across 8 factors">Score <span id="a-score">↓</span></th>
-      <th data-tip="D = Demand · G = Gap (no competitors) · R = Regulation urgency · S = Spain fit · M = Monetization · A = Accessibility (low barrier) · F = Founder fit · T = Timing">D · G · R · S · M · A · F · T</th>
+      <th data-tip="🔥 Demand · 🎯 Gap (no competitors) · ⚖️ Regulation urgency · 🇪🇸 Spain fit · 💰 Monetization · 🚀 Accessibility (low barrier) · 🧑‍💻 Founder fit · ⏰ Timing">🔥 · 🎯 · ⚖️ · 🇪🇸 · 💰 · 🚀 · 🧑‍💻 · ⏰</th>
       <th onclick="srt('mvp')" data-c="mvp" data-tip="Estimated weeks to ship a working MVP">MVP <span id="a-mvp">↕</span></th>
       <th onclick="srt('tam')" data-c="tam" data-tip="Total Addressable Market in Spain (bottom-up estimate)">TAM <span id="a-tam">↕</span></th>
       <th onclick="srt('cac')" data-c="cac" data-tip="CAC = Customer Acquisition Cost · LTV = Lifetime Value · ratio = LTV/CAC">CAC / LTV <span id="a-cac">↕</span></th>
@@ -801,14 +801,14 @@ const typeClass = t => {
 
 function bars(n) {
   const fs = [
-    ['d', 'D', 'Demand — search volume & willingness to pay'],
-    ['g', 'G', 'Gap — absence of direct competitors in Spain'],
-    ['r', 'R', 'Regulation — urgency driven by legal deadlines'],
-    ['s', 'S', 'Spain fit — cultural & market alignment'],
-    ['m', 'M', 'Monetization — revenue model clarity'],
-    ['a', 'A', 'Accessibility — low barrier to entry'],
-    ['f', 'F', 'Founder fit — solo-buildable without big team'],
-    ['t', 'T', 'Timing — market readiness right now'],
+    ['d', '🔥', 'Demand — search volume & willingness to pay'],
+    ['g', '🎯', 'Gap — absence of direct competitors in Spain'],
+    ['r', '⚖️', 'Regulation — urgency driven by legal deadlines'],
+    ['s', '🇪🇸', 'Spain fit — cultural & market alignment'],
+    ['m', '💰', 'Monetization — revenue model clarity'],
+    ['a', '🚀', 'Accessibility — low barrier to entry'],
+    ['f', '🧑‍💻', 'Founder fit — solo-buildable without big team'],
+    ['t', '⏰', 'Timing — market readiness right now'],
   ];
   return '<div class="factors">' + fs.map(([k, l, tip]) => {
     const v = n[k];
