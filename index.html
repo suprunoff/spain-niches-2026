@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spain Niches 2026 — Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --t1: #22c55e; --t1bg: #052e16;
+    --t2: #f59e0b; --t2bg: #1c1007;
+    --t3: #f97316; --t3bg: #1c0f07;
+    --t4: #64748b; --t4bg: #0f172a;
+    --accent: #6366f1;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 13px; }
+
+  header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+  header span.sub { color: var(--muted); font-size: 12px; }
+  .badge-count { background: var(--accent); color: #fff; border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+
+  .stats { display: flex; gap: 12px; padding: 16px 24px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px; min-width: 100px; }
+  .stat-val { font-size: 22px; font-weight: 700; line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .stat.t1 .stat-val { color: var(--t1); }
+  .stat.t2 .stat-val { color: var(--t2); }
+  .stat.t3 .stat-val { color: var(--t3); }
+
+  .chart-row { display: flex; gap: 16px; padding: 16px 24px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  .chart-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; flex: 1; min-width: 180px; }
+  .chart-box h3 { font-size: 11px; color: var(--muted); font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .dist-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 11px; }
+  .dist-track { flex: 1; height: 5px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
+  .dist-fill { height: 100%; border-radius: 3px; }
+
+  .controls { display: flex; gap: 8px; padding: 12px 24px; border-bottom: 1px solid var(--border); flex-wrap: wrap; align-items: center; }
+  input[type=search] { background: var(--surface); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 12px; font-size: 13px; width: 200px; outline: none; }
+  input[type=search]:focus { border-color: var(--accent); }
+  .filter-btn { background: var(--surface); border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: 12px; transition: all 0.15s; }
+  .filter-btn:hover { color: var(--text); }
+  .filter-btn.active { border-color: var(--accent); color: var(--text); }
+  .filter-btn.t1.active { border-color: var(--t1); color: var(--t1); background: var(--t1bg); }
+  .filter-btn.t2.active { border-color: var(--t2); color: var(--t2); background: var(--t2bg); }
+  .filter-btn.t3.active { border-color: var(--t3); color: var(--t3); background: var(--t3bg); }
+  .filter-btn.t4.active { border-color: var(--t4); color: var(--t4); background: var(--t4bg); }
+  select { background: var(--surface); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 5px 10px; font-size: 12px; cursor: pointer; outline: none; }
+  .sort-label { color: var(--muted); font-size: 12px; }
+
+  .table-wrap { overflow-x: auto; padding: 0 24px 32px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; min-width: 900px; }
+  th { text-align: left; padding: 8px 10px; font-size: 11px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--border); white-space: nowrap; cursor: pointer; user-select: none; }
+  th:hover { color: var(--text); }
+  th.sorted { color: var(--accent); }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .rank { color: var(--muted); font-size: 11px; width: 28px; }
+  .niche-name { font-weight: 500; }
+  .niche-name small { display: block; color: var(--muted); font-size: 11px; font-weight: 400; margin-top: 1px; }
+  .type-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; background: rgba(99,102,241,0.15); color: #818cf8; white-space: nowrap; }
+  .score-cell { font-weight: 700; font-size: 15px; }
+  .tier-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; white-space: nowrap; margin-left: 5px; }
+  .tier-1 { background: var(--t1bg); color: var(--t1); border: 1px solid rgba(34,197,94,0.3); }
+  .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(245,158,11,0.3); }
+  .tier-3 { background: rgba(249,115,22,0.1); color: var(--t3); border: 1px solid rgba(249,115,22,0.3); }
+  .tier-4 { background: var(--t4bg); color: var(--t4); border: 1px solid rgba(100,116,139,0.3); }
+  .t1-score { color: var(--t1); }
+  .t2-score { color: var(--t2); }
+  .t3-score { color: var(--t3); }
+  .t4-score { color: var(--t4); }
+
+  .factors { display: flex; gap: 2px; align-items: flex-end; }
+  .factor-wrap { display: flex; flex-direction: column; align-items: center; }
+  .factor-bar { width: 16px; height: 28px; border-radius: 2px; background: rgba(255,255,255,0.04); display: flex; flex-direction: column-reverse; overflow: hidden; }
+  .factor-fill { border-radius: 2px; }
+  .factor-label { font-size: 8px; color: var(--muted); margin-top: 2px; }
+
+  .mvp-chip { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 11px; white-space: nowrap; }
+  .mvp-fast { background: rgba(34,197,94,0.1); color: #4ade80; }
+  .mvp-med { background: rgba(245,158,11,0.1); color: #fbbf24; }
+  .mvp-slow { background: rgba(239,68,68,0.1); color: #f87171; }
+
+  .tam { color: var(--muted); white-space: nowrap; font-size: 12px; }
+  .gap-text { color: var(--muted); font-size: 11px; max-width: 220px; line-height: 1.4; }
+
+  .no-results { text-align: center; padding: 40px; color: var(--muted); }
+  .footer { text-align: center; padding: 16px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--border); }
+
+  /* Deep Dive extras */
+  .dd-badge { display: inline-block; padding: 1px 5px; border-radius: 3px; font-size: 9px; font-weight: 700; background: rgba(99,102,241,0.2); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.4); margin-left: 4px; vertical-align: middle; }
+  .dir-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; background: rgba(20,184,166,0.15); color: #2dd4bf; white-space: nowrap; }
+  .unit-cell { font-size: 11px; white-space: nowrap; }
+  .unit-cac { color: #34d399; }
+  .unit-ltv { color: #60a5fa; }
+  .unit-ratio { color: var(--muted); font-size: 10px; }
+  .y1-cell { font-size: 11px; color: #c084fc; white-space: nowrap; }
+  .no-dd { color: var(--muted); font-size: 10px; }
+  tr.has-dd { cursor: pointer; }
+  tr.has-dd:hover td { background: rgba(99,102,241,0.05); }
+  .detail-row td { background: rgba(99,102,241,0.04) !important; border-bottom: 2px solid rgba(99,102,241,0.2); }
+  .detail-panel { padding: 12px 16px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .detail-block { min-width: 160px; }
+  .detail-block h4 { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .detail-block p { font-size: 12px; color: var(--text); line-height: 1.6; }
+  .detail-block p span { color: var(--muted); font-size: 11px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🇪🇸 Spain Niches 2026</h1>
+    <span class="sub">8-factor scoring v2 · 3 параллельных агента · 80+ источников</span>
+  </div>
+  <span class="badge-count" id="visibleCount">68 ниш</span>
+</header>
+
+<div class="stats">
+  <div class="stat t1"><div class="stat-val" id="t1c">9</div><div class="stat-label">🔴 Tier 1 ≥8.0</div></div>
+  <div class="stat t2"><div class="stat-val" id="t2c">12</div><div class="stat-label">🟠 Tier 2 7.5–7.9</div></div>
+  <div class="stat t3"><div class="stat-val" id="t3c">19</div><div class="stat-label">🟡 Tier 3 6.5–7.4</div></div>
+  <div class="stat"><div class="stat-val" style="color:var(--accent)" id="avgS">7.08</div><div class="stat-label">Средний score</div></div>
+  <div class="stat"><div class="stat-val" style="color:#e2e8f0" id="totalCount">68</div><div class="stat-label">Всего ниш</div></div>
+</div>
+
+<div class="chart-row" id="charts"></div>
+
+<div class="controls">
+  <input type="search" id="s" placeholder="🔍 Поиск..." oninput="go()">
+  <span class="sort-label">Tier:</span>
+  <button class="filter-btn active" data-tier="all" onclick="setTier('all',this)">Все</button>
+  <button class="filter-btn t1" data-tier="1" onclick="setTier('1',this)">🔴 T1</button>
+  <button class="filter-btn t2" data-tier="2" onclick="setTier('2',this)">🟠 T2</button>
+  <button class="filter-btn t3" data-tier="3" onclick="setTier('3',this)">🟡 T3</button>
+  <button class="filter-btn t4" data-tier="4" onclick="setTier('4',this)">⚪ T4</button>
+  <select id="tf" onchange="go()">
+    <option value="">Все типы</option>
+    <option>RegTech</option><option>AI</option><option>Content</option>
+    <option>Platform</option><option>Marketplace</option><option>Vertical</option>
+    <option>Directory</option>
+  </select>
+  <select id="mf" onchange="go()">
+    <option value="">Любой MVP</option>
+    <option value="fast">≤6 нед</option>
+    <option value="med">7–12 нед</option>
+    <option value="slow">&gt;12 нед</option>
+  </select>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead><tr>
+      <th onclick="srt('rank')" data-c="rank"># <span id="a-rank">↕</span></th>
+      <th onclick="srt('name')" data-c="name">Ниша <span id="a-name">↕</span></th>
+      <th onclick="srt('type')" data-c="type">Тип <span id="a-type">↕</span></th>
+      <th onclick="srt('score')" data-c="score" class="sorted">Score <span id="a-score">↓</span></th>
+      <th>D · G · R · S · M · A · F · T</th>
+      <th onclick="srt('mvp')" data-c="mvp">MVP <span id="a-mvp">↕</span></th>
+      <th onclick="srt('tam')" data-c="tam">TAM <span id="a-tam">↕</span></th>
+      <th onclick="srt('cac')" data-c="cac">CAC / LTV <span id="a-cac">↕</span></th>
+      <th onclick="srt('y1')" data-c="y1">Y1 ARR <span id="a-y1">↕</span></th>
+      <th>Гэп</th>
+    </tr></thead>
+    <tbody id="tb"></tbody>
+  </table>
+  <div class="no-results" id="nr" style="display:none">Ничего не найдено</div>
+</div>
+
+<div class="footer">
+  Spain Niches 2026 · v2 methodology · 68 ниш · Deep Dives: 7 T1 ниш · Категории: RegTech · AI · Content · Platform · Marketplace · Vertical · Directory · Crypto · Обновлено 2026-03-02
+</div>
+
+<script>
+const D = [
+  {rank:1,name:"Tourist Rental VUD Compliance",sub:"RegTech для Airbnb-хостов",type:"RegTech",d:9,g:10,r:9,s:10,m:9,a:9,f:7,t:10,score:9.10,mi:4,mx:6,tam:"€52-82M",gap:"0 решений, штраф €60K, 330K свойств",dd:true,cac:65,ltv:516,churn:"3-5%",y1:"€16-23K",y1n:20,risks:"Airbnb строит нативно (12-18 мес окно); 17 региональных API",gtm:"Airbnb host FB groups → SEO 'VUD license Spain' → Reddit r/spain",mvpScope:"Трекер лицензий + compliance dashboard + SES.Hospedajes API"},
+  {rank:2,name:"Autónomo Compliance Bundle",sub:"VeriFactu + налоги + HR для экспатов",type:"RegTech",d:9,g:9,r:10,s:9,m:6,a:8,f:8,t:8,score:8.65,mi:10,mx:14,tam:"€80-200M",gap:"500K autónomos, всё только на испанском",dd:true,cac:22,ltv:585,churn:"5-7%",y1:"€200-500K",y1n:350,risks:"Holded добавляет EN (2027); liability за налоговые ошибки",gtm:"Reddit r/SpainExpats + Nomad List + InterNations → SEO 'invoice Spain English'",mvpScope:"EN invoicing + VeriFactu QR + Modelo 303 auto-calc"},
+  {rank:3,name:"Telegram Media Empire ES",sub:"Бизнес-каналы на испанском",type:"Content",d:8,g:10,r:7,s:9,m:10,a:10,f:5,t:8,score:8.75,mi:1,mx:2,tam:"€116-141K/год/5 каналов",gap:"24M TG-пользователей, 0 бизнес-каналов",dd:true,cac:0,ltv:2500,churn:"—",y1:"€14.4K",y1n:14,risks:"TG Ads CPM too low; Telegram алгоритм-изменения; конкуренты через 18-24 мес",gtm:"Cross-post Twitter/X ES + LinkedIn → paid TG growth → sponsorships",mvpScope:"3-5 каналов (финансы, крипто, стартапы ES) → 1K+ subs → TG Ads eligibility"},
+  {rank:4,name:"Ley Atención al Cliente Platform",sub:"AI compliance — 250+ сотр компании",type:"RegTech",d:8,g:9,r:9,s:9,m:7,a:8,f:8,t:9,score:8.45,mi:6,mx:8,tam:"€20-50M",gap:"8K компаний, дедлайн дек 2026, 0 ES-решений",dd:true,cac:2000,ltv:12600,churn:"8%/год",y1:"€30-50K",y1n:40,risks:"Zendesk Q3 2026 launch; enterprise sales слишком медленно для соло-фаундера",gtm:"LinkedIn → compliance/legal directors → tax advisor partnerships",mvpScope:"Compliance dashboard + SLA tracker + AI chatbot white-label + audit report"},
+  {rank:5,name:"VeriFactu SaaS — Expat Autónomos",sub:"EN-first инвойсинг + Hacienda API",type:"RegTech",d:8,g:9,r:7,s:9,m:8,a:9,f:6,t:9,score:8.00,mi:4,mx:8,tam:"€1.7-3.2M",gap:"Все конкуренты только на испанском",dd:true,cac:50,ltv:300,churn:"5-7%",y1:"€1.2-1.8K",y1n:1.5,risks:"Holded EN version; Hacienda API changes; tax liability",gtm:"Reddit r/expats → Facebook 'Freelancers Spain' → Nomad List",mvpScope:"EN invoicing + VeriFactu QR + Modelo 303/130 + Hacienda SOAP API"},
+  {rank:6,name:"E-Commerce Seller Compliance",sub:"VeriFactu + RGPD для маркетплейс-продавцов",type:"RegTech",d:9,g:9,r:9,s:8,m:7,a:8,f:6,t:8,score:8.75,mi:10,mx:12,tam:"€180M",gap:"60K Amazon.es sellers, Jan 2027, 0 unified tools",dd:true,cac:35,ltv:735,churn:"6-8%",y1:"€1.18M",y1n:1180,risks:"Amazon строит нативно; A2X добавляет VeriFactu",gtm:"Amazon Seller Central community → SEO 'VeriFactu Amazon España' → AECEM",mvpScope:"Amazon SP-API + VeriFactu SOAP + RGPD consent → auto-invoice per sale"},
+  {rank:7,name:"Spanish Infobiz Platform",sub:"GetCourse ES analogue",type:"Platform",d:9,g:8,r:9,s:8,m:5,a:8,f:7,t:6,score:7.93,mi:12,mx:14,tam:"€85M",gap:"450K коучей, 0 платформы с Bizum, Hotmart входит в ES",dd:true,cac:67,ltv:10400,churn:"3%/год",y1:"€248K",y1n:248,risks:"Hotmart агрессивно входит (12-18 мес окно); сложность билда соло",gtm:"Instagram/LinkedIn coaching communities → freemium → Spanish creator influencers",mvpScope:"Курс-хостинг + email funnel + Bizum payments + member portal"},
+  {rank:8,name:"AI Content Generator ES",sub:"Spanish-first для creators + LATAM",type:"AI",d:9,g:8,r:8,s:9,m:7,a:9,f:5,t:5,score:8.25,mi:4,mx:6,tam:"€200-400M",gap:"88% creators недовольны Spanish quality EN-инструментов",dd:true,cac:42,ltv:940,churn:"12%",y1:"€366K",y1n:366,risks:"ChatGPT улучшает испанский; Adobe/Canva добавляют AI; окно 12-18 мес",gtm:"ProductHunt → Spanish YouTube creator communities → freemium → TikTok/IG demo",mvpScope:"YouTube script + TikTok hooks + IG captions генератор (Claude API + Next.js)"},
+  {rank:9,name:"Crypto Tax + MiCA Compliance",sub:"DAC8 + MiCA reporting → Hacienda",type:"RegTech",d:8,g:8,r:9,s:9,m:8,a:8,f:7,t:9,score:8.56,mi:6,mx:8,tam:"€30M",gap:"Koinly/CoinTracking не поддерживают DAC8 + Modelo 721",dd:true,cac:18,ltv:790,churn:"10%",y1:"€632K",y1n:632,risks:"Пост-июль 2026 регуляторные изменения; B2C churn высокий",gtm:"Spanish crypto Twitter/X + Reddit r/CryptoES + Binance España community",mvpScope:"Wallet sync + DAC8 XML export → Hacienda + Modelo 721 auto-calc"},
+  {rank:10,name:"WhatsApp-First Automation",sub:"n8n/Zapier с WhatsApp-нативным UX",type:"AI",d:8,g:8,r:8,s:9,m:7,a:8,f:6,t:6,score:7.85,mi:6,mx:8,tam:"€80-120M",gap:"90% SMBs в WA, 0 ES-native автоматизации"},
+  {rank:11,name:"Digital Nomad Visa Ecosystem",sub:"NIE + tax + banking для DNV",type:"Platform",d:8,g:9,r:7,s:8,m:9,a:9,f:5,t:7,score:7.75,mi:6,mx:8,tam:"€30-50M",gap:"7,800+ виз/год, только gestors + FB-группы"},
+  {rank:12,name:"EV Charging Fleet Management",sub:"B2B fleet + Plan Auto 2030",type:"Vertical",d:8,g:8,r:8,s:9,m:7,a:7,f:7,t:8,score:7.75,mi:8,mx:12,tam:"€80-200M",gap:"Wallbox = consumer, нет B2B fleet mgmt"},
+  {rank:13,name:"Padel Club Management SaaS",sub:"Бронирование + турниры + Bizum",type:"Vertical",d:8,g:9,r:7,s:8,m:8,a:8,f:6,t:7,score:7.71,mi:8,mx:10,tam:"€50-80M",gap:"5K+ клубов, 0 испанских решений"},
+  {rank:14,name:"Paid Community Platform",sub:"Boosty ES analogue",type:"Platform",d:8,g:8,r:8,s:8,m:5,a:8,f:7,t:6,score:7.65,mi:12,mx:16,tam:"€40M+",gap:"Boosty €80M ARR в РФ, Spain = только Discord"},
+  {rank:15,name:"WhatsApp Coaching Marketplace",sub:"B2C коучинг через WhatsApp",type:"Marketplace",d:8,g:8,r:7,s:9,m:7,a:9,f:5,t:5,score:7.60,mi:6,mx:8,tam:"€30M+",gap:"8K коучей, 0 платформ для WA-коучинга"},
+  {rank:16,name:"Precision Agriculture + CAP",sub:"CAP оптимизация + экспорт документы",type:"Vertical",d:8,g:8,r:8,s:8,m:6,a:7,f:7,t:8,score:7.64,mi:10,mx:14,tam:"€60-150M",gap:"Trimble/Deere дорогие, нет CAP-специфики"},
+  {rank:17,name:"Energy/Solar Self-Consumption",sub:"SMB solar + PPA management",type:"Vertical",d:7,g:8,r:8,s:8,m:6,a:7,f:7,t:7,score:7.55,mi:8,mx:12,tam:"€20-50M",gap:"Spain цель 100% renewables 2030, 1M+ SMBs"},
+  {rank:18,name:"RGPD/DPA Generator + Audit",sub:"Privacy compliance SaaS",type:"RegTech",d:8,g:8,r:7,s:8,m:8,a:8,f:6,t:6,score:7.55,mi:4,mx:6,tam:"€25-60M",gap:"RGPD строже GDPR, постоянный compliance спрос"},
+  {rank:19,name:"Private Clinic Management SaaS",sub:"Scheduling + RGPD records + Redsys",type:"Vertical",d:8,g:7,r:8,s:8,m:7,a:7,f:7,t:7,score:7.50,mi:8,mx:10,tam:"€40-80M",gap:"15K клиник, Doctoprocess устарел, VeriFactu 2027"},
+  {rank:20,name:"Senior Care Family Coordination",sub:"Лекарства + уход + семейный чат",type:"Platform",d:8,g:8,r:7,s:8,m:8,a:7,f:6,t:7,score:7.50,mi:6,mx:8,tam:"€40-80M",gap:"10.4M пожилых (22%), 0 RGPD-safe координации"},
+  {rank:21,name:"Micro-SaaS Hostelería",sub:"280K баров: смены + кассы + аллергены",type:"Vertical",d:8,g:8,r:7,s:8,m:8,a:8,f:6,t:7,score:7.50,mi:6,mx:8,tam:"€80-200M",gap:"Toast = US-only, испанские POS не для SMB"},
+  {rank:22,name:"Retail POS + AI Inventory",sub:"Indie retail с AI-прогнозированием",type:"Vertical",d:8,g:7,r:8,s:8,m:6,a:7,f:7,t:5,score:7.40,mi:6,mx:10,tam:"€60-90M",gap:"Shopify = EN, Odoo слишком сложный"},
+  {rank:23,name:"WhatsApp CRM for SMB",sub:"CRM + каталог через WA Business API",type:"AI",d:8,g:7,r:7,s:9,m:7,a:9,f:5,t:5,score:7.40,mi:6,mx:8,tam:"€50M+",gap:"Kommo/Wati = EN-only, нет Bizum интеграции"},
+  {rank:24,name:"AI Voice Agent Spanish SMB",sub:"Телефонный AI для малого бизнеса",type:"AI",d:8,g:7,r:8,s:8,m:6,a:7,f:7,t:7,score:7.40,mi:6,mx:8,tam:"€80-120M",gap:"Акценты ES + Ley Atención = сложность и возможность"},
+  {rank:25,name:"HR Convenio Automation",sub:"Колдоговоры + jornada tracking",type:"RegTech",d:7,g:8,r:8,s:8,m:5,a:6,f:7,t:7,score:7.35,mi:12,mx:16,tam:"€30-80M",gap:"200+ конвенций, HR-боль у SMB"},
+  {rank:26,name:"Expat Bureaucracy-as-a-Service",sub:"NIE + gestor marketplace + cita previa бот",type:"Platform",d:7,g:8,r:7,s:8,m:7,a:8,f:5,t:6,score:7.35,mi:3,mx:6,tam:"€15M+",gap:"28K+ виз/год, только gestors + Facebook-группы"},
+  {rank:27,name:"Landlord Management SaaS",sub:"Арендодатель: платежи + договоры + ремонт",type:"Vertical",d:8,g:7,r:7,s:8,m:7,a:7,f:6,t:6,score:7.30,mi:6,mx:10,tam:"€25M+",gap:"Испанское аренд. право сложное, нет простых инструментов"},
+  {rank:28,name:"Language Teaching Marketplace",sub:"Preply ES с Bizum + live",type:"Marketplace",d:8,g:7,r:7,s:8,m:8,a:8,f:5,t:6,score:7.14,mi:6,mx:8,tam:"€150-300M",gap:"Preply берёт 50% комиссию, нет Bizum"},
+  {rank:29,name:"Wedding Vendor Marketplace",sub:"Маркетплейс + guest mgmt + Bizum",type:"Marketplace",d:7,g:7,r:7,s:7,m:6,a:8,f:6,t:5,score:6.71,mi:10,mx:12,tam:"€60-120M",gap:"Zankyou устарел, WeddingWire = EN-only"},
+  {rank:30,name:"Construction PM ES-localized",sub:"Licitaciones + BIM + subcontractors",type:"Vertical",d:7,g:8,r:8,s:7,m:5,a:6,f:7,t:6,score:7.05,mi:16,mx:20,tam:"€40M+",gap:"€100B+ сектор, минимальная цифровизация"},
+  {rank:31,name:"Freelancer SaaS Bundle",sub:"Проекты + инвойсы + Bizum для фрилансеров",type:"Vertical",d:8,g:7,r:7,s:7,m:6,a:8,f:5,t:5,score:6.95,mi:10,mx:12,tam:"€30M+",gap:"Notion/Trello без налоговой части для ES"},
+  {rank:32,name:"AI Dynamic Pricing Mini-Hotels",sub:"Revenue management для инди-отелей",type:"AI",d:7,g:8,r:7,s:7,m:6,a:6,f:6,t:5,score:6.90,mi:8,mx:12,tam:"€20M+",gap:"RMS = только 50+ номеров, мелкие отели не охвачены"},
+  {rank:33,name:"Accounting SaaS + VeriFactu",sub:"Бухгалтерия с VeriFactu из коробки",type:"Vertical",d:7,g:7,r:7,s:8,m:6,a:6,f:6,t:7,score:6.90,mi:8,mx:12,tam:"€50M+",gap:"Holded дорог, нет EN-first с VeriFactu"},
+  {rank:34,name:"Real Estate Rental Compliance",sub:"Landlord compliance + tenant portal",type:"RegTech",d:7,g:7,r:7,s:7,m:7,a:7,f:5,t:6,score:6.90,mi:6,mx:10,tam:"€25M+",gap:"Испанское право аренды = лабиринт"},
+  {rank:35,name:"TikTok Growth Tools SMB",sub:"Аналитика + scheduling для SMB",type:"AI",d:7,g:7,r:7,s:7,m:7,a:7,f:4,t:6,score:6.80,mi:6,mx:8,tam:"€20M+",gap:"SMB не понимает TikTok алгоритмы"},
+  {rank:36,name:"Legal SaaS Spanish SMBs",sub:"Договоры + трудовое право для SMB",type:"Vertical",d:7,g:7,r:7,s:7,m:6,a:6,f:6,t:5,score:6.80,mi:8,mx:12,tam:"€30M+",gap:"LegalZoom нет в Испании"},
+  {rank:37,name:"Medical Clinic RGPD Compliance",sub:"RGPD для частных клиник",type:"RegTech",d:7,g:8,r:7,s:7,m:5,a:5,f:7,t:6,score:6.80,mi:12,mx:16,tam:"€20-50M",gap:"15K клиник, RGPD + VeriFactu Jan 2027"},
+  {rank:38,name:"WhatsApp Automation Builder",sub:"No-code workflow builder для WA Business",type:"AI",d:7,g:7,r:7,s:8,m:7,a:7,f:5,t:5,score:6.85,mi:8,mx:10,tam:"€30M+",gap:"Zapier не умеет WA нативно"},
+  {rank:39,name:"Mental Health Platform ES",sub:"Онлайн-терапия на испанском",type:"Platform",d:7,g:7,r:7,s:7,m:6,a:7,f:5,t:4,score:6.65,mi:8,mx:12,tam:"€40M+",gap:"BetterHelp = EN-only, испанских мало"},
+  {rank:40,name:"AI Chatbot Spanish SMB",sub:"Чат-бот для сайта/WA на испанском",type:"AI",d:7,g:6,r:7,s:7,m:7,a:7,f:5,t:5,score:6.65,mi:4,mx:8,tam:"€20M+",gap:"Intercom/Drift = EN-only, дорого для SMB"},
+  {rank:41,name:"B2B Sales CRM WhatsApp-native",sub:"CRM для испанского B2B с WA-first UX",type:"Vertical",d:7,g:6,r:7,s:8,m:6,a:6,f:5,t:5,score:6.55,mi:8,mx:12,tam:"€30M+",gap:"Pipedrive не понимает испанскую B2B-культуру"},
+  {rank:42,name:"Spanish Affiliate Network",sub:"CPA-сеть для испанских рекламодателей",type:"Marketplace",d:7,g:7,r:7,s:7,m:6,a:6,f:5,t:4,score:6.55,mi:8,mx:12,tam:"€20M+",gap:"Zanox/Awin = глобальные, нет ES-нишевых"},
+  {rank:43,name:"Restaurant POS Indie",sub:"POS для независимых ресторанов",type:"Vertical",d:7,g:6,r:7,s:7,m:5,a:6,f:6,t:4,score:6.45,mi:10,mx:14,tam:"€30M+",gap:"Square нет в ES, местные POS устарели"},
+  {rank:44,name:"Digital Product Marketplace",sub:"Gumroad ES — шаблоны, курсы, инструменты",type:"Marketplace",d:7,g:7,r:6,s:7,m:6,a:7,f:5,t:4,score:6.45,mi:10,mx:12,tam:"€15M+",gap:"Gumroad = EN-only, нет Bizum"},
+  {rank:45,name:"HACCP Food Safety SaaS",sub:"Система безопасности питания",type:"RegTech",d:7,g:7,r:6,s:7,m:5,a:5,f:6,t:5,score:6.40,mi:10,mx:14,tam:"€18-40M",gap:"70% ресторанов ведут бумажные журналы"},
+  {rank:46,name:"Healthcare AI Assistant",sub:"AI для частных клиник и врачей",type:"AI",d:6,g:7,r:7,s:6,m:5,a:5,f:7,t:5,score:6.20,mi:12,mx:16,tam:"€20-50M",gap:"AI-diagnostic = EN-only, RGPD сложности"},
+  {rank:47,name:"Consumer LegalTech LegalZoom ES",sub:"Юридические документы для физлиц",type:"Platform",d:7,g:7,r:6,s:6,m:5,a:6,f:6,t:4,score:6.25,mi:8,mx:12,tam:"€20M+",gap:"LegalZoom не работает в Испании"},
+  {rank:48,name:"Tourism Reputation Management",sub:"Google Reviews + OTA управление",type:"Vertical",d:6,g:6,r:6,s:7,m:6,a:6,f:5,t:5,score:6.05,mi:8,mx:12,tam:"€15M+",gap:"Birdeye = EN-only, дорого"},
+  {rank:49,name:"AI Legal Research Spanish Law",sub:"AI для юристов — испанское право",type:"AI",d:6,g:7,r:6,s:6,m:6,a:5,f:7,t:4,score:6.10,mi:8,mx:12,tam:"€20M+",gap:"Harvey.ai = EN-only"},
+  {rank:50,name:"AI Email Marketing ES",sub:"Email automation для ES рынка",type:"AI",d:6,g:6,r:6,s:7,m:7,a:6,f:4,t:4,score:6.00,mi:6,mx:8,tam:"€15M+",gap:"Klaviyo = EN, нет ES-шаблонов"},
+  {rank:51,name:"Website Builder Spanish SMBs",sub:"Squarespace ES competitor",type:"Platform",d:6,g:5,r:6,s:7,m:6,a:6,f:4,t:4,score:5.85,mi:12,mx:16,tam:"€30M+",gap:"Squarespace/Wix = EN-first"},
+  {rank:52,name:"AI Real Estate Investment",sub:"AI-анализ инвест. недвижимости",type:"AI",d:6,g:6,r:6,s:6,m:6,a:6,f:5,t:4,score:5.90,mi:8,mx:12,tam:"€15M+",gap:"Нет специализированного ES-инструмента"},
+  {rank:53,name:"Music Copyright Tools",sub:"Авторские права для ES-музыкантов",type:"Platform",d:6,g:7,r:5,s:6,m:6,a:6,f:5,t:4,score:5.95,mi:8,mx:12,tam:"€10-25M",gap:"SGAE монополия, нет альтернатив"},
+  {rank:54,name:"CAP Subsidy Management",sub:"Субсидии ЕС для фермеров",type:"RegTech",d:6,g:7,r:6,s:6,m:5,a:4,f:6,t:5,score:5.90,mi:12,mx:16,tam:"€15-40M",gap:"Бумажные процессы, FEGA API неудобен"},
+  {rank:55,name:"Elder Care Coordination",sub:"Семейная координация ухода",type:"Platform",d:6,g:6,r:5,s:7,m:6,a:6,f:4,t:4,score:5.75,mi:6,mx:10,tam:"€40-80M",gap:"10.4M пожилых, нет RGPD-safe приложений"},
+  {rank:56,name:"Analytics Dashboard Retail",sub:"BI для малого ритейла и отелей",type:"Vertical",d:6,g:5,r:6,s:6,m:6,a:5,f:5,t:4,score:5.65,mi:8,mx:12,tam:"€20M+",gap:"Looker/Power BI слишком сложные для SMB"},
+  {rank:57,name:"Micro-Learning Corporate Training",sub:"Корпоративное обучение micro-format",type:"Platform",d:6,g:5,r:6,s:6,m:5,a:5,f:5,t:4,score:5.55,mi:10,mx:14,tam:"€30M+",gap:"360Learning = дорого для SMB"},
+  {rank:58,name:"SMB Insurance Comparison",sub:"Сравнение страховок для бизнеса",type:"Marketplace",d:5,g:5,r:6,s:6,m:6,a:5,f:4,t:4,score:5.35,mi:10,mx:14,tam:"€20M+",gap:"Companeo устарел"},
+  {rank:59,name:"Embedded Finance SME Platforms",sub:"BaaS для SME SaaS-платформ",type:"Platform",d:5,g:5,r:7,s:5,m:4,a:4,f:7,t:4,score:5.30,mi:16,mx:20,tam:"€50M+",gap:"Swan/Stripe Banking = EN-only"},
+  {rank:60,name:"AI VET Training B2B2G",sub:"Профессиональное обучение через AI",type:"Platform",d:5,g:5,r:6,s:5,m:4,a:3,f:5,t:4,score:4.90,mi:16,mx:20,tam:"€20M+",gap:"Государственные тендеры, 12-18 мес цикл"},
+
+  // DIRECTORY / AGGREGATOR NICHES (новая категория)
+  {rank:61,name:"Home Services Bundle",sub:"Spain's Angie's List — электрики, сантехники, уборка",type:"Directory",d:9,g:9,r:9,s:9,m:7,a:10,f:7,t:7,score:8.90,mi:6,mx:8,tam:"€200M+",gap:"50K+ провайдеров без сайта, только WhatsApp. InfoPáginas мертва"},
+  {rank:62,name:"Physiotherapists Directory",sub:"Zocdoc для физиотерапевтов + страховые",type:"Directory",d:8,g:9,r:8,s:8,m:6,a:8,f:7,t:7,score:8.70,mi:5,mx:6,tam:"€80M+",gap:"ADESLAS/Sanitas платят €15-30/реферал. 0 агрегаторов"},
+  {rank:63,name:"Psychologists Online Directory",sub:"Betterhelp ES — психологи с отзывами",type:"Directory",d:9,g:8,r:8,s:8,m:6,a:8,f:6,t:6,score:8.50,mi:6,mx:8,tam:"€60M+",gap:"Post-COVID mental health boom. Corporate wellness = €50K-500K/год контракты"},
+  {rank:64,name:"Pet Services Directory",sub:"Rover ES — ветеринары, груминг, догситтеры",type:"Directory",d:8,g:8,r:8,s:8,m:6,a:9,f:6,t:6,score:8.40,mi:6,mx:8,tam:"€50M+",gap:"Google scrape + Facebook = бесплатный старт. 0 доминантной платформы"},
+  {rank:65,name:"Auto Repair Directory",sub:"Агрегатор таллеров с ценами и отзывами",type:"Directory",d:8,g:8,r:7,s:8,m:7,a:8,f:6,t:6,score:7.90,mi:6,mx:8,tam:"€40M+",gap:"20M+ автомобилей в Испании. Таллеры = 90% без нормального онлайна"},
+
+  // КРИПТО НИШИ (новые)
+  {rank:66,name:"Crypto Tax SaaS — Modelo 721",sub:"Авто-заполнение Modelo 721 + IRPF + DAC8",type:"RegTech",d:9,g:9,r:9,s:9,m:8,a:9,f:8,t:10,score:8.20,mi:4,mx:8,tam:"€315M",gap:"Koinly/Blockpit не делают Modelo 721. 15M крипто-юзеров, DAC8 с янв 2026"},
+  {rank:67,name:"MiCA Compliance for CASPs",sub:"AML/KYC + travel rule + отчётность для бирж",type:"RegTech",d:8,g:9,r:8,s:8,m:6,a:7,f:9,t:10,score:7.80,mi:6,mx:8,tam:"€4.5M+",gap:"Только 2 CASPs лицензированы. 30+ малых бирж не могут позволить Chainalysis"},
+  {rank:68,name:"Crypto Education + Paid Community",sub:"Испаноязычная крипто-академия (MiCA, tax, DeFi)",type:"Content",d:7,g:8,r:7,s:9,m:6,a:8,f:6,t:7,score:7.00,mi:6,mx:10,tam:"€150M",gap:"Весь premium крипто-контент = английский. 0 испаноязычных платных курсов"},
+];
+
+let sortCol='score', sortAsc=false, tierF='all', searchF='', typeF='', mvpF='';
+
+const tier=s=>s>=8?1:s>=7.5?2:s>=6.5?3:4;
+const tc=s=>'tier-'+tier(s);
+const sc=s=>'t'+tier(s)+'-score';
+const fc=v=>v>=9?'#22c55e':v>=7?'#f59e0b':v>=5?'#f97316':'#ef4444';
+
+function bars(n){
+  const fs=[['d','D','Demand'],['g','G','Gap'],['r','R','Revenue'],['s','S','Spain'],['m','M','MVP'],['a','A','Access'],['f','F','Defend'],['t','T','Timing']];
+  return '<div class="factors">'+fs.map(([k,l,nm])=>{
+    const v=n[k];
+    return `<div class="factor-wrap"><div class="factor-bar" title="${nm}: ${v}/10"><div class="factor-fill" style="height:${v*10}%;background:${fc(v)}"></div></div><div class="factor-label">${l}</div></div>`;
+  }).join('')+'</div>';
+}
+
+function mvpC(n){
+  const mid=(n.mi+n.mx)/2;
+  const cls=mid<=6?'mvp-fast':mid<=12?'mvp-med':'mvp-slow';
+  return `<span class="mvp-chip ${cls}">${n.mi}-${n.mx} нед</span>`;
+}
+
+function unitCell(n){
+  if(!n.cac) return '<span class="no-dd">—</span>';
+  const ratio=(n.ltv/n.cac).toFixed(1);
+  return `<div class="unit-cell">
+    <span class="unit-cac">CAC €${n.cac}</span> / <span class="unit-ltv">LTV €${n.ltv}</span><br>
+    <span class="unit-ratio">${ratio}x · churn ${n.churn||'—'}</span>
+  </div>`;
+}
+
+function y1Cell(n){
+  if(!n.y1) return '<span class="no-dd">—</span>';
+  return `<span class="y1-cell">${n.y1}</span>`;
+}
+
+function detailPanel(n){
+  if(!n.dd) return '';
+  return `<tr class="detail-row" id="dp-${n.rank}" style="display:none"><td colspan="9">
+    <div class="detail-panel">
+      <div class="detail-block"><h4>GTM — первые клиенты</h4><p>${n.gtm||'—'}</p></div>
+      <div class="detail-block"><h4>MVP scope</h4><p>${n.mvpScope||'—'}</p></div>
+      <div class="detail-block"><h4>Топ риски</h4><p>${n.risks||'—'}</p></div>
+      <div class="detail-block"><h4>Unit economics</h4><p>
+        CAC <strong>€${n.cac}</strong> · LTV <strong>€${n.ltv}</strong><br>
+        Churn ${n.churn||'—'} · Payback ${Math.round((n.cac/((n.ltv*0.05)||1)))} мес<br>
+        <span style="color:var(--t1)">Y1 ARR ${n.y1||'—'}</span>
+      </p></div>
+    </div>
+  </td></tr>`;
+}
+
+function toggleDetail(rank){
+  const el=document.getElementById('dp-'+rank);
+  if(el) el.style.display=el.style.display==='none'?'table-row':'none';
+}
+
+function go(){
+  searchF=document.getElementById('s').value.toLowerCase();
+  typeF=document.getElementById('tf').value;
+  mvpF=document.getElementById('mf').value;
+  render();
+}
+
+function setTier(t,btn){
+  tierF=t;
+  document.querySelectorAll('[data-tier]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  go();
+}
+
+function srt(col){
+  if(sortCol===col)sortAsc=!sortAsc;
+  else{sortCol=col;sortAsc=col!=='score';}
+  ['rank','name','type','score','mvp','tam','cac','y1'].forEach(c=>{
+    const el=document.getElementById('a-'+c);
+    if(el)el.textContent=c===sortCol?(sortAsc?'↑':'↓'):'↕';
+  });
+  document.querySelectorAll('th[data-c]').forEach(th=>{
+    th.classList.toggle('sorted',th.dataset.c===sortCol);
+  });
+  go();
+}
+
+function render(){
+  let data=[...D];
+  if(tierF!=='all')data=data.filter(n=>tier(n.score)===+tierF);
+  if(searchF)data=data.filter(n=>n.name.toLowerCase().includes(searchF)||n.sub.toLowerCase().includes(searchF)||n.type.toLowerCase().includes(searchF)||n.gap.toLowerCase().includes(searchF));
+  if(typeF)data=data.filter(n=>n.type===typeF);
+  if(mvpF==='fast')data=data.filter(n=>n.mx<=6);
+  else if(mvpF==='med')data=data.filter(n=>n.mi>=7&&n.mx<=12);
+  else if(mvpF==='slow')data=data.filter(n=>n.mi>12);
+
+  data.sort((a,b)=>{
+    let va=a[sortCol],vb=b[sortCol];
+    if(sortCol==='mvp'){va=a.mi;vb=b.mi;}
+    if(sortCol==='cac'){va=a.cac||9999;vb=b.cac||9999;}
+    if(sortCol==='y1'){va=a.y1n||0;vb=b.y1n||0;}
+    if(typeof va==='string')return sortAsc?va.localeCompare(vb):vb.localeCompare(va);
+    return sortAsc?(va-vb):(vb-va);
+  });
+
+  document.getElementById('visibleCount').textContent=data.length+' ниш';
+  document.getElementById('nr').style.display=data.length?'none':'block';
+  document.getElementById('tb').innerHTML=data.map((n,i)=>{
+    const ddBadge=n.dd?'<span class="dd-badge">Deep Dive ✓</span>':'';
+    const typeBadge=n.type==='Directory'?`<span class="dir-badge">${n.type}</span>`:`<span class="type-badge">${n.type}</span>`;
+    const clickAttr=n.dd?`class="has-dd" onclick="toggleDetail(${n.rank})"`:'' ;
+    return `<tr ${clickAttr}>
+      <td class="rank">${i+1}</td>
+      <td class="niche-name">${n.name}${ddBadge}<small>${n.sub}</small></td>
+      <td>${typeBadge}</td>
+      <td><span class="score-cell ${sc(n.score)}">${n.score.toFixed(2)}</span><span class="tier-badge ${tc(n.score)}">T${tier(n.score)}</span></td>
+      <td>${bars(n)}</td>
+      <td>${mvpC(n)}</td>
+      <td class="tam">${n.tam}</td>
+      <td>${unitCell(n)}</td>
+      <td>${y1Cell(n)}</td>
+      <td class="gap-text">${n.gap}</td>
+    </tr>${detailPanel(n)}`;
+  }).join('');
+}
+
+function buildCharts(){
+  const ranges=[
+    {l:'8.0–10 (T1)',c:'var(--t1)',cnt:D.filter(n=>n.score>=8).length},
+    {l:'7.5–7.9 (T2)',c:'var(--t2)',cnt:D.filter(n=>n.score>=7.5&&n.score<8).length},
+    {l:'6.5–7.4 (T3)',c:'var(--t3)',cnt:D.filter(n=>n.score>=6.5&&n.score<7.5).length},
+    {l:'< 6.5 (T4)',c:'var(--t4)',cnt:D.filter(n=>n.score<6.5).length},
+  ];
+  const m1=Math.max(...ranges.map(r=>r.cnt));
+  document.getElementById('charts').innerHTML=`
+  <div class="chart-box"><h3>Распределение по Score</h3>${ranges.map(r=>`<div class="dist-bar"><span style="width:72px;color:var(--muted)">${r.l}</span><div class="dist-track"><div class="dist-fill" style="width:${r.cnt/m1*100}%;background:${r.c}"></div></div><span style="width:18px;text-align:right;color:${r.c};font-weight:600">${r.cnt}</span></div>`).join('')}</div>
+  <div class="chart-box"><h3>По типу</h3>${(()=>{const t={};D.forEach(n=>{t[n.type]=(t[n.type]||0)+1;});const s=Object.entries(t).sort((a,b)=>b[1]-a[1]);const m=s[0][1];return s.map(([k,v])=>`<div class="dist-bar"><span style="width:72px;color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis">${k}</span><div class="dist-track"><div class="dist-fill" style="width:${v/m*100}%;background:var(--accent)"></div></div><span style="width:18px;text-align:right;color:var(--accent);font-weight:600">${v}</span></div>`).join('');})()}</div>
+  <div class="chart-box"><h3>MVP Speed</h3>${[{l:'≤6 нед 🚀',c:'#22c55e',cnt:D.filter(n=>n.mx<=6).length},{l:'7–12 нед ⚡',c:'#f59e0b',cnt:D.filter(n=>n.mi>=7&&n.mx<=12).length},{l:'>12 нед 🐢',c:'#ef4444',cnt:D.filter(n=>n.mi>12).length}].map(r=>`<div class="dist-bar"><span style="width:72px;color:var(--muted)">${r.l}</span><div class="dist-track"><div class="dist-fill" style="width:${r.cnt/D.filter(n=>n.mx<=6).length*100}%;background:${r.c}"></div></div><span style="width:18px;text-align:right;color:${r.c};font-weight:600">${r.cnt}</span></div>`).join('')}</div>`;
+}
+
+buildCharts(); render();
+</script>
+</body>
+</html>
