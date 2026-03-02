@@ -3,155 +3,648 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spain Niches 2026 — Dashboard</title>
+<title>Spain Niches 2026 — Intelligence Terminal</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #0f1117;
-    --surface: #1a1d27;
-    --border: #2a2d3a;
-    --text: #e8eaf0;
-    --muted: #6b7280;
-    --t1: #22c55e; --t1bg: #052e16;
-    --t2: #f59e0b; --t2bg: #1c1007;
-    --t3: #f97316; --t3bg: #1c0f07;
-    --t4: #64748b; --t4bg: #0f172a;
-    --accent: #6366f1;
+    --bg: #080B10;
+    --surface: #0F1318;
+    --border: #1A2030;
+    --text: #E8EAF0;
+    --muted: #6B7280;
+    --accent: #00D4FF;
+    --t1: #00FF94;
+    --t2: #FFB800;
+    --t3: #FF6B35;
+    --t4: #4A5568;
+    --t1bg: rgba(0, 255, 148, 0.08);
+    --t2bg: rgba(255, 184, 0, 0.08);
+    --t3bg: rgba(255, 107, 53, 0.08);
+    --t4bg: rgba(74, 85, 104, 0.08);
+    --type-regtech: #00D4FF;
+    --type-ai: #A855F7;
+    --type-content: #EC4899;
+    --type-platform: #3B82F6;
+    --type-marketplace: #F97316;
+    --type-vertical: #14B8A6;
+    --type-directory: #10B981;
+    --type-edtech: #EAB308;
+    --type-fintech: #84CC16;
+    --type-hrtech: #F43F5E;
+    --type-proptech: #0EA5E9;
+    --type-cleantech: #22C55E;
+    --type-healthtech: #EF4444;
+    --type-maritime: #6366F1;
+    --type-agritech: #D97706;
+    --type-traveltech: #8B5CF6;
+    --type-creatortech: #D946EF;
+    --type-legaltech: #64748B;
   }
-  body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 13px; }
 
-  header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
-  header span.sub { color: var(--muted); font-size: 12px; }
-  .badge-count { background: var(--accent); color: #fff; border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+  }
 
-  .stats { display: flex; gap: 12px; padding: 16px 24px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
-  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px; min-width: 100px; }
-  .stat-val { font-size: 22px; font-weight: 700; line-height: 1; }
-  .stat-label { font-size: 11px; color: var(--muted); margin-top: 3px; }
-  .stat.t1 .stat-val { color: var(--t1); }
-  .stat.t2 .stat-val { color: var(--t2); }
-  .stat.t3 .stat-val { color: var(--t3); }
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO HEADER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .hero {
+    position: relative;
+    padding: 48px 32px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
 
-  .chart-row { display: flex; gap: 16px; padding: 16px 24px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
-  .chart-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; flex: 1; min-width: 180px; }
-  .chart-box h3 { font-size: 11px; color: var(--muted); font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .dist-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 11px; }
-  .dist-track { flex: 1; height: 5px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
-  .dist-fill { height: 100%; border-radius: 3px; }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      linear-gradient(0deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, rgba(0, 212, 255, 0.05) 25%, rgba(0, 212, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 212, 255, 0.05) 75%, rgba(0, 212, 255, 0.05) 76%, transparent 77%, transparent);
+    background-size: 60px 60px;
+    pointer-events: none;
+    opacity: 0.3;
+  }
 
-  .controls { display: flex; gap: 8px; padding: 12px 24px; border-bottom: 1px solid var(--border); flex-wrap: wrap; align-items: center; }
-  input[type=search] { background: var(--surface); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 12px; font-size: 13px; width: 200px; outline: none; }
-  input[type=search]:focus { border-color: var(--accent); }
-  .filter-btn { background: var(--surface); border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: 12px; transition: all 0.15s; }
-  .filter-btn:hover { color: var(--text); }
-  .filter-btn.active { border-color: var(--accent); color: var(--text); }
-  .filter-btn.t1.active { border-color: var(--t1); color: var(--t1); background: var(--t1bg); }
-  .filter-btn.t2.active { border-color: var(--t2); color: var(--t2); background: var(--t2bg); }
-  .filter-btn.t3.active { border-color: var(--t3); color: var(--t3); background: var(--t3bg); }
-  .filter-btn.t4.active { border-color: var(--t4); color: var(--t4); background: var(--t4bg); }
-  select { background: var(--surface); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 5px 10px; font-size: 12px; cursor: pointer; outline: none; }
-  .sort-label { color: var(--muted); font-size: 12px; }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
 
-  .table-wrap { overflow-x: auto; padding: 0 24px 32px; }
-  table { width: 100%; border-collapse: collapse; margin-top: 12px; min-width: 900px; }
-  th { text-align: left; padding: 8px 10px; font-size: 11px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--border); white-space: nowrap; cursor: pointer; user-select: none; }
-  th:hover { color: var(--text); }
-  th.sorted { color: var(--accent); }
-  td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-  tr:hover td { background: rgba(255,255,255,0.02); }
+  .hero-flag {
+    font-size: 48px;
+    line-height: 1;
+  }
 
-  .rank { color: var(--muted); font-size: 11px; width: 28px; }
-  .niche-name { font-weight: 500; }
-  .niche-name small { display: block; color: var(--muted); font-size: 11px; font-weight: 400; margin-top: 1px; }
-  .type-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; background: rgba(99,102,241,0.15); color: #818cf8; white-space: nowrap; }
-  .score-cell { font-weight: 700; font-size: 15px; }
-  .tier-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 700; white-space: nowrap; margin-left: 5px; }
-  .tier-1 { background: var(--t1bg); color: var(--t1); border: 1px solid rgba(34,197,94,0.3); }
-  .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(245,158,11,0.3); }
-  .tier-3 { background: rgba(249,115,22,0.1); color: var(--t3); border: 1px solid rgba(249,115,22,0.3); }
-  .tier-4 { background: var(--t4bg); color: var(--t4); border: 1px solid rgba(100,116,139,0.3); }
-  .t1-score { color: var(--t1); }
-  .t2-score { color: var(--t2); }
-  .t3-score { color: var(--t3); }
-  .t4-score { color: var(--t4); }
+  .hero-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--text);
+    text-transform: uppercase;
+  }
 
-  .factors { display: flex; gap: 2px; align-items: flex-end; }
-  .factor-wrap { display: flex; flex-direction: column; align-items: center; }
-  .factor-bar { width: 16px; height: 28px; border-radius: 2px; background: rgba(255,255,255,0.04); display: flex; flex-direction: column-reverse; overflow: hidden; }
-  .factor-fill { border-radius: 2px; }
-  .factor-label { font-size: 8px; color: var(--muted); margin-top: 2px; }
+  .hero-year {
+    color: var(--accent);
+  }
 
-  .mvp-chip { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 11px; white-space: nowrap; }
-  .mvp-fast { background: rgba(34,197,94,0.1); color: #4ade80; }
-  .mvp-med { background: rgba(245,158,11,0.1); color: #fbbf24; }
-  .mvp-slow { background: rgba(239,68,68,0.1); color: #f87171; }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
 
-  .tam { color: var(--muted); white-space: nowrap; font-size: 12px; }
-  .gap-text { color: var(--muted); font-size: 11px; max-width: 220px; line-height: 1.4; }
+  .hero-stats {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
 
-  .no-results { text-align: center; padding: 40px; color: var(--muted); }
-  .footer { text-align: center; padding: 16px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--border); }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
+    padding: 16px;
+    border-radius: 6px;
+  }
 
-  /* Deep Dive extras */
-  .dd-badge { display: inline-block; padding: 1px 5px; border-radius: 3px; font-size: 9px; font-weight: 700; background: rgba(99,102,241,0.2); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.4); margin-left: 4px; vertical-align: middle; }
-  .dir-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; background: rgba(20,184,166,0.15); color: #2dd4bf; white-space: nowrap; }
-  .unit-cell { font-size: 11px; white-space: nowrap; }
-  .unit-cac { color: #34d399; }
-  .unit-ltv { color: #60a5fa; }
-  .unit-ratio { color: var(--muted); font-size: 10px; }
-  .y1-cell { font-size: 11px; color: #c084fc; white-space: nowrap; }
-  .no-dd { color: var(--muted); font-size: 10px; }
-  tr.has-dd { cursor: pointer; }
-  tr.has-dd:hover td { background: rgba(99,102,241,0.05); }
-  .detail-row td { background: rgba(99,102,241,0.04) !important; border-bottom: 2px solid rgba(99,102,241,0.2); }
-  .detail-panel { padding: 12px 16px; display: flex; gap: 24px; flex-wrap: wrap; }
-  .detail-block { min-width: 160px; }
-  .detail-block h4 { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-  .detail-block p { font-size: 12px; color: var(--text); line-height: 1.6; }
-  .detail-block p span { color: var(--muted); font-size: 11px; }
+  .stat-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .stat-card.t1 { border-top-color: var(--t1); }
+  .stat-card.t1 .stat-number { color: var(--t1); }
+  .stat-card.t2 { border-top-color: var(--t2); }
+  .stat-card.t2 .stat-number { color: var(--t2); }
+  .stat-card.t3 { border-top-color: var(--t3); }
+  .stat-card.t3 .stat-number { color: var(--t3); }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CHARTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .chart-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+  }
+
+  .chart-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .chart-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .chart-label {
+    flex: 0 0 100px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .chart-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .chart-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .chart-value {
+    flex: 0 0 28px;
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CONTROLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    flex: 1;
+    min-width: 200px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 13px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .search-box::placeholder {
+    color: var(--muted);
+  }
+
+  .search-box:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.1);
+  }
+
+  .filter-group {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .filter-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+
+  .filter-btn.active {
+    border-color: var(--accent);
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--accent);
+  }
+
+  .filter-btn.t1.active { border-color: var(--t1); background: var(--t1bg); color: var(--t1); }
+  .filter-btn.t2.active { border-color: var(--t2); background: var(--t2bg); color: var(--t2); }
+  .filter-btn.t3.active { border-color: var(--t3); background: var(--t3bg); color: var(--t3); }
+  .filter-btn.t4.active { border-color: var(--t4); background: var(--t4bg); color: var(--t4); }
+
+  .filter-select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TABLE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .table-wrap {
+    overflow-x: auto;
+    padding: 0 32px 32px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    min-width: 1100px;
+  }
+
+  th {
+    text-align: left;
+    padding: 10px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  th:hover {
+    color: var(--accent);
+  }
+
+  th.sorted {
+    color: var(--accent);
+  }
+
+  td {
+    padding: 10px 8px;
+    border-bottom: 1px solid rgba(26, 32, 48, 0.8);
+    vertical-align: middle;
+  }
+
+  tr {
+    transition: all 0.15s ease;
+  }
+
+  tr:hover td {
+    background: rgba(0, 212, 255, 0.02);
+  }
+
+  tr.has-dd {
+    cursor: pointer;
+  }
+
+  tr.has-dd:hover td {
+    background: rgba(0, 212, 255, 0.04);
+    border-left: 2px solid var(--accent);
+    padding-left: 6px;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TABLE CELLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .rank {
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    width: 32px;
+  }
+
+  .niche-name {
+    font-weight: 600;
+    max-width: 240px;
+  }
+
+  .niche-name small {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 400;
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+
+  .type-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+  }
+
+  .type-badge.regtech { background: rgba(0, 212, 255, 0.15); color: var(--type-regtech); }
+  .type-badge.ai { background: rgba(168, 85, 247, 0.15); color: var(--type-ai); }
+  .type-badge.content { background: rgba(236, 72, 153, 0.15); color: var(--type-content); }
+  .type-badge.platform { background: rgba(59, 130, 246, 0.15); color: var(--type-platform); }
+  .type-badge.marketplace { background: rgba(249, 115, 22, 0.15); color: var(--type-marketplace); }
+  .type-badge.vertical { background: rgba(20, 184, 166, 0.15); color: var(--type-vertical); }
+  .type-badge.directory { background: rgba(16, 185, 129, 0.15); color: var(--type-directory); }
+  .type-badge.edtech { background: rgba(234, 179, 8, 0.15); color: var(--type-edtech); }
+  .type-badge.fintech { background: rgba(132, 204, 22, 0.15); color: var(--type-fintech); }
+  .type-badge.hrtech { background: rgba(244, 63, 94, 0.15); color: var(--type-hrtech); }
+  .type-badge.proptech { background: rgba(14, 165, 233, 0.15); color: var(--type-proptech); }
+
+  .score-cell {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 48px;
+  }
+
+  .score-t1 { color: var(--t1); }
+  .score-t2 { color: var(--t2); }
+  .score-t3 { color: var(--t3); }
+  .score-t4 { color: var(--t4); }
+
+  .tier-badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-left: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .tier-1 { background: var(--t1bg); color: var(--t1); border: 1px solid rgba(0, 255, 148, 0.3); }
+  .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(255, 184, 0, 0.3); }
+  .tier-3 { background: var(--t3bg); color: var(--t3); border: 1px solid rgba(255, 107, 53, 0.3); }
+  .tier-4 { background: var(--t4bg); color: var(--t4); border: 1px solid rgba(74, 85, 104, 0.3); }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FACTOR BARS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .factors {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+  }
+
+  .factor-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .factor-bar {
+    width: 18px;
+    height: 36px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+    border: 1px solid rgba(26, 32, 48, 0.8);
+  }
+
+  .factor-fill {
+    border-radius: 1px;
+    transition: all 0.2s ease;
+  }
+
+  .factor-label {
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 3px;
+    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CHIPS & CELLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .mvp-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .mvp-fast { background: rgba(0, 255, 148, 0.15); color: #4ade80; }
+  .mvp-med { background: rgba(255, 184, 0, 0.15); color: #fbbf24; }
+  .mvp-slow { background: rgba(255, 107, 53, 0.15); color: #f87171; }
+
+  .tam {
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .unit-cell {
+    font-size: 11px;
+  }
+
+  .unit-cac {
+    color: #34d399;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    display: block;
+  }
+
+  .unit-ltv {
+    color: #60a5fa;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+  }
+
+  .unit-ratio {
+    color: var(--muted);
+    font-size: 10px;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .y1-cell {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #c084fc;
+  }
+
+  .gap-text {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.4;
+    max-width: 220px;
+  }
+
+  .dd-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 700;
+    background: rgba(0, 212, 255, 0.2);
+    color: var(--accent);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ DETAIL PANEL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .detail-row td {
+    background: rgba(0, 212, 255, 0.03) !important;
+    border-bottom: 2px solid rgba(0, 212, 255, 0.1) !important;
+    padding: 16px 8px !important;
+  }
+
+  .detail-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .detail-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 12px 14px;
+    border-radius: 4px;
+  }
+
+  .detail-card h4 {
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .detail-card p {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .detail-card strong {
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .no-dd {
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .no-results {
+    text-align: center;
+    padding: 48px 32px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 16px 32px;
+    color: var(--muted);
+    font-size: 11px;
+    border-top: 1px solid var(--border);
+    letter-spacing: 0.3px;
+  }
+
+  .footer-timestamp {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent);
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <div>
-    <h1>🇪🇸 Spain Niches 2026</h1>
-    <span class="sub">8-factor scoring v2 · 3 параллельных агента · 80+ источников</span>
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-flag">🇪🇸</div>
+    <h1 class="hero-title">SPAIN NICHES <span class="hero-year">2026</span></h1>
   </div>
-  <span class="badge-count" id="visibleCount">68 ниш</span>
+  <p class="hero-sub">8-factor scoring · <span id="totalCount">83</span> niches · <span id="t1c-text">18</span> Tier 1 opportunities · Deep Dives: 7 T1 niches</p>
+  <div class="hero-stats" id="stats"></div>
 </header>
 
-<div class="stats">
-  <div class="stat t1"><div class="stat-val" id="t1c">9</div><div class="stat-label">🔴 Tier 1 ≥8.0</div></div>
-  <div class="stat t2"><div class="stat-val" id="t2c">12</div><div class="stat-label">🟠 Tier 2 7.5–7.9</div></div>
-  <div class="stat t3"><div class="stat-val" id="t3c">19</div><div class="stat-label">🟡 Tier 3 6.5–7.4</div></div>
-  <div class="stat"><div class="stat-val" style="color:var(--accent)" id="avgS">7.08</div><div class="stat-label">Средний score</div></div>
-  <div class="stat"><div class="stat-val" style="color:#e2e8f0" id="totalCount">68</div><div class="stat-label">Всего ниш</div></div>
-</div>
-
-<div class="chart-row" id="charts"></div>
+<div class="charts-grid" id="charts"></div>
 
 <div class="controls">
-  <input type="search" id="s" placeholder="🔍 Поиск..." oninput="go()">
-  <span class="sort-label">Tier:</span>
-  <button class="filter-btn active" data-tier="all" onclick="setTier('all',this)">Все</button>
-  <button class="filter-btn t1" data-tier="1" onclick="setTier('1',this)">🔴 T1</button>
-  <button class="filter-btn t2" data-tier="2" onclick="setTier('2',this)">🟠 T2</button>
-  <button class="filter-btn t3" data-tier="3" onclick="setTier('3',this)">🟡 T3</button>
-  <button class="filter-btn t4" data-tier="4" onclick="setTier('4',this)">⚪ T4</button>
-  <select id="tf" onchange="go()">
-    <option value="">Все типы</option>
+  <input type="search" id="s" placeholder="🔍 Search niches..." class="search-box" oninput="go()">
+  <div class="filter-group">
+    <span class="filter-label">Tier:</span>
+    <button class="filter-btn active" data-tier="all" onclick="setTier('all',this)">All</button>
+    <button class="filter-btn t1" data-tier="1" onclick="setTier('1',this)">T1</button>
+    <button class="filter-btn t2" data-tier="2" onclick="setTier('2',this)">T2</button>
+    <button class="filter-btn t3" data-tier="3" onclick="setTier('3',this)">T3</button>
+    <button class="filter-btn t4" data-tier="4" onclick="setTier('4',this)">T4</button>
+  </div>
+  <select id="tf" class="filter-select" onchange="go()">
+    <option value="">All types</option>
     <option>RegTech</option><option>AI</option><option>Content</option>
     <option>Platform</option><option>Marketplace</option><option>Vertical</option>
-    <option>Directory</option><option>EdTech</option>
-    <option>FinTech</option><option>HRTech</option><option>PropTech</option>
+    <option>Directory</option><option>EdTech</option><option>FinTech</option>
+    <option>HRTech</option><option>PropTech</option>
   </select>
-  <select id="mf" onchange="go()">
-    <option value="">Любой MVP</option>
-    <option value="fast">≤6 нед</option>
-    <option value="med">7–12 нед</option>
-    <option value="slow">&gt;12 нед</option>
+  <select id="mf" class="filter-select" onchange="go()">
+    <option value="">Any MVP</option>
+    <option value="fast">≤6 weeks</option>
+    <option value="med">7–12 weeks</option>
+    <option value="slow">>12 weeks</option>
   </select>
 </div>
 
@@ -159,23 +652,23 @@
   <table>
     <thead><tr>
       <th onclick="srt('rank')" data-c="rank"># <span id="a-rank">↕</span></th>
-      <th onclick="srt('name')" data-c="name">Ниша <span id="a-name">↕</span></th>
-      <th onclick="srt('type')" data-c="type">Тип <span id="a-type">↕</span></th>
+      <th onclick="srt('name')" data-c="name">Niche <span id="a-name">↕</span></th>
+      <th onclick="srt('type')" data-c="type">Type <span id="a-type">↕</span></th>
       <th onclick="srt('score')" data-c="score" class="sorted">Score <span id="a-score">↓</span></th>
       <th>D · G · R · S · M · A · F · T</th>
       <th onclick="srt('mvp')" data-c="mvp">MVP <span id="a-mvp">↕</span></th>
       <th onclick="srt('tam')" data-c="tam">TAM <span id="a-tam">↕</span></th>
       <th onclick="srt('cac')" data-c="cac">CAC / LTV <span id="a-cac">↕</span></th>
       <th onclick="srt('y1')" data-c="y1">Y1 ARR <span id="a-y1">↕</span></th>
-      <th>Гэп</th>
+      <th>Gap</th>
     </tr></thead>
     <tbody id="tb"></tbody>
   </table>
-  <div class="no-results" id="nr" style="display:none">Ничего не найдено</div>
+  <div class="no-results" id="nr" style="display:none">No niches found</div>
 </div>
 
 <div class="footer">
-  Spain Niches 2026 · v2 methodology · 68 ниш · Deep Dives: 7 T1 ниш · Категории: RegTech · AI · Content · Platform · Marketplace · Vertical · Directory · Crypto · Обновлено 2026-03-02
+  Spain Niches 2026 Intelligence Terminal · v2 methodology · <span id="totalCountFooter">83</span> niches · <span class="footer-timestamp" id="timestamp">2026-03-02</span>
 </div>
 
 <script>
@@ -186,7 +679,7 @@ const D = [
   {rank:4,name:"Ley Atención al Cliente Platform",sub:"AI compliance — 250+ сотр компании",type:"RegTech",d:8,g:9,r:9,s:9,m:7,a:8,f:8,t:9,score:8.45,mi:6,mx:8,tam:"€20-50M",gap:"8K компаний, дедлайн дек 2026, 0 ES-решений",dd:true,cac:2000,ltv:12600,churn:"8%/год",y1:"€30-50K",y1n:40,risks:"Zendesk Q3 2026 launch; enterprise sales слишком медленно для соло-фаундера",gtm:"LinkedIn → compliance/legal directors → tax advisor partnerships",mvpScope:"Compliance dashboard + SLA tracker + AI chatbot white-label + audit report"},
   {rank:5,name:"VeriFactu SaaS — Expat Autónomos",sub:"EN-first инвойсинг + Hacienda API",type:"RegTech",d:8,g:9,r:7,s:9,m:8,a:9,f:6,t:9,score:8.00,mi:4,mx:8,tam:"€1.7-3.2M",gap:"Все конкуренты только на испанском",dd:true,cac:50,ltv:300,churn:"5-7%",y1:"€1.2-1.8K",y1n:1.5,risks:"Holded EN version; Hacienda API changes; tax liability",gtm:"Reddit r/expats → Facebook 'Freelancers Spain' → Nomad List",mvpScope:"EN invoicing + VeriFactu QR + Modelo 303/130 + Hacienda SOAP API"},
   {rank:6,name:"E-Commerce Seller Compliance",sub:"VeriFactu + RGPD для маркетплейс-продавцов",type:"RegTech",d:9,g:9,r:9,s:8,m:7,a:8,f:6,t:8,score:8.75,mi:10,mx:12,tam:"€180M",gap:"60K Amazon.es sellers, Jan 2027, 0 unified tools",dd:true,cac:35,ltv:735,churn:"6-8%",y1:"€1.18M",y1n:1180,risks:"Amazon строит нативно; A2X добавляет VeriFactu",gtm:"Amazon Seller Central community → SEO 'VeriFactu Amazon España' → AECEM",mvpScope:"Amazon SP-API + VeriFactu SOAP + RGPD consent → auto-invoice per sale"},
-  {rank:7,name:"Spanish Infobiz Platform",sub:"GetCourse ES analogue",type:"Platform",d:9,g:8,r:9,s:8,m:5,a:8,f:7,t:6,score:7.93,mi:12,mx:14,tam:"€85M",gap:"450K коучей, 0 платформы с Bizum, Hotmart входит в ES",dd:true,cac:67,ltv:10400,churn:"3%/год",y1:"€248K",y1n:248,risks:"Hotmart агрессивно входит (12-18 мес окно); сложность билда соло",gtm:"Instagram/LinkedIn coaching communities → freemium → Spanish creator influencers",mvpScope:"Курс-хостинг + email funnel + Bizum payments + member portal"},
+  {rank:7,name:"Spanish Infobiz Platform",sub:"GetCourse ES analogue",type:"Platform",d:9,g:8,r:9,s:8,m:5,a:8,f:7,t:6,score:7.93,mi:12,mx:14,tam:"€85M",gap:"450K коучей, 0 платформы с Bizum, Hotmart входит в ES",dd:true,cac:67,ltv:10400,churn:"3%/год",y1:"€248K",y1n:248,risks:"Hotmart агрессивно входит (12-18 мес окно); сложность билка соло",gtm:"Instagram/LinkedIn coaching communities → freemium → Spanish creator influencers",mvpScope:"Курс-хостинг + email funnel + Bizum payments + member portal"},
   {rank:8,name:"AI Content Generator ES",sub:"Spanish-first для creators + LATAM",type:"AI",d:9,g:8,r:8,s:9,m:7,a:9,f:5,t:5,score:8.25,mi:4,mx:6,tam:"€200-400M",gap:"88% creators недовольны Spanish quality EN-инструментов",dd:true,cac:42,ltv:940,churn:"12%",y1:"€366K",y1n:366,risks:"ChatGPT улучшает испанский; Adobe/Canva добавляют AI; окно 12-18 мес",gtm:"ProductHunt → Spanish YouTube creator communities → freemium → TikTok/IG demo",mvpScope:"YouTube script + TikTok hooks + IG captions генератор (Claude API + Next.js)"},
   {rank:9,name:"Crypto Tax + MiCA Compliance",sub:"DAC8 + MiCA reporting → Hacienda",type:"RegTech",d:8,g:8,r:9,s:9,m:8,a:8,f:7,t:9,score:8.56,mi:6,mx:8,tam:"€30M",gap:"Koinly/CoinTracking не поддерживают DAC8 + Modelo 721",dd:true,cac:18,ltv:790,churn:"10%",y1:"€632K",y1n:632,risks:"Пост-июль 2026 регуляторные изменения; B2C churn высокий",gtm:"Spanish crypto Twitter/X + Reddit r/CryptoES + Binance España community",mvpScope:"Wallet sync + DAC8 XML export → Hacienda + Modelo 721 auto-calc"},
   {rank:10,name:"WhatsApp-First Automation",sub:"n8n/Zapier с WhatsApp-нативным UX",type:"AI",d:8,g:8,r:8,s:9,m:7,a:8,f:6,t:6,score:7.85,mi:6,mx:8,tam:"€80-120M",gap:"90% SMBs в WA, 0 ES-native автоматизации"},
@@ -240,35 +733,25 @@ const D = [
   {rank:58,name:"SMB Insurance Comparison",sub:"Сравнение страховок для бизнеса",type:"Marketplace",d:5,g:5,r:6,s:6,m:6,a:5,f:4,t:4,score:5.35,mi:10,mx:14,tam:"€20M+",gap:"Companeo устарел"},
   {rank:59,name:"Embedded Finance SME Platforms",sub:"BaaS для SME SaaS-платформ",type:"Platform",d:5,g:5,r:7,s:5,m:4,a:4,f:7,t:4,score:5.30,mi:16,mx:20,tam:"€50M+",gap:"Swan/Stripe Banking = EN-only"},
   {rank:60,name:"AI VET Training B2B2G",sub:"Профессиональное обучение через AI",type:"Platform",d:5,g:5,r:6,s:5,m:4,a:3,f:5,t:4,score:4.90,mi:16,mx:20,tam:"€20M+",gap:"Государственные тендеры, 12-18 мес цикл"},
-
-  // DIRECTORY / AGGREGATOR NICHES (новая категория)
   {rank:61,name:"Home Services Bundle",sub:"Spain's Angie's List — электрики, сантехники, уборка",type:"Directory",d:9,g:9,r:9,s:9,m:7,a:10,f:7,t:7,score:8.90,mi:6,mx:8,tam:"€200M+",gap:"50K+ провайдеров без сайта, только WhatsApp. InfoPáginas мертва"},
   {rank:62,name:"Physiotherapists Directory",sub:"Zocdoc для физиотерапевтов + страховые",type:"Directory",d:8,g:9,r:8,s:8,m:6,a:8,f:7,t:7,score:8.70,mi:5,mx:6,tam:"€80M+",gap:"ADESLAS/Sanitas платят €15-30/реферал. 0 агрегаторов"},
   {rank:63,name:"Psychologists Online Directory",sub:"Betterhelp ES — психологи с отзывами",type:"Directory",d:9,g:8,r:8,s:8,m:6,a:8,f:6,t:6,score:8.50,mi:6,mx:8,tam:"€60M+",gap:"Post-COVID mental health boom. Corporate wellness = €50K-500K/год контракты"},
   {rank:64,name:"Pet Services Directory",sub:"Rover ES — ветеринары, груминг, догситтеры",type:"Directory",d:8,g:8,r:8,s:8,m:6,a:9,f:6,t:6,score:8.40,mi:6,mx:8,tam:"€50M+",gap:"Google scrape + Facebook = бесплатный старт. 0 доминантной платформы"},
   {rank:65,name:"Auto Repair Directory",sub:"Агрегатор таллеров с ценами и отзывами",type:"Directory",d:8,g:8,r:7,s:8,m:7,a:8,f:6,t:6,score:7.90,mi:6,mx:8,tam:"€40M+",gap:"20M+ автомобилей в Испании. Таллеры = 90% без нормального онлайна"},
-
-  // КРИПТО НИШИ (новые)
   {rank:66,name:"Crypto Tax SaaS — Modelo 721",sub:"Авто-заполнение Modelo 721 + IRPF + DAC8",type:"RegTech",d:9,g:9,r:9,s:9,m:8,a:9,f:8,t:10,score:8.20,mi:4,mx:8,tam:"€315M",gap:"Koinly/Blockpit не делают Modelo 721. 15M крипто-юзеров, DAC8 с янв 2026"},
   {rank:67,name:"MiCA Compliance for CASPs",sub:"AML/KYC + travel rule + отчётность для бирж",type:"RegTech",d:8,g:9,r:8,s:8,m:6,a:7,f:9,t:10,score:7.80,mi:6,mx:8,tam:"€4.5M+",gap:"Только 2 CASPs лицензированы. 30+ малых бирж не могут позволить Chainalysis"},
   {rank:68,name:"Crypto Education + Paid Community",sub:"Испаноязычная крипто-академия (MiCA, tax, DeFi)",type:"Content",d:7,g:8,r:7,s:9,m:6,a:8,f:6,t:7,score:7.00,mi:6,mx:10,tam:"€150M",gap:"Весь premium крипто-контент = английский. 0 испаноязычных платных курсов"},
-
-  // EDTECH НИШИ
   {rank:69,name:"All-in-One Infobiz Platform (GetCourse ES)",sub:"Spanish-native: курсы + email + community + Bizum. GetCourse для Испании",type:"EdTech",d:8,g:9,r:8,s:8,m:6,a:8,f:7,t:7,score:8.20,mi:8,mx:10,tam:"€28M",gap:"Hotmart берёт 9.9%+€0.50/продажу, нет Bizum. 0 испанских all-in-one платформ. GetCourse = €50M+ ARR в России",dd:true,cac:120,ltv:680,churn:"18%",y1:"€480K",y1n:480,risks:"Hotmart retaliation; высокий churn создателей >20%; сложность payment processing",gtm:"ProductHunt Spain + Hotmart community threads + YouTube tutorials ES + WhatsApp creator groups",mvpScope:"Course builder, email drips, Bizum+Stripe, creator dashboard, student portal, affiliate system"},
   {rank:70,name:"Corporate L&D + FUNDAE SaaS",sub:"FUNDAE credit management + LMS + marketplace курсов для испанских компаний",type:"EdTech",d:8,g:9,r:9,s:9,m:7,a:7,f:8,t:9,score:7.80,mi:6,mx:8,tam:"€42M",gap:"€50M+ FUNDAE кредитов, 70% не используется. 0 SaaS соединяет FUNDAE с онлайн-курсами",dd:true,cac:800,ltv:8400,churn:"6%",y1:"€660K",y1n:660,risks:"FUNDAE API изменения; медленный цикл согласования; конкуренция Personio/Factorial",gtm:"FUNDAE консультанты partnerships + HRIS интеграции (Personio, Factorial) + LinkedIn Ads (HR)",mvpScope:"FUNDAE dashboard, библиотека 50-100 курсов, employee tracking, compliance reports SEPE-ready"},
   {rank:71,name:"Online Tutoring Marketplace (Preply ES)",sub:"1:1 репетиторство + Bizum + испанские предметы и oposiciones",type:"EdTech",d:8,g:6,r:7,s:8,m:7,a:8,f:6,t:6,score:7.40,mi:8,mx:10,tam:"€18M",gap:"Preply берёт 33% комиссию, нет Bizum, нет фокуса на oposiciones / испанские предметы",cac:35,ltv:540,churn:"22%",y1:"€220K",y1n:220,risks:"Preply конкуренция; низкий switching cost; высокий churn после достижения цели",gtm:"School partnerships + Facebook groups родителей + university tutor recruiting",mvpScope:"Tutor marketplace, Bizum+Stripe, calendar + video (Jitsi), ratings, Spanish support"},
   {rank:72,name:"Bootcamp Marketplace Aggregator",sub:"Multi-bootcamp платформа (coding, design, marketing) с comparison + scholarships",type:"EdTech",d:8,g:7,r:7,s:7,m:8,a:7,f:6,t:8,score:7.10,mi:6,mx:8,tam:"€6.75M",gap:"Фрагментированный рынок bootcamps в Испании, 0 агрегаторов/сравнителей",cac:40,ltv:450,churn:"20%",y1:"€200K",y1n:200,risks:"Bootcamps продают напрямую (минуют платформу); фрагментированное качество",gtm:"Bootcamp partnerships 15% referral + Reddit r/programming ES + TikTok student reviews",mvpScope:"Listing + comparison table, reviews, Bizum, scholarship matching"},
   {rank:73,name:"Coaching/Mentorship Platform (Wengo ES)",sub:"1:1 коучинг + группы + Bizum + WhatsApp интеграция для испанских коучей",type:"EdTech",d:7,g:7,r:7,s:8,m:7,a:8,f:6,t:7,score:7.20,mi:6,mx:8,tam:"€9M",gap:"Wengo устарел; Preply — только языки. 0 modern коучинг-маркетплейса на испанском",cac:55,ltv:480,churn:"20%",y1:"€180K",y1n:180,risks:"Wengo конкуренция; низкий switching cost; коучи везде листятся",gtm:"Coach Facebook groups + Instagram influencer coaches + LinkedIn coach marketers",mvpScope:"Coach marketplace, calendar+Bizum, video calls, group sessions, ratings, WhatsApp chat"},
-
-  // ДИРЕКТОРНЫЕ НИШИ (новые)
   {rank:74,name:"Wedding Vendors Marketplace",sub:"Соединяем пары с фотографами, кейтерингом, флористами, DJ, залами",type:"Directory",d:9,g:8,r:8,s:8,m:8,a:8,f:7,t:8,score:8.45,mi:8,mx:10,tam:"€1.17B",gap:"Zankyou куплена в 2023, продукт мёртв. Pinterest/Instagram = хаотичный дискавери. 180K+ свадеб/год",dd:true,cac:115,ltv:2400,churn:"15%",y1:"€24K",y1n:24,risks:"Низкая repeat frequency (свадьба 1 раз); сезонные пики; Instagram конкуренция",gtm:"Partner 10-20 wedding planners Barcelona/Madrid (CAC €0) → 100 vendors к M4. WhatsApp к фото-студиям 40%+ response",mvpScope:"Vendor profiles + gallery, couple project posting, messaging, premium listing €49/mo"},
   {rank:75,name:"Legal Professionals Directory",sub:"Marketplace для abogados, gestores, notarios по Испании",type:"Directory",d:9,g:8,r:8,s:8,m:8,a:7,f:8,t:7,score:8.20,mi:6,mx:8,tam:"€8-12B",gap:"Colegio de Abogados = оффлайн списки. 0 испанского Avvo. SMBs ищут доступных юристов через Google",dd:true,cac:90,ltv:2880,churn:"20%",y1:"€36K",y1n:36,risks:"Нужен professional credibility для acquisition; регуляторика lawyer marketing",gtm:"Partner с 2-3 law chambers (Madrid, Barcelona) → 50 юристов. Content marketing SMB legal SEO. Cold LinkedIn",mvpScope:"Lawyer profiles+ratings, SMB intake form + auto-match, messaging, €45/mo premium"},
   {rank:76,name:"Moving Services Directory",sub:"Агрегатор mudanzas (мувингов) с lead gen — аналог Mucalculator/Mumzee",type:"Directory",d:9,g:7,r:7,s:7,m:8,a:7,f:6,t:8,score:8.10,mi:6,mx:8,tam:"€700M",gap:"5K+ мувинг-компаний, 700K переездов/год, 0 доминантного агрегатора после ухода Mumzee",dd:true,cac:150,ltv:1200,churn:"25%",y1:"€30K",y1n:30,risks:"Ультра-низкая частота (1 раз в 5-7 лет); CAC сложно отбить без geo-фокуса",gtm:"Google Maps optimization по провинциям + local ads. Partner 5-10 топ-мувингов/город. Madrid/Barcelona/Valencia first",mvpScope:"Mover profiles + quotes, customer request form + auto-match by geo/date, SMS, €1-3/lead or €79/mo"},
   {rank:77,name:"Construction & Renovation Trades",sub:"Marketplace электриков, solar installers, HVAC — нишевый анти-Habitissimo",type:"Directory",d:9,g:6,r:8,s:8,m:8,a:8,f:8,t:7,score:7.95,mi:8,mx:10,tam:"€50-72B",gap:"Habitissimo = review fraud + региональные пробелы + слабый UX. Стратегия: 1-2 категории в 1 регионе",dd:true,cac:150,ltv:4800,churn:"18%",y1:"€60K",y1n:60,risks:"Habitissimo силён в core metros; нужна geo-нишевая стратегия",gtm:"Launch Catalonia: электрики + solar installers. WhatsApp + field sales 100 топ-installers. M3: Madrid/Valencia + plumbing",mvpScope:"Tradesman profiles+gallery, homeowner project posting, messaging+scheduling, 8% commission or €79/mo"},
   {rank:78,name:"Beauty & Wellness Directory",sub:"Booking агрегатор для peluquerías, estéticas, nail salons — анти-Treatwell",type:"Directory",d:9,g:7,r:8,s:8,m:8,a:8,f:7,t:8,score:7.75,mi:6,mx:8,tam:"€10.13B",gap:"Treatwell берёт 35% комиссию + paywall friction. <1% онлайн-бронирований в beauty = нетронутый рынок",dd:true,cac:115,ltv:2727,churn:"22%",y1:"€60K",y1n:60,risks:"Салоны multi-list на Google/Instagram/TikTok; Treatwell уже интегрирован у части салонов",gtm:"50 топ-салонов Barcelona+Madrid: undercut Treatwell 35% → 18%+freemium. Partner beauty schools. M3: Andalusia/Galicia",mvpScope:"Salon profiles + availability + pricing, client booking + SMS reminders, 18% commission, €29/mo premium"},
   {rank:79,name:"Education & Tutoring Directory",sub:"Freemium tutor marketplace с vetting — анти-Superprof",type:"Directory",d:9,g:7,r:8,s:8,m:9,a:9,f:7,t:8,score:7.85,mi:6,mx:8,tam:"€400M",gap:"Superprof = 1M+ репетиторов без проверки, €39-49/mo paywall, 45% churn за 3 мес. Нет строгого vetting",dd:true,cac:60,ltv:4500,churn:"20%",y1:"€72K",y1n:72,risks:"Churn репетиторов если нет заказов; конкуренция Preply (лучше funded)",gtm:"Launch «English for Spanish Professionals» (B2B). Partner 10 language schools + 3-5 corporate training companies",mvpScope:"Tutor profiles + trial lesson video (vetting), student quiz + auto-match, messaging+scheduling, 15% commission"},
-
-  // ПРОПУЩЕННЫЕ НИШИ (финтех, пропtech, HR)
   {rank:80,name:"Comunidades de Vecinos SaaS",sub:"Digital управление: junta + derrama + presupuesto для 490K испанских comunidades",type:"PropTech",d:8,g:9,r:8,s:9,m:7,a:8,f:7,t:8,score:8.10,mi:5,mx:6,tam:"€117.6M",gap:"0 digital-native конкурентов. 9.8M квартир управляются на бумаге и WhatsApp. Gesfincas/Urbanarque = устаревшие десктопные программы",dd:true,cac:10,ltv:240,churn:"2%",y1:"€45K",y1n:45,risks:"Gesfincas/Urbanarque могут модернизироваться; WhatsApp-укоренённость; регуляторная фрагментация по регионам",gtm:"Colegio Profesional de Administradores de Fincas partnership + free junta convocation trial + property manager association outreach",mvpScope:"Junta convocation templates, presupuesto forms, online vote tracking, derrama calculator, member directory"},
   {rank:81,name:"Payroll SaaS for Spanish SMBs",sub:"Modern nómina engine (14 pagos, SS, AEAT, ERTE) — замена устаревшего A3 Nómina",type:"HRTech",d:8,g:8,r:8,s:9,m:6,a:6,f:8,t:8,score:7.90,mi:8,mx:10,tam:"€1.03B",gap:"Нет modern SaaS замены A3 Nómina. 14 ежемесячных выплат + SS + ERTE + региональные правила. Factorial = HR-first, не payroll-first",cac:15,ltv:720,churn:"3%",y1:"€120K",y1n:120,risks:"Factorial добавляет payroll module; AEAT/SS API restrictions; конфликт с гесторами по дистрибуции",gtm:"Accounting firm white-label (20% revenue share) + CPA certification partnerships + webinars on SS changes 2026",mvpScope:"Nómina calculation 14-payment schedule, AEAT 152/160 generation, SS management, single-doc approval"},
   {rank:82,name:"Gestoría Software — Modern SaaS",sub:"Замена A3/Sage для 30K гесторий: multi-client, tax, nómina, VeriFactu",type:"FinTech",d:7,g:8,r:7,s:8,m:8,a:7,f:8,t:8,score:7.60,mi:5,mx:6,tam:"€72M",gap:"30K гесторий работают на 20-летнем ПО (A3, Sage). 0 modern gestoría-specific SaaS. Рынок: €199-499/mo cloud платформа с client portfolio",cac:125,ltv:2400,churn:"2%",y1:"€85K",y1n:85,risks:"A3/Sage могут модернизироваться; cloud adoption resistance (data privacy); VeriFactu API volatility",gtm:"Colegio Profesional de Gestores partnership + VeriFactu compliance webinars + free migration from legacy software",mvpScope:"Multi-client account management, tax file generation, nómina+SS/AEAT, VeriFactu integration, client portal, compliance checklist"},
@@ -279,30 +762,34 @@ let sortCol='score', sortAsc=false, tierF='all', searchF='', typeF='', mvpF='';
 
 const tier=s=>s>=8?1:s>=7.5?2:s>=6.5?3:4;
 const tc=s=>'tier-'+tier(s);
-const sc=s=>'t'+tier(s)+'-score';
+const sc=s=>'score-t'+tier(s);
 const fc=v=>v>=9?'#22c55e':v>=7?'#f59e0b':v>=5?'#f97316':'#ef4444';
+const typeClass=t=>{
+  const map={
+    'RegTech':'regtech','AI':'ai','Content':'content','Platform':'platform','Marketplace':'marketplace',
+    'Vertical':'vertical','Directory':'directory','EdTech':'edtech','FinTech':'fintech','HRTech':'hrtech','PropTech':'proptech'
+  };
+  return map[t]||'';
+};
 
 function bars(n){
-  const fs=[['d','D','Demand'],['g','G','Gap'],['r','R','Revenue'],['s','S','Spain'],['m','M','MVP'],['a','A','Access'],['f','F','Defend'],['t','T','Timing']];
-  return '<div class="factors">'+fs.map(([k,l,nm])=>{
+  const fs=[['d','D'],['g','G'],['r','R'],['s','S'],['m','M'],['a','A'],['f','F'],['t','T']];
+  return '<div class="factors">'+fs.map(([k,l])=>{
     const v=n[k];
-    return `<div class="factor-wrap"><div class="factor-bar" title="${nm}: ${v}/10"><div class="factor-fill" style="height:${v*10}%;background:${fc(v)}"></div></div><div class="factor-label">${l}</div></div>`;
+    return `<div class="factor-wrap"><div class="factor-bar"><div class="factor-fill" style="height:${v*10}%;background:${fc(v)}"></div></div><div class="factor-label">${l}</div></div>`;
   }).join('')+'</div>';
 }
 
 function mvpC(n){
   const mid=(n.mi+n.mx)/2;
   const cls=mid<=6?'mvp-fast':mid<=12?'mvp-med':'mvp-slow';
-  return `<span class="mvp-chip ${cls}">${n.mi}-${n.mx} нед</span>`;
+  return `<span class="mvp-chip ${cls}">${n.mi}-${n.mx} w</span>`;
 }
 
 function unitCell(n){
   if(!n.cac) return '<span class="no-dd">—</span>';
   const ratio=(n.ltv/n.cac).toFixed(1);
-  return `<div class="unit-cell">
-    <span class="unit-cac">CAC €${n.cac}</span> / <span class="unit-ltv">LTV €${n.ltv}</span><br>
-    <span class="unit-ratio">${ratio}x · churn ${n.churn||'—'}</span>
-  </div>`;
+  return `<div class="unit-cell"><span class="unit-cac">€${n.cac}</span> / <span class="unit-ltv">€${n.ltv}</span><span class="unit-ratio">${ratio}x</span></div>`;
 }
 
 function y1Cell(n){
@@ -312,16 +799,12 @@ function y1Cell(n){
 
 function detailPanel(n){
   if(!n.dd) return '';
-  return `<tr class="detail-row" id="dp-${n.rank}" style="display:none"><td colspan="9">
+  return `<tr class="detail-row" id="dp-${n.rank}" style="display:none"><td colspan="10">
     <div class="detail-panel">
-      <div class="detail-block"><h4>GTM — первые клиенты</h4><p>${n.gtm||'—'}</p></div>
-      <div class="detail-block"><h4>MVP scope</h4><p>${n.mvpScope||'—'}</p></div>
-      <div class="detail-block"><h4>Топ риски</h4><p>${n.risks||'—'}</p></div>
-      <div class="detail-block"><h4>Unit economics</h4><p>
-        CAC <strong>€${n.cac}</strong> · LTV <strong>€${n.ltv}</strong><br>
-        Churn ${n.churn||'—'} · Payback ${Math.round((n.cac/((n.ltv*0.05)||1)))} мес<br>
-        <span style="color:var(--t1)">Y1 ARR ${n.y1||'—'}</span>
-      </p></div>
+      <div class="detail-card" style="border-left-color:#A855F7"><h4>Unit Economics</h4><p>CAC <strong>€${n.cac}</strong> · LTV <strong>€${n.ltv}</strong><br>Churn ${n.churn||'—'} · Y1 <strong>${n.y1||'—'}</strong></p></div>
+      <div class="detail-card" style="border-left-color:#EC4899"><h4>GTM Strategy</h4><p>${n.gtm||'—'}</p></div>
+      <div class="detail-card" style="border-left-color:#3B82F6"><h4>MVP Scope</h4><p>${n.mvpScope||'—'}</p></div>
+      <div class="detail-card" style="border-left-color:#F97316"><h4>Key Risks</h4><p>${n.risks||'—'}</p></div>
     </div>
   </td></tr>`;
 }
@@ -376,11 +859,16 @@ function render(){
     return sortAsc?(va-vb):(vb-va);
   });
 
-  document.getElementById('visibleCount').textContent=data.length+' ниш';
+  const t1cnt=D.filter(n=>n.score>=8).length;
+  document.getElementById('totalCount').textContent=D.length;
+  document.getElementById('t1c-text').textContent=t1cnt;
+  document.getElementById('totalCountFooter').textContent=D.length;
+  document.getElementById('visibleCount').textContent=data.length+' niches';
   document.getElementById('nr').style.display=data.length?'none':'block';
   document.getElementById('tb').innerHTML=data.map((n,i)=>{
-    const ddBadge=n.dd?'<span class="dd-badge">Deep Dive ✓</span>':'';
-    const typeBadge=n.type==='Directory'?`<span class="dir-badge">${n.type}</span>`:`<span class="type-badge">${n.type}</span>`;
+    const ddBadge=n.dd?'<span class="dd-badge">DD ✓</span>':'';
+    const tc=typeClass(n.type);
+    const typeBadge=`<span class="type-badge ${tc}">${n.type}</span>`;
     const clickAttr=n.dd?`class="has-dd" onclick="toggleDetail(${n.rank})"`:'' ;
     return `<tr ${clickAttr}>
       <td class="rank">${i+1}</td>
@@ -399,19 +887,83 @@ function render(){
 
 function buildCharts(){
   const ranges=[
-    {l:'8.0–10 (T1)',c:'var(--t1)',cnt:D.filter(n=>n.score>=8).length},
-    {l:'7.5–7.9 (T2)',c:'var(--t2)',cnt:D.filter(n=>n.score>=7.5&&n.score<8).length},
-    {l:'6.5–7.4 (T3)',c:'var(--t3)',cnt:D.filter(n=>n.score>=6.5&&n.score<7.5).length},
-    {l:'< 6.5 (T4)',c:'var(--t4)',cnt:D.filter(n=>n.score<6.5).length},
+    {l:'8.0–10 (T1)',c:'#00FF94',cnt:D.filter(n=>n.score>=8).length},
+    {l:'7.5–7.9 (T2)',c:'#FFB800',cnt:D.filter(n=>n.score>=7.5&&n.score<8).length},
+    {l:'6.5–7.4 (T3)',c:'#FF6B35',cnt:D.filter(n=>n.score>=6.5&&n.score<7.5).length},
+    {l:'< 6.5 (T4)',c:'#4A5568',cnt:D.filter(n=>n.score<6.5).length},
   ];
   const m1=Math.max(...ranges.map(r=>r.cnt));
+  const types={};
+  D.forEach(n=>{types[n.type]=(types[n.type]||0)+1;});
+  const typeEntries=Object.entries(types).sort((a,b)=>b[1]-a[1]);
+  const m2=typeEntries[0][1];
+  const mvpCnts={fast:D.filter(n=>n.mx<=6).length,med:D.filter(n=>n.mi>=7&&n.mx<=12).length,slow:D.filter(n=>n.mi>12).length};
+  const maxMvp=Math.max(...Object.values(mvpCnts));
+
   document.getElementById('charts').innerHTML=`
-  <div class="chart-box"><h3>Распределение по Score</h3>${ranges.map(r=>`<div class="dist-bar"><span style="width:72px;color:var(--muted)">${r.l}</span><div class="dist-track"><div class="dist-fill" style="width:${r.cnt/m1*100}%;background:${r.c}"></div></div><span style="width:18px;text-align:right;color:${r.c};font-weight:600">${r.cnt}</span></div>`).join('')}</div>
-  <div class="chart-box"><h3>По типу</h3>${(()=>{const t={};D.forEach(n=>{t[n.type]=(t[n.type]||0)+1;});const s=Object.entries(t).sort((a,b)=>b[1]-a[1]);const m=s[0][1];return s.map(([k,v])=>`<div class="dist-bar"><span style="width:72px;color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis">${k}</span><div class="dist-track"><div class="dist-fill" style="width:${v/m*100}%;background:var(--accent)"></div></div><span style="width:18px;text-align:right;color:var(--accent);font-weight:600">${v}</span></div>`).join('');})()}</div>
-  <div class="chart-box"><h3>MVP Speed</h3>${[{l:'≤6 нед 🚀',c:'#22c55e',cnt:D.filter(n=>n.mx<=6).length},{l:'7–12 нед ⚡',c:'#f59e0b',cnt:D.filter(n=>n.mi>=7&&n.mx<=12).length},{l:'>12 нед 🐢',c:'#ef4444',cnt:D.filter(n=>n.mi>12).length}].map(r=>`<div class="dist-bar"><span style="width:72px;color:var(--muted)">${r.l}</span><div class="dist-track"><div class="dist-fill" style="width:${r.cnt/D.filter(n=>n.mx<=6).length*100}%;background:${r.c}"></div></div><span style="width:18px;text-align:right;color:${r.c};font-weight:600">${r.cnt}</span></div>`).join('')}</div>`;
+  <div class="chart-box">
+    <div class="chart-title">Score Distribution</div>
+    ${ranges.map(r=>`<div class="chart-bar">
+      <span class="chart-label">${r.l}</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${r.cnt/m1*100}%;background:${r.c}"></div></div>
+      <span class="chart-value" style="color:${r.c}">${r.cnt}</span>
+    </div>`).join('')}
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">By Type</div>
+    ${typeEntries.map(([k,v])=>`<div class="chart-bar">
+      <span class="chart-label">${k}</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${v/m2*100}%;background:#00D4FF"></div></div>
+      <span class="chart-value" style="color:#00D4FF">${v}</span>
+    </div>`).join('')}
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">MVP Speed</div>
+    <div class="chart-bar">
+      <span class="chart-label">≤6 weeks</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.fast/maxMvp*100}%;background:#00FF94"></div></div>
+      <span class="chart-value" style="color:#00FF94">${mvpCnts.fast}</span>
+    </div>
+    <div class="chart-bar">
+      <span class="chart-label">7–12 weeks</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.med/maxMvp*100}%;background:#FFB800"></div></div>
+      <span class="chart-value" style="color:#FFB800">${mvpCnts.med}</span>
+    </div>
+    <div class="chart-bar">
+      <span class="chart-label">>12 weeks</span>
+      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.slow/maxMvp*100}%;background:#FF6B35"></div></div>
+      <span class="chart-value" style="color:#FF6B35">${mvpCnts.slow}</span>
+    </div>
+  </div>`;
+
+  const t1=D.filter(n=>n.score>=8).length;
+  const t2=D.filter(n=>n.score>=7.5&&n.score<8).length;
+  const t3=D.filter(n=>n.score>=6.5&&n.score<7.5).length;
+  const avgScore=(D.reduce((sum,n)=>sum+n.score,0)/D.length).toFixed(2);
+
+  document.getElementById('stats').innerHTML=`
+    <div class="stat-card t1">
+      <div class="stat-number">${t1}</div>
+      <div class="stat-label">Tier 1 ≥8.0</div>
+    </div>
+    <div class="stat-card t2">
+      <div class="stat-number">${t2}</div>
+      <div class="stat-label">Tier 2 7.5–7.9</div>
+    </div>
+    <div class="stat-card t3">
+      <div class="stat-number">${t3}</div>
+      <div class="stat-label">Tier 3 6.5–7.4</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color:#00D4FF">${avgScore}</div>
+      <div class="stat-label">Avg Score</div>
+    </div>
+  `;
 }
 
-buildCharts(); render();
+buildCharts();
+render();
 </script>
+
 </body>
 </html>
