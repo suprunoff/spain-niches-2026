@@ -1,782 +1,814 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spain Niches 2026 — Intelligence Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #F8F7F4;
-    --surface: #FFFFFF;
-    --surface2: #F1EFE9;
-    --border: #E2DDD6;
-    --text: #18130F;
-    --muted: #7A7168;
-    --accent: #C84B31;
-    --t1: #16A34A;
-    --t2: #B45309;
-    --t3: #C2410C;
-    --t4: #94A3B8;
-    --t1bg: rgba(22, 163, 74, 0.08);
-    --t2bg: rgba(180, 83, 9, 0.08);
-    --t3bg: rgba(194, 65, 12, 0.08);
-    --t4bg: rgba(148, 163, 184, 0.08);
-    --type-regtech: #0284C7;
-    --type-ai: #7C3AED;
-    --type-content: #DC2626;
-    --type-platform: #2563EB;
-    --type-marketplace: #EA580C;
-    --type-vertical: #0891B2;
-    --type-directory: #059669;
-    --type-edtech: #CA8A04;
-    --type-fintech: #65A30D;
-    --type-hrtech: #BE185D;
-    --type-proptech: #0369A1;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-size: 13px;
-    line-height: 1.6;
-    letter-spacing: 0.2px;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='2' /%3E%3CfeColorMatrix type='saturate' values='0.3' /%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noiseFilter)' opacity='0.02' /%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO HEADER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .hero {
-    position: relative;
-    padding: 56px 48px;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(135deg, rgba(200, 75, 49, 0.02) 0%, transparent 100%);
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-    margin-bottom: 40px;
-  }
-
-  .hero-flag {
-    font-size: 52px;
-    line-height: 1;
-  }
-
-  .hero-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 52px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: var(--text);
-  }
-
-  .hero-year {
-    color: var(--accent);
-    font-weight: 700;
-  }
-
-  .hero-sub {
-    color: var(--muted);
-    font-size: 13px;
-    letter-spacing: 0.3px;
-    margin-bottom: 32px;
-  }
-
-  .hero-stats {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-  }
-
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    transition: all 0.2s ease;
-  }
-
-  .stat-card:hover {
-    border-color: var(--border);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  }
-
-  .stat-number {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .stat-label {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  .stat-card.t1 { border-left-color: var(--t1); }
-  .stat-card.t1 .stat-number { color: var(--t1); }
-  .stat-card.t2 { border-left-color: var(--t2); }
-  .stat-card.t2 .stat-number { color: var(--t2); }
-  .stat-card.t3 { border-left-color: var(--t3); }
-  .stat-card.t3 .stat-number { color: var(--t3); }
-
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CHARTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .charts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
-    padding: 32px 48px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .chart-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  }
-
-  .chart-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .chart-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
-  .chart-label {
-    flex: 0 0 110px;
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 500;
-  }
-
-  .chart-track {
-    flex: 1;
-    height: 5px;
-    background: #F7F5F2;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .chart-fill {
-    height: 100%;
-    border-radius: 2px;
-    transition: width 0.3s ease;
-  }
-
-  .chart-value {
-    flex: 0 0 32px;
-    text-align: right;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 600;
-    font-size: 13px;
-  }
-
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CONTROLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .controls {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    padding: 20px 48px;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-    background: var(--surface);
-  }
-
-  .search-box {
-    flex: 1;
-    min-width: 220px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 14px;
-    color: var(--text);
-    font-size: 13px;
-    font-family: 'IBM Plex Mono', monospace;
-    transition: all 0.2s ease;
-  }
-
-  .search-box::placeholder {
-    color: var(--muted);
-  }
-
-  .search-box:focus {
-    outline: none;
-    border-color: var(--accent);
-    background: var(--surface);
-    box-shadow: 0 0 0 2px rgba(200, 75, 49, 0.1);
-  }
-
-  .filter-group {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .filter-label {
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    font-weight: 600;
-  }
-
-  .filter-btn {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 7px 14px;
-    border-radius: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 500;
-  }
-
-  .filter-btn:hover {
-    border-color: var(--accent);
-    color: var(--text);
-    background: var(--bg);
-  }
-
-  .filter-btn.active {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: white;
-  }
-
-  .filter-btn.t1.active { border-color: var(--t1); background: var(--t1); color: white; }
-  .filter-btn.t2.active { border-color: var(--t2); background: var(--t2); color: white; }
-  .filter-btn.t3.active { border-color: var(--t3); background: var(--t3); color: white; }
-  .filter-btn.t4.active { border-color: var(--t4); background: var(--t4); color: white; }
-
-  .filter-select {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 7px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    transition: all 0.2s ease;
-  }
-
-  .filter-select:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(200, 75, 49, 0.1);
-  }
-
-  .result-info {
-    font-size: 12px;
-    color: var(--muted);
-    margin-left: auto;
-    font-weight: 500;
-  }
-
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TABLE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .table-wrap {
-    overflow-x: auto;
-    padding: 0 48px 48px;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
-    min-width: 1100px;
-  }
-
-  th {
-    text-align: left;
-    padding: 12px 10px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--muted);
-    border-bottom: 2px solid var(--border);
-    white-space: nowrap;
-    cursor: pointer;
-    user-select: none;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-    font-family: 'IBM Plex Mono', monospace;
-    background: var(--surface);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-
-  th:hover {
-    color: var(--accent);
-  }
-
-  th.sorted {
-    color: var(--accent);
-  }
-
-  td {
-    padding: 12px 10px;
-    border-bottom: 1px solid var(--border);
-    border-left: 2px solid transparent;
-    vertical-align: middle;
-    background: var(--surface);
-    transition: background 0.12s ease, border-left-color 0.12s ease;
-  }
-
-  tr.has-dd {
-    cursor: pointer;
-  }
-
-  tbody tr:hover td {
-    background: #F4F2EE;
-  }
-
-  tr.has-dd:hover td:first-child {
-    border-left-color: rgba(200, 75, 49, 0.3);
-  }
-
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TABLE CELLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .rank {
-    color: var(--muted);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    width: 32px;
-  }
-
-  .niche-name {
-    font-weight: 600;
-    max-width: 260px;
-  }
-
-  .niche-name small {
-    display: block;
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 400;
-    margin-top: 3px;
-    line-height: 1.4;
-  }
-
-  .type-badge {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: 600;
-    white-space: nowrap;
-    letter-spacing: 0.2px;
-  }
-
-  .type-badge.regtech { background: rgba(2, 132, 199, 0.12); color: var(--type-regtech); }
-  .type-badge.ai { background: rgba(124, 58, 237, 0.12); color: var(--type-ai); }
-  .type-badge.content { background: rgba(220, 38, 38, 0.12); color: var(--type-content); }
-  .type-badge.platform { background: rgba(37, 99, 235, 0.12); color: var(--type-platform); }
-  .type-badge.marketplace { background: rgba(234, 88, 12, 0.12); color: var(--type-marketplace); }
-  .type-badge.vertical { background: rgba(8, 145, 178, 0.12); color: var(--type-vertical); }
-  .type-badge.directory { background: rgba(5, 150, 105, 0.12); color: var(--type-directory); }
-  .type-badge.edtech { background: rgba(202, 138, 4, 0.12); color: var(--type-edtech); }
-  .type-badge.fintech { background: rgba(101, 163, 13, 0.12); color: var(--type-fintech); }
-  .type-badge.hrtech { background: rgba(190, 24, 93, 0.12); color: var(--type-hrtech); }
-  .type-badge.proptech { background: rgba(3, 105, 161, 0.12); color: var(--type-proptech); }
-
-  .score-cell {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 16px;
-    font-weight: 700;
-    min-width: 48px;
-  }
-
-  .score-t1 { color: var(--t1); }
-  .score-t2 { color: var(--t2); }
-  .score-t3 { color: var(--t3); }
-  .score-t4 { color: var(--t4); }
-
-  .tier-badge {
-    display: inline-block;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: 700;
-    white-space: nowrap;
-    margin-left: 8px;
-    letter-spacing: 0.2px;
-  }
-
-  .tier-1 { background: var(--t1bg); color: var(--t1); border: 1px solid rgba(22, 163, 74, 0.25); }
-  .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(180, 83, 9, 0.25); }
-  .tier-3 { background: var(--t3bg); color: var(--t3); border: 1px solid rgba(194, 65, 12, 0.25); }
-  .tier-4 { background: var(--t4bg); color: var(--t4); border: 1px solid rgba(148, 163, 184, 0.25); }
-
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FACTOR BARS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .factors {
-    display: flex;
-    gap: 5px;
-    align-items: flex-end;
-  }
-
-  .factor-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .factor-bar {
-    width: 18px;
-    height: 36px;
-    border-radius: 2px;
-    background: #F7F5F2;
-    display: flex;
-    flex-direction: column-reverse;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  .factor-fill {
-    border-radius: 1px;
-    transition: all 0.2s ease;
-  }
-
-  .factor-label {
-    font-size: 9px;
-    color: var(--muted);
-    margin-top: 4px;
-    font-weight: 600;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CHIPS & CELLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .mvp-chip {
-    display: inline-block;
-    padding: 5px 11px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: 600;
-    white-space: nowrap;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .mvp-fast { background: rgba(22, 163, 74, 0.15); color: #15803d; }
-  .mvp-med { background: rgba(180, 83, 9, 0.15); color: #b45309; }
-  .mvp-slow { background: rgba(194, 65, 12, 0.15); color: #c2410c; }
-
-  .tam {
-    color: var(--muted);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    white-space: nowrap;
-    font-weight: 500;
-  }
-
-  .unit-cell {
-    font-size: 11px;
-  }
-
-  .unit-cac {
-    color: #059669;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 600;
-    display: block;
-  }
-
-  .unit-ltv {
-    color: #0284C7;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 600;
-  }
-
-  .unit-ratio {
-    color: var(--muted);
-    font-size: 10px;
-    display: block;
-    margin-top: 2px;
-  }
-
-  .y1-cell {
-    font-size: 12px;
-    font-weight: 600;
-    font-family: 'IBM Plex Mono', monospace;
-    color: #7C3AED;
-  }
-
-  .gap-text {
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.5;
-    max-width: 240px;
-  }
-
-  .dd-badge {
-    display: inline-block;
-    padding: 3px 7px;
-    border-radius: 3px;
-    font-size: 9px;
-    font-weight: 700;
-    background: rgba(200, 75, 49, 0.15);
-    color: var(--accent);
-    border: 1px solid rgba(200, 75, 49, 0.3);
-    margin-left: 6px;
-    vertical-align: middle;
-  }
-
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ DETAIL PANEL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .detail-row td {
-    background: rgba(200, 75, 49, 0.03) !important;
-    border-bottom: 2px solid rgba(200, 75, 49, 0.15) !important;
-    padding: 20px 10px !important;
-  }
-
-  .detail-panel {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
-  }
-
-  .detail-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    padding: 14px 16px;
-    border-radius: 6px;
-  }
-
-  .detail-card h4 {
-    font-size: 10px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    margin-bottom: 10px;
-    font-weight: 700;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .detail-card p {
-    font-size: 12px;
-    color: var(--text);
-    line-height: 1.5;
-  }
-
-  .detail-card strong {
-    color: var(--accent);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .no-dd {
-    color: var(--muted);
-    font-size: 11px;
-  }
-
-  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  .no-results {
-    text-align: center;
-    padding: 60px 48px;
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  .footer {
-    text-align: center;
-    padding: 20px 48px;
-    color: var(--muted);
-    font-size: 11px;
-    border-top: 1px solid var(--border);
-    letter-spacing: 0.3px;
-    background: var(--surface);
-  }
-
-  .footer-timestamp {
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  /* ━━━━ TOOLTIPS ━━━━ */
-  [data-tip] {
-    position: relative;
-  }
-
-  [data-tip]::after {
-    content: attr(data-tip);
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: #18130F;
-    color: #F8F7F4;
-    font-size: 11px;
-    font-weight: 400;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    line-height: 1.5;
-    padding: 7px 10px;
-    border-radius: 5px;
-    white-space: pre-line;
-    max-width: 260px;
-    text-align: left;
-    text-transform: none;
-    letter-spacing: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-
-  [data-tip]::before {
-    content: '';
-    position: absolute;
-    bottom: calc(100% + 3px);
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: #18130F;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-    z-index: 100;
-  }
-
-  [data-tip]:hover::after,
-  [data-tip]:hover::before {
-    opacity: 1;
-  }
-
-  /* ━━━━ CHARTS COLLAPSIBLE ━━━━ */
-  .charts-section {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .charts-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 48px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--muted);
-    cursor: pointer;
-    list-style: none;
-    user-select: none;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-  }
-
-  .charts-toggle::-webkit-details-marker { display: none; }
-  .charts-toggle:hover { color: var(--text); }
-
-  .charts-arrow { font-size: 10px; transition: transform 0.2s; }
-  details[open] .charts-arrow { transform: rotate(90deg); }
-
-  .charts-grid {
-    padding: 16px 48px 20px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spain Niches 2026 — Intelligence Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sidebar-bg: #0F1928;
+      --sidebar-text: #8B97A8;
+      --sidebar-text-active: #FFFFFF;
+      --sidebar-border: #1E293B;
+      --main-bg: #F5F6FA;
+      --surface: #FFFFFF;
+      --border: #E5E7EB;
+      --text-primary: #111827;
+      --text-muted: #6B7280;
+      --accent: #5C6BC0;
+      --t1: #10B981;
+      --t2: #F59E0B;
+      --t3: #F97316;
+      --t4: #9CA3AF;
+      --t1bg: rgba(16, 185, 129, 0.08);
+      --t2bg: rgba(245, 158, 11, 0.08);
+      --t3bg: rgba(249, 115, 22, 0.08);
+      --t4bg: rgba(156, 163, 175, 0.08);
+      --type-regtech: #0284C7;
+      --type-ai: #7C3AED;
+      --type-content: #DC2626;
+      --type-platform: #2563EB;
+      --type-marketplace: #EA580C;
+      --type-vertical: #0891B2;
+      --type-directory: #059669;
+      --type-edtech: #CA8A04;
+      --type-fintech: #65A30D;
+      --type-hrtech: #BE185D;
+      --type-proptech: #0369A1;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-primary);
+      background: var(--main-bg);
+      display: flex;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━ SIDEBAR ━━━━━━━━━━━━━━━━━━━━━ */
+    .sidebar {
+      width: 160px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--sidebar-border);
+      padding: 20px 12px;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sidebar-text-active);
+      padding: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .sidebar-logo-flag {
+      font-size: 20px;
+    }
+
+    .sidebar-nav {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .nav-item {
+      padding: 10px 12px;
+      margin-bottom: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--sidebar-text);
+      transition: all 0.2s;
+      border-left: 2px solid transparent;
+      position: relative;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-item:hover {
+      color: var(--sidebar-text-active);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-item.active {
+      color: var(--sidebar-text-active);
+      background: rgba(92, 107, 192, 0.15);
+      border-left-color: var(--accent);
+    }
+
+    .nav-item-label {
+      flex: 1;
+    }
+
+    .nav-item-badge {
+      font-size: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--sidebar-text);
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--sidebar-border);
+      margin: 16px 0;
+    }
+
+    .analytics-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--sidebar-text);
+      border: none;
+      background: none;
+      width: 100%;
+      border-radius: 6px;
+      transition: all 0.2s;
+      text-align: left;
+    }
+
+    .analytics-toggle:hover {
+      color: var(--sidebar-text-active);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .analytics-arrow {
+      margin-left: auto;
+      font-size: 10px;
+      transition: transform 0.2s;
+    }
+
+    .analytics-toggle[aria-expanded="true"] .analytics-arrow {
+      transform: rotate(90deg);
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━ MAIN CONTENT ━━━━━━━━━━━━━━━━━━━━━ */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-title {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      min-width: 140px;
+    }
+
+    .search-input {
+      flex: 1;
+      background: var(--main-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--surface);
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .filter-select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .result-count {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      min-width: 120px;
+      text-align: right;
+    }
+
+    .stats-row {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+    }
+
+    .stat-card {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 16px;
+      min-width: 100px;
+    }
+
+    .stat-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+    }
+
+    .stat-card.t1 .stat-number { color: var(--t1); }
+    .stat-card.t2 .stat-number { color: var(--t2); }
+    .stat-card.t3 .stat-number { color: var(--t3); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━ TABLE ━━━━━━━━━━━━━━━━━━━━━ */
+    .table-container {
+      flex: 1;
+      overflow: auto;
+      background: var(--surface);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1400px;
+    }
+
+    thead tr {
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      z-index: 10;
+    }
+
+    th {
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      font-family: 'IBM Plex Mono', monospace;
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+      border-right: 1px solid var(--border);
+    }
+
+    th:last-child {
+      border-right: none;
+    }
+
+    th:hover {
+      color: var(--accent);
+      background: var(--main-bg);
+    }
+
+    th.sorted {
+      color: var(--accent);
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border);
+      border-left: 2px solid transparent;
+      vertical-align: middle;
+      background: var(--surface);
+      font-size: 12px;
+    }
+
+    tbody tr {
+      transition: background 0.1s;
+    }
+
+    tbody tr:hover td {
+      background: #F9FAFB;
+    }
+
+    tbody tr:hover td:first-child {
+      border-left-color: var(--accent);
+    }
+
+    tr.has-dd {
+      cursor: pointer;
+    }
+
+    .rank {
+      color: var(--text-muted);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      width: 28px;
+    }
+
+    .niche-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      max-width: 200px;
+    }
+
+    .niche-sub {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    .dd-badge {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-size: 9px;
+      font-weight: 700;
+      background: rgba(92, 107, 192, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(92, 107, 192, 0.3);
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      white-space: nowrap;
+      letter-spacing: 0.2px;
+    }
+
+    .type-badge.regtech { background: rgba(2, 132, 199, 0.12); color: var(--type-regtech); }
+    .type-badge.ai { background: rgba(124, 58, 237, 0.12); color: var(--type-ai); }
+    .type-badge.content { background: rgba(220, 38, 38, 0.12); color: var(--type-content); }
+    .type-badge.platform { background: rgba(37, 99, 235, 0.12); color: var(--type-platform); }
+    .type-badge.marketplace { background: rgba(234, 88, 12, 0.12); color: var(--type-marketplace); }
+    .type-badge.vertical { background: rgba(8, 145, 178, 0.12); color: var(--type-vertical); }
+    .type-badge.directory { background: rgba(5, 150, 105, 0.12); color: var(--type-directory); }
+    .type-badge.edtech { background: rgba(202, 138, 4, 0.12); color: var(--type-edtech); }
+    .type-badge.fintech { background: rgba(101, 163, 13, 0.12); color: var(--type-fintech); }
+    .type-badge.hrtech { background: rgba(190, 24, 93, 0.12); color: var(--type-hrtech); }
+    .type-badge.proptech { background: rgba(3, 105, 161, 0.12); color: var(--type-proptech); }
+
+    .score-cell {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .score-t1 { color: var(--t1); }
+    .score-t2 { color: var(--t2); }
+    .score-t3 { color: var(--t3); }
+    .score-t4 { color: var(--t4); }
+
+    .tier-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 9px;
+      font-weight: 700;
+      white-space: nowrap;
+      margin-left: 6px;
+      letter-spacing: 0.2px;
+    }
+
+    .tier-1 { background: var(--t1bg); color: var(--t1); border: 1px solid rgba(16, 185, 129, 0.25); }
+    .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(245, 158, 11, 0.25); }
+    .tier-3 { background: var(--t3bg); color: var(--t3); border: 1px solid rgba(249, 115, 22, 0.25); }
+    .tier-4 { background: var(--t4bg); color: var(--t4); border: 1px solid rgba(156, 163, 175, 0.25); }
+
+    .factors {
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      height: 32px;
+    }
+
+    .factor-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 18px;
+    }
+
+    .factor-bar {
+      width: 16px;
+      height: 28px;
+      border-radius: 1px;
+      background: #F3F4F6;
+      display: flex;
+      flex-direction: column-reverse;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .factor-fill {
+      border-radius: 1px;
+      transition: all 0.2s ease;
+    }
+
+    .factor-label {
+      font-size: 8px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    .mvp-chip {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      font-family: 'IBM Plex Mono', monospace;
+      white-space: nowrap;
+    }
+
+    .mvp-fast { background: rgba(16, 185, 129, 0.15); color: #047857; }
+    .mvp-med { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+    .mvp-slow { background: rgba(249, 115, 22, 0.15); color: #ea580c; }
+
+    .tam {
+      color: var(--text-muted);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .unit-cell {
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .unit-cac {
+      color: #059669;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      display: block;
+    }
+
+    .unit-ltv {
+      color: #0284C7;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      display: block;
+    }
+
+    .unit-ratio {
+      color: var(--text-muted);
+      font-size: 9px;
+      display: block;
+      margin-top: 1px;
+    }
+
+    .y1-cell {
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'IBM Plex Mono', monospace;
+      color: #7C3AED;
+    }
+
+    .gap-text {
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.4;
+      max-width: 180px;
+    }
+
+    .detail-row td {
+      background: rgba(92, 107, 192, 0.03) !important;
+      border-bottom: 2px solid rgba(92, 107, 192, 0.1) !important;
+      padding: 16px 12px !important;
+    }
+
+    .detail-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      padding: 4px 0;
+    }
+
+    .detail-card {
+      background: var(--main-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 12px 14px;
+      border-radius: 6px;
+    }
+
+    .detail-card h4 {
+      font-size: 9px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .detail-card p {
+      font-size: 11px;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .detail-card strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 12px 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-timestamp {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━ TOOLTIPS ━━━━━━━━━━━━━━━━━━━━━ */
+    [data-tip] {
+      position: relative;
+      cursor: help;
+    }
+
+    [data-tip]:hover::after,
+    [data-tip]:hover::before {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    [data-tip]::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text-primary);
+      color: var(--surface);
+      font-size: 11px;
+      font-weight: 400;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      padding: 6px 9px;
+      border-radius: 5px;
+      white-space: pre-line;
+      max-width: 220px;
+      text-align: left;
+      letter-spacing: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    [data-tip]::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 3px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--text-primary);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      z-index: 1000;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━ SCROLLBAR ━━━━━━━━━━━━━━━━━━━━━ */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #D1D5DB;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9CA3AF;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━ RESPONSIVE ━━━━━━━━━━━━━━━━━━━━━ */
+    @media (max-width: 1200px) {
+      .sidebar {
+        width: 140px;
+        padding: 16px 8px;
+      }
+
+      .sidebar-logo {
+        margin-bottom: 20px;
+      }
+
+      .nav-item {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .content-header {
+        flex-wrap: wrap;
+      }
+
+      .filter-group {
+        width: 100%;
+      }
+
+      .factors {
+        gap: 2px;
+      }
+
+      .factor-bar {
+        width: 14px;
+        height: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="hero-content">
-    <div class="hero-flag">🇪🇸</div>
-    <div>
-      <h1 class="hero-title">Spain Niches <span class="hero-year">2026</span></h1>
-    </div>
+<!-- ━━━━━━━━━━━━━━━━━ SIDEBAR ━━━━━━━━━━━━━━━━━ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <span class="sidebar-logo-flag">🇪🇸</span>
+    <span class="sidebar-logo-text">Spain<br>Niches</span>
   </div>
-  <p class="hero-sub">Intelligence dashboard for profitable online niches in Spain · 8-factor scoring methodology</p>
-  <div class="hero-stats" id="stats"></div>
-</header>
 
-<details class="charts-section">
-  <summary class="charts-toggle">Analytics <span class="charts-arrow">▸</span></summary>
-  <div class="charts-grid" id="charts"></div>
-</details>
+  <ul class="sidebar-nav">
+    <li class="nav-item active" onclick="setTierFromNav('all', this)">
+      <span class="nav-item-label">All Niches</span>
+      <span class="nav-item-badge" data-all-count>122</span>
+    </li>
+    <li class="nav-item" onclick="setTierFromNav('1', this)">
+      <span class="nav-item-label">Tier 1</span>
+      <span class="nav-item-badge" data-t1-count>—</span>
+    </li>
+    <li class="nav-item" onclick="setTierFromNav('2', this)">
+      <span class="nav-item-label">Tier 2</span>
+      <span class="nav-item-badge" data-t2-count>—</span>
+    </li>
+    <li class="nav-item" onclick="setTierFromNav('3', this)">
+      <span class="nav-item-label">Tier 3</span>
+      <span class="nav-item-badge" data-t3-count>—</span>
+    </li>
+    <li class="nav-item" onclick="setTierFromNav('4', this)">
+      <span class="nav-item-label">Tier 4</span>
+      <span class="nav-item-badge" data-t4-count>—</span>
+    </li>
+  </ul>
 
-<div class="controls">
-  <input type="search" id="s" placeholder="🔍 Search niches..." class="search-box" oninput="go()">
-  <select id="tif" class="filter-select" onchange="setTierSelect(this.value)">
-    <option value="all">All tiers</option>
-    <option value="1">T1 ≥ 8.0</option>
-    <option value="2">T2 7.5–7.9</option>
-    <option value="3">T3 6.5–7.4</option>
-    <option value="4">T4 &lt; 6.5</option>
-  </select>
-  <select id="tf" class="filter-select" onchange="go()">
-    <option value="">All types</option>
-    <option>RegTech</option><option>AI</option><option>Content</option>
-    <option>Platform</option><option>Marketplace</option><option>Vertical</option>
-    <option>Directory</option><option>EdTech</option><option>FinTech</option>
-    <option>HRTech</option><option>PropTech</option><option>HealthTech</option>
-    <option>AgriTech</option><option>CleanTech</option><option>GovTech</option>
-    <option>InsurTech</option><option>TravelTech</option><option>CreatorTech</option>
-    <option>LegalTech</option><option>RetailTech</option><option>LogisticsTech</option>
-  </select>
-  <select id="mf" class="filter-select" onchange="go()">
-    <option value="">Any MVP</option>
-    <option value="fast">≤6 weeks</option>
-    <option value="med">7–12 weeks</option>
-    <option value="slow">>12 weeks</option>
-  </select>
-  <div class="result-info">Showing <span id="visibleCount">—</span></div>
-</div>
+  <div class="sidebar-divider"></div>
 
-<div class="table-wrap">
-  <table>
-    <thead><tr>
-      <th onclick="srt('rank')" data-c="rank"># <span id="a-rank">↕</span></th>
-      <th onclick="srt('name')" data-c="name">Niche <span id="a-name">↕</span></th>
-      <th onclick="srt('type')" data-c="type">Type <span id="a-type">↕</span></th>
-      <th onclick="srt('score')" data-c="score" class="sorted" data-tip="Weighted score 1–10 across 8 factors">Score <span id="a-score">↓</span></th>
-      <th data-tip="🔥 Demand · 🎯 Gap (no competitors) · ⚖️ Regulation urgency · 🇪🇸 Spain fit · 💰 Monetization · 🚀 Accessibility (low barrier) · 🧑‍💻 Founder fit · ⏰ Timing">🔥 · 🎯 · ⚖️ · 🇪🇸 · 💰 · 🚀 · 🧑‍💻 · ⏰</th>
-      <th onclick="srt('mvp')" data-c="mvp" data-tip="Estimated weeks to ship a working MVP">MVP <span id="a-mvp">↕</span></th>
-      <th onclick="srt('tam')" data-c="tam" data-tip="Total Addressable Market in Spain (bottom-up estimate)">TAM <span id="a-tam">↕</span></th>
-      <th onclick="srt('cac')" data-c="cac" data-tip="CAC = Customer Acquisition Cost · LTV = Lifetime Value · ratio = LTV/CAC">CAC / LTV <span id="a-cac">↕</span></th>
-      <th onclick="srt('y1')" data-c="y1" data-tip="Projected Annual Recurring Revenue at end of Year 1 (100 customers scenario)">Y1 ARR <span id="a-y1">↕</span></th>
-      <th data-tip="Key market gap: why this niche is underserved in Spain right now">Gap</th>
-    </tr></thead>
-    <tbody id="tb"></tbody>
-  </table>
-  <div class="no-results" id="nr" style="display:none">No niches found</div>
-</div>
+  <button class="analytics-toggle" onclick="toggleAnalytics()">
+    <span>Analytics</span>
+    <span class="analytics-arrow">▸</span>
+  </button>
+</aside>
 
-<div class="footer">
-  Spain Niches Intelligence Dashboard · <span id="totalCountFooter">—</span> niches analyzed · Methodology v2 · Last updated <span class="footer-timestamp" id="timestamp">2026-03-02</span>
+<!-- ━━━━━━━━━━━━━━━━━ MAIN CONTENT ━━━━━━━━━━━━━━━━━ -->
+<div class="main">
+  <!-- Header -->
+  <div class="content-header">
+    <div class="header-title">Niches Intelligence</div>
+    <input type="search" id="s" placeholder="🔍 Search 122 niches..." class="search-input" oninput="go()">
+    <div class="filter-group">
+      <select id="tf" class="filter-select" onchange="go()">
+        <option value="">All types</option>
+        <option>RegTech</option><option>AI</option><option>Content</option>
+        <option>Platform</option><option>Marketplace</option><option>Vertical</option>
+        <option>Directory</option><option>EdTech</option><option>FinTech</option>
+        <option>HRTech</option><option>PropTech</option><option>HealthTech</option>
+        <option>AgriTech</option><option>CleanTech</option><option>GovTech</option>
+        <option>InsurTech</option><option>TravelTech</option><option>CreatorTech</option>
+        <option>LegalTech</option><option>RetailTech</option><option>LogisticsTech</option>
+      </select>
+      <select id="mf" class="filter-select" onchange="go()">
+        <option value="">Any MVP</option>
+        <option value="fast">≤6 weeks</option>
+        <option value="med">7–12 weeks</option>
+        <option value="slow">>12 weeks</option>
+      </select>
+      <select id="tif" class="filter-select" onchange="setTierSelect(this.value)">
+        <option value="all">All tiers</option>
+        <option value="1">T1 ≥ 8.0</option>
+        <option value="2">T2 7.5–7.9</option>
+        <option value="3">T3 6.5–7.4</option>
+        <option value="4">T4 &lt; 6.5</option>
+      </select>
+    </div>
+    <div class="result-count">Showing <span id="visibleCount">—</span></div>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="stats-row" id="stats"></div>
+
+  <!-- Table -->
+  <div class="table-container">
+    <table>
+      <thead><tr>
+        <th onclick="srt('rank')" data-c="rank"># <span id="a-rank">↕</span></th>
+        <th onclick="srt('name')" data-c="name">Niche <span id="a-name">↕</span></th>
+        <th onclick="srt('type')" data-c="type">Type <span id="a-type">↕</span></th>
+        <th onclick="srt('score')" data-c="score" class="sorted" data-tip="Weighted score 1–10 across 8 factors">Score <span id="a-score">↓</span></th>
+        <th data-tip="🔥 Demand · 🎯 Gap (no competitors) · ⚖️ Regulation urgency · 🇪🇸 Spain fit · 💰 Monetization · 🚀 Accessibility (low barrier) · 🧑‍💻 Founder fit · ⏰ Timing">🔥 · 🎯 · ⚖️ · 🇪🇸 · 💰 · 🚀 · 🧑‍💻 · ⏰</th>
+        <th onclick="srt('mvp')" data-c="mvp" data-tip="Estimated weeks to ship a working MVP">MVP <span id="a-mvp">↕</span></th>
+        <th onclick="srt('tam')" data-c="tam" data-tip="Total Addressable Market in Spain (bottom-up estimate)">TAM <span id="a-tam">↕</span></th>
+        <th onclick="srt('cac')" data-c="cac" data-tip="CAC = Customer Acquisition Cost · LTV = Lifetime Value · ratio = LTV/CAC">CAC / LTV <span id="a-cac">↕</span></th>
+        <th onclick="srt('y1')" data-c="y1" data-tip="Projected Annual Recurring Revenue at end of Year 1 (100 customers scenario)">Y1 ARR <span id="a-y1">↕</span></th>
+        <th data-tip="Key market gap: why this niche is underserved in Spain right now">Gap</th>
+      </tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+    <div class="no-results" id="nr" style="display:none">No niches found</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Spain Niches Intelligence Dashboard · <span id="totalCountFooter">—</span> niches analyzed · Methodology v2 · Last updated <span class="footer-timestamp" id="timestamp">2026-03-02</span>
+  </div>
 </div>
 
 <script>
@@ -788,7 +820,7 @@ let sortCol = 'score', sortAsc = false, tierF = 'all', searchF = '', typeF = '',
 const tierNum = s => s >= 8 ? 1 : s >= 7.5 ? 2 : s >= 6.5 ? 3 : 4;
 const tierClass = s => 'tier-' + tierNum(s);
 const scoreClass = s => 'score-t' + tierNum(s);
-const factorColor = v => v >= 9 ? '#16A34A' : v >= 7 ? '#B45309' : v >= 5 ? '#C2410C' : '#EF4444';
+const factorColor = v => v >= 9 ? '#10B981' : v >= 7 ? '#F59E0B' : v >= 5 ? '#F97316' : '#EF4444';
 
 const typeClass = t => {
   const map = {
@@ -823,13 +855,13 @@ function mvpC(n) {
 }
 
 function unitCell(n) {
-  if (!n.cac) return '<span class="no-dd">—</span>';
+  if (!n.cac) return '<span style="color:var(--text-muted)">—</span>';
   const ratio = (n.ltv / n.cac).toFixed(1);
   return `<div class="unit-cell"><span class="unit-cac">€${n.cac}</span> / <span class="unit-ltv">€${n.ltv}</span><span class="unit-ratio">${ratio}x</span></div>`;
 }
 
 function y1Cell(n) {
-  if (!n.y1) return '<span class="no-dd">—</span>';
+  if (!n.y1) return '<span style="color:var(--text-muted)">—</span>';
   return `<span class="y1-cell">${n.y1}</span>`;
 }
 
@@ -850,6 +882,11 @@ function toggleDetail(rank) {
   if (el) el.style.display = el.style.display === 'none' ? 'table-row' : 'none';
 }
 
+function toggleAnalytics() {
+  // Placeholder for analytics toggle
+  console.log('Analytics toggle clicked');
+}
+
 function go() {
   searchF = document.getElementById('s').value.toLowerCase();
   typeF = document.getElementById('tf').value;
@@ -859,6 +896,15 @@ function go() {
 
 function setTierSelect(t) {
   tierF = t;
+  setTierFromNav(t, document.querySelector(`[onclick*="setTierFromNav('${t}'"]`));
+  go();
+}
+
+function setTierFromNav(t, el) {
+  tierF = t;
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  document.getElementById('tif').value = t;
   go();
 }
 
@@ -903,7 +949,7 @@ function render() {
     const clickAttr = n.dd ? `class="has-dd" onclick="toggleDetail(${n.rank})"` : '';
     return `<tr ${clickAttr}>
       <td class="rank">${i + 1}</td>
-      <td class="niche-name">${n.name}${ddBadge}<small>${n.sub}</small></td>
+      <td><div class="niche-name">${n.name}${ddBadge}<small class="niche-sub">${n.sub}</small></div></td>
       <td>${typeBadge}</td>
       <td><span class="score-cell ${scoreClass(n.score)}">${n.score.toFixed(2)}</span><span class="tier-badge ${tierClass(n.score)}">T${tierNum(n.score)}</span></td>
       <td>${bars(n)}</td>
@@ -914,59 +960,19 @@ function render() {
       <td class="gap-text">${n.gap}</td>
     </tr>${detailPanel(n)}`;
   }).join('');
+
+  // Update sidebar badge counts
+  const t1 = D.filter(n => n.score >= 8).length;
+  const t2 = D.filter(n => n.score >= 7.5 && n.score < 8).length;
+  const t3 = D.filter(n => n.score >= 6.5 && n.score < 7.5).length;
+  const t4 = D.filter(n => n.score < 6.5).length;
+  document.querySelector('[data-t1-count]').textContent = t1;
+  document.querySelector('[data-t2-count]').textContent = t2;
+  document.querySelector('[data-t3-count]').textContent = t3;
+  document.querySelector('[data-t4-count]').textContent = t4;
 }
 
-function buildCharts() {
-  const ranges = [
-    { l: '8.0–10 (T1)', c: '#16A34A', cnt: D.filter(n => n.score >= 8).length },
-    { l: '7.5–7.9 (T2)', c: '#B45309', cnt: D.filter(n => n.score >= 7.5 && n.score < 8).length },
-    { l: '6.5–7.4 (T3)', c: '#C2410C', cnt: D.filter(n => n.score >= 6.5 && n.score < 7.5).length },
-    { l: '< 6.5 (T4)', c: '#94A3B8', cnt: D.filter(n => n.score < 6.5).length },
-  ];
-  const m1 = Math.max(...ranges.map(r => r.cnt));
-  const types = {};
-  D.forEach(n => { types[n.type] = (types[n.type] || 0) + 1; });
-  const typeEntries = Object.entries(types).sort((a, b) => b[1] - a[1]);
-  const m2 = typeEntries[0][1];
-  const mvpCnts = { fast: D.filter(n => n.mx <= 6).length, med: D.filter(n => n.mi >= 7 && n.mx <= 12).length, slow: D.filter(n => n.mi > 12).length };
-  const maxMvp = Math.max(...Object.values(mvpCnts));
-
-  document.getElementById('charts').innerHTML = `
-  <div class="chart-box">
-    <div class="chart-title">Score Distribution</div>
-    ${ranges.map(r => `<div class="chart-bar">
-      <span class="chart-label">${r.l}</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${r.cnt / m1 * 100}%;background:${r.c}"></div></div>
-      <span class="chart-value" style="color:${r.c}">${r.cnt}</span>
-    </div>`).join('')}
-  </div>
-  <div class="chart-box">
-    <div class="chart-title">By Type</div>
-    ${typeEntries.map(([k, v]) => `<div class="chart-bar">
-      <span class="chart-label">${k}</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${v / m2 * 100}%;background:#C84B31"></div></div>
-      <span class="chart-value" style="color:#C84B31">${v}</span>
-    </div>`).join('')}
-  </div>
-  <div class="chart-box">
-    <div class="chart-title">MVP Speed</div>
-    <div class="chart-bar">
-      <span class="chart-label">≤6 weeks</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.fast / maxMvp * 100}%;background:#16A34A"></div></div>
-      <span class="chart-value" style="color:#16A34A">${mvpCnts.fast}</span>
-    </div>
-    <div class="chart-bar">
-      <span class="chart-label">7–12 weeks</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.med / maxMvp * 100}%;background:#B45309"></div></div>
-      <span class="chart-value" style="color:#B45309">${mvpCnts.med}</span>
-    </div>
-    <div class="chart-bar">
-      <span class="chart-label">>12 weeks</span>
-      <div class="chart-track"><div class="chart-fill" style="width:${mvpCnts.slow / maxMvp * 100}%;background:#C2410C"></div></div>
-      <span class="chart-value" style="color:#C2410C">${mvpCnts.slow}</span>
-    </div>
-  </div>`;
-
+function buildStats() {
   const t1 = D.filter(n => n.score >= 8).length;
   const t2 = D.filter(n => n.score >= 7.5 && n.score < 8).length;
   const t3 = D.filter(n => n.score >= 6.5 && n.score < 7.5).length;
@@ -986,13 +992,13 @@ function buildCharts() {
       <div class="stat-label">Tier 3 6.5–7.4</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number" style="color:#C84B31">${avgScore}</div>
+      <div class="stat-number" style="color:#5C6BC0">${avgScore}</div>
       <div class="stat-label">Avg Score</div>
     </div>
   `;
 }
 
-fetch('./data/niches.json').then(r => r.json()).then(d => { D = d; buildCharts(); render(); });
+fetch('./data/niches.json').then(r => r.json()).then(d => { D = d; buildStats(); render(); });
 </script>
 
 </body>
