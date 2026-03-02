@@ -365,7 +365,7 @@
   }
 
   tbody tr:hover td {
-    background: #F7F5F2;
+    background: #F4F2EE;
   }
 
   tr.has-dd {
@@ -373,9 +373,9 @@
   }
 
   tr.has-dd:hover td {
-    background: #F7F5F2;
-    border-left: 3px solid var(--accent);
-    padding-left: 7px;
+    background: #F4F2EE;
+    border-left: 2px solid rgba(200, 75, 49, 0.25);
+    padding-left: 9px;
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TABLE CELLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -632,6 +632,36 @@
     color: var(--accent);
     font-weight: 600;
   }
+
+  /* ━━━━ CHARTS COLLAPSIBLE ━━━━ */
+  .charts-section {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .charts-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 48px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .charts-toggle::-webkit-details-marker { display: none; }
+  .charts-toggle:hover { color: var(--text); }
+
+  .charts-arrow { font-size: 10px; transition: transform 0.2s; }
+  details[open] .charts-arrow { transform: rotate(90deg); }
+
+  .charts-grid {
+    padding: 16px 48px 20px;
+  }
 </style>
 </head>
 <body>
@@ -647,18 +677,20 @@
   <div class="hero-stats" id="stats"></div>
 </header>
 
-<div class="charts-grid" id="charts"></div>
+<details class="charts-section">
+  <summary class="charts-toggle">Analytics <span class="charts-arrow">▸</span></summary>
+  <div class="charts-grid" id="charts"></div>
+</details>
 
 <div class="controls">
   <input type="search" id="s" placeholder="🔍 Search niches..." class="search-box" oninput="go()">
-  <div class="filter-group">
-    <span class="filter-label">Tier:</span>
-    <button class="filter-btn active" data-tier="all" onclick="setTier('all',this)">All</button>
-    <button class="filter-btn t1" data-tier="1" onclick="setTier('1',this)">T1</button>
-    <button class="filter-btn t2" data-tier="2" onclick="setTier('2',this)">T2</button>
-    <button class="filter-btn t3" data-tier="3" onclick="setTier('3',this)">T3</button>
-    <button class="filter-btn t4" data-tier="4" onclick="setTier('4',this)">T4</button>
-  </div>
+  <select id="tif" class="filter-select" onchange="setTierSelect(this.value)">
+    <option value="all">All tiers</option>
+    <option value="1">T1 ≥ 8.0</option>
+    <option value="2">T2 7.5–7.9</option>
+    <option value="3">T3 6.5–7.4</option>
+    <option value="4">T4 &lt; 6.5</option>
+  </select>
   <select id="tf" class="filter-select" onchange="go()">
     <option value="">All types</option>
     <option>RegTech</option><option>AI</option><option>Content</option>
@@ -770,10 +802,8 @@ function go() {
   render();
 }
 
-function setTier(t, btn) {
+function setTierSelect(t) {
   tierF = t;
-  document.querySelectorAll('[data-tier]').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
   go();
 }
 
