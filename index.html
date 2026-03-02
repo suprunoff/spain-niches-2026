@@ -378,6 +378,17 @@
       line-height: 1.3;
     }
 
+    .star {
+      cursor: pointer;
+      font-size: 13px;
+      opacity: 0.3;
+      transition: opacity 0.15s, transform 0.15s;
+      display: inline-block;
+      user-select: none;
+    }
+    .star:hover { opacity: 0.8; transform: scale(1.2); }
+    .star.on { opacity: 1; }
+
     .dd-badge {
       display: inline-block;
       margin-left: 6px;
@@ -738,6 +749,10 @@
       <span class="nav-item-label">Tier 4</span>
       <span class="nav-item-badge" data-t4-count>—</span>
     </li>
+    <li class="nav-item" onclick="setStarFilter(this)" id="star-nav">
+      <span class="nav-item-label">⭐ Shortlist</span>
+      <span class="nav-item-badge" id="star-count">0</span>
+    </li>
   </ul>
 
   <div class="sidebar-divider"></div>
@@ -814,7 +829,32 @@
 <script>
 let D = [];
 
-let sortCol = 'score', sortAsc = false, tierF = 'all', searchF = '', typeF = '', mvpF = '';
+let sortCol = 'score', sortAsc = false, tierF = 'all', searchF = '', typeF = '', mvpF = '', starOnly = false;
+let starred = new Set(JSON.parse(localStorage.getItem('starred') || '[]'));
+
+function saveStarred() { localStorage.setItem('starred', JSON.stringify([...starred])); }
+
+function toggleStar(rank, e) {
+  e.stopPropagation();
+  if (starred.has(rank)) starred.delete(rank); else starred.add(rank);
+  saveStarred();
+  updateStarCount();
+  render();
+}
+
+function setStarFilter(el) {
+  starOnly = !starOnly;
+  tierF = 'all';
+  document.getElementById('tif').value = 'all';
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (starOnly) el.classList.add('active');
+  else document.querySelector('.nav-item[onclick*="all"]').classList.add('active');
+  go();
+}
+
+function updateStarCount() {
+  document.getElementById('star-count').textContent = starred.size;
+}
 
 // Score tier logic
 const tierNum = s => s >= 8 ? 1 : s >= 7.5 ? 2 : s >= 6.5 ? 3 : 4;
@@ -923,7 +963,8 @@ function srt(col) {
 
 function render() {
   let data = [...D];
-  if (tierF !== 'all') data = data.filter(n => tierNum(n.score) === +tierF);
+  if (starOnly) data = data.filter(n => starred.has(n.rank));
+  else if (tierF !== 'all') data = data.filter(n => tierNum(n.score) === +tierF);
   if (searchF) data = data.filter(n => n.name.toLowerCase().includes(searchF) || n.sub.toLowerCase().includes(searchF) || n.type.toLowerCase().includes(searchF) || n.gap.toLowerCase().includes(searchF));
   if (typeF) data = data.filter(n => n.type === typeF);
   if (mvpF === 'fast') data = data.filter(n => n.mx <= 6);
@@ -946,9 +987,10 @@ function render() {
     const ddBadge = n.dd ? '<span class="dd-badge">DD ✓</span>' : '';
     const typeC = typeClass(n.type);
     const typeBadge = `<span class="type-badge ${typeC}">${n.type}</span>`;
+    const isStarred = starred.has(n.rank);
     const clickAttr = n.dd ? `class="has-dd" onclick="toggleDetail(${n.rank})"` : '';
     return `<tr ${clickAttr}>
-      <td class="rank">${i + 1}</td>
+      <td class="rank"><span class="star ${isStarred ? 'on' : ''}" onclick="toggleStar(${n.rank}, event)" title="Add to shortlist">${isStarred ? '⭐' : '☆'}</span></td>
       <td><div class="niche-name">${n.name}${ddBadge}<small class="niche-sub">${n.sub}</small></div></td>
       <td>${typeBadge}</td>
       <td><span class="score-cell ${scoreClass(n.score)}">${n.score.toFixed(2)}</span><span class="tier-badge ${tierClass(n.score)}">T${tierNum(n.score)}</span></td>
@@ -998,7 +1040,7 @@ function buildStats() {
   `;
 }
 
-fetch('./data/niches.json').then(r => r.json()).then(d => { D = d; buildStats(); render(); });
+fetch('./data/niches.json').then(r => r.json()).then(d => { D = d; buildStats(); updateStarCount(); render(); });
 </script>
 
 </body>
