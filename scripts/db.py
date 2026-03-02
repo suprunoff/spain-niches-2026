@@ -75,8 +75,9 @@ CREATE TABLE IF NOT EXISTS validation (
 );
 """
 
-# Weights: d=1, g=1.5, r=1.2, s=1.3, m=1, a=1.2, f=0.8, t=1
-WEIGHTS = {'d': 1.0, 'g': 1.5, 'r': 1.2, 's': 1.3, 'm': 1.0, 'a': 1.2, 'f': 0.8, 't': 1.0}
+# Weights: d=1, g=1.5, r=1.2, s=1.3, m=1, a=1.2, f=1.5, t=1
+# F (Founder fit / solo-buildable) повышен с 0.8 → 1.5: для соло-фаундера buildability критична
+WEIGHTS = {'d': 1.0, 'g': 1.5, 'r': 1.2, 's': 1.3, 'm': 1.0, 'a': 1.2, 'f': 1.5, 't': 1.0}
 WEIGHT_SUM = sum(WEIGHTS.values())
 
 
