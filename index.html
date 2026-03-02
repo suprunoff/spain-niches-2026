@@ -356,26 +356,22 @@
   td {
     padding: 12px 10px;
     border-bottom: 1px solid var(--border);
+    border-left: 2px solid transparent;
     vertical-align: middle;
     background: var(--surface);
-  }
-
-  tr {
-    transition: all 0.15s ease;
-  }
-
-  tbody tr:hover td {
-    background: #F4F2EE;
+    transition: background 0.12s ease, border-left-color 0.12s ease;
   }
 
   tr.has-dd {
     cursor: pointer;
   }
 
-  tr.has-dd:hover td {
+  tbody tr:hover td {
     background: #F4F2EE;
-    border-left: 2px solid rgba(200, 75, 49, 0.25);
-    padding-left: 9px;
+  }
+
+  tr.has-dd:hover td:first-child {
+    border-left-color: rgba(200, 75, 49, 0.3);
   }
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TABLE CELLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -633,6 +629,56 @@
     font-weight: 600;
   }
 
+  /* ━━━━ TOOLTIPS ━━━━ */
+  [data-tip] {
+    position: relative;
+  }
+
+  [data-tip]::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #18130F;
+    color: #F8F7F4;
+    font-size: 11px;
+    font-weight: 400;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.5;
+    padding: 7px 10px;
+    border-radius: 5px;
+    white-space: pre-line;
+    max-width: 260px;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  [data-tip]::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 3px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #18130F;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 100;
+  }
+
+  [data-tip]:hover::after,
+  [data-tip]:hover::before {
+    opacity: 1;
+  }
+
   /* ━━━━ CHARTS COLLAPSIBLE ━━━━ */
   .charts-section {
     border-bottom: 1px solid var(--border);
@@ -716,13 +762,13 @@
       <th onclick="srt('rank')" data-c="rank"># <span id="a-rank">↕</span></th>
       <th onclick="srt('name')" data-c="name">Niche <span id="a-name">↕</span></th>
       <th onclick="srt('type')" data-c="type">Type <span id="a-type">↕</span></th>
-      <th onclick="srt('score')" data-c="score" class="sorted">Score <span id="a-score">↓</span></th>
-      <th>D · G · R · S · M · A · F · T</th>
-      <th onclick="srt('mvp')" data-c="mvp">MVP <span id="a-mvp">↕</span></th>
-      <th onclick="srt('tam')" data-c="tam">TAM <span id="a-tam">↕</span></th>
-      <th onclick="srt('cac')" data-c="cac">CAC / LTV <span id="a-cac">↕</span></th>
-      <th onclick="srt('y1')" data-c="y1">Y1 ARR <span id="a-y1">↕</span></th>
-      <th>Gap</th>
+      <th onclick="srt('score')" data-c="score" class="sorted" data-tip="Weighted score 1–10 across 8 factors">Score <span id="a-score">↓</span></th>
+      <th data-tip="D = Demand · G = Gap (no competitors) · R = Regulation urgency · S = Spain fit · M = Monetization · A = Accessibility (low barrier) · F = Founder fit · T = Timing">D · G · R · S · M · A · F · T</th>
+      <th onclick="srt('mvp')" data-c="mvp" data-tip="Estimated weeks to ship a working MVP">MVP <span id="a-mvp">↕</span></th>
+      <th onclick="srt('tam')" data-c="tam" data-tip="Total Addressable Market in Spain (bottom-up estimate)">TAM <span id="a-tam">↕</span></th>
+      <th onclick="srt('cac')" data-c="cac" data-tip="CAC = Customer Acquisition Cost · LTV = Lifetime Value · ratio = LTV/CAC">CAC / LTV <span id="a-cac">↕</span></th>
+      <th onclick="srt('y1')" data-c="y1" data-tip="Projected Annual Recurring Revenue at end of Year 1 (100 customers scenario)">Y1 ARR <span id="a-y1">↕</span></th>
+      <th data-tip="Key market gap: why this niche is underserved in Spain right now">Gap</th>
     </tr></thead>
     <tbody id="tb"></tbody>
   </table>
@@ -754,10 +800,19 @@ const typeClass = t => {
 };
 
 function bars(n) {
-  const fs = [['d', 'D'], ['g', 'G'], ['r', 'R'], ['s', 'S'], ['m', 'M'], ['a', 'A'], ['f', 'F'], ['t', 'T']];
-  return '<div class="factors">' + fs.map(([k, l]) => {
+  const fs = [
+    ['d', 'D', 'Demand — search volume & willingness to pay'],
+    ['g', 'G', 'Gap — absence of direct competitors in Spain'],
+    ['r', 'R', 'Regulation — urgency driven by legal deadlines'],
+    ['s', 'S', 'Spain fit — cultural & market alignment'],
+    ['m', 'M', 'Monetization — revenue model clarity'],
+    ['a', 'A', 'Accessibility — low barrier to entry'],
+    ['f', 'F', 'Founder fit — solo-buildable without big team'],
+    ['t', 'T', 'Timing — market readiness right now'],
+  ];
+  return '<div class="factors">' + fs.map(([k, l, tip]) => {
     const v = n[k];
-    return `<div class="factor-wrap"><div class="factor-bar"><div class="factor-fill" style="height:${v*10}%;background:${factorColor(v)}"></div></div><div class="factor-label">${l}</div></div>`;
+    return `<div class="factor-wrap" data-tip="${tip}: ${v}/10"><div class="factor-bar"><div class="factor-fill" style="height:${v*10}%;background:${factorColor(v)}"></div></div><div class="factor-label">${l}</div></div>`;
   }).join('') + '</div>';
 }
 
