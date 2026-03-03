@@ -5,55 +5,100 @@
 
 ---
 
-## ФАЗА 0: Инфраструктура [IN PROGRESS]
+## ФАЗА 0: Инфраструктура ✅ COMPLETE
+
 - [x] Собрать фреймворки анализа ниш (12 шт.)
-- [x] Найти Claude Code skills на GitHub (24 repo)
-- [x] Исследовать методы с Reddit/HN/Indie Hackers
-- [x] Создать структуру проекта
-- [x] Написать CLAUDE.md (устав проекта)
-- [x] Установить топ skills с GitHub (pm-ba, marketing, deep-research)
-- [x] Создать кастомный skill `niche-scorer` (автоскоринг ниш)
-- [x] Создать skill `spain-context` (национальные особенности для промптов)
+- [x] Создать структуру проекта + CLAUDE.md
+- [x] Установить скиллы: niche-scorer, competitor-mapper, spain-context, market-research
+- [x] SQLite pipeline: niches.db → data/niches.json → Vercel дашборд
+- [x] Дашборд (Apollo.io style): тёмный sidebar, tooltips, shortlist, tier-фильтры
 
-## ФАЗА 1: Discovery — Поиск ниш [NEXT]
+## ФАЗА 1: Discovery ✅ COMPLETE (191 ниша, все проскорены)
 
-### 1A. Макро-анализ Испании
-- [x] Digital economy overview (сделано: 02-research/spain-macro/)
-- [ ] Обновить макро-данные на март 2026
-- [ ] Регуляторные изменения Q1 2026 (VeriFactu старт, новые законы)
-- [ ] Трендовые запросы Google Trends ES (что растёт прямо сейчас)
+### 1A. Макро-анализ ✅
+- [x] Digital economy overview → `02-research/spain-macro/`
+- [x] Регуляторные изменения (VeriFactu, Ley Atención, MiCA, VUD, AI Act, EU Pay Transparency...)
+- [x] Национальные особенности: Bizum, WhatsApp, регионы → `02-research/spain-national/`
 
-### 1B. Нишевый скан
-- [x] Первый скан: 35 ниш (сделано: 02-research/spain-niches/)
-- [x] Второй скан: 20 ниш из CIS-модели (GetCourse, инфобиз, Telegram) → spain-cis-adapted-niches-2026.md
-- [x] Третий скан: глубокий поиск по 7 направлениям (eldercare, solar, fertility, pet, gestoría, construction, cleaning) → NEW-NICHES-SCAN-2026.md
-- [ ] Четвёртый скан: регуляторно-обусловленные (VeriFactu, Customer Service Law) — частично покрыто в CIS-сканах
-- [x] Финальный скоринг 55+ ниш по единой методологии (ТОП-20 CIS + 35 базовых)
+### 1B. Нишевый скан ✅ (191 ниш)
+- [x] Скан #1: 35 ниш (базовые)
+- [x] Скан #2: 20 ниш CIS-модели (GetCourse, инфобиз, Telegram)
+- [x] Скан #3: Eldercare, Solar, Fertility, Pet, Gestoría, Construction, Cleaning
+- [x] Скан #4: RegTech (VeriFactu, VUD, MiCA, RGPD, Ley Atención, Modelo 721)
+- [x] Скан #5: Hospitality, LegalTech, LATAM Diaspora, Funerarias, EU Grants, Padel
+- [x] Скан #6: Finiquito, Fintech, British Expats, Hotel AI Pricing, Boring Markets
+- [x] **Скан #7 (2026-03-03): 21 неочевидных ниш** — RegTech blind spots, DC ecosystem, flowers, healthcare boring B2B, cross-border
+- [x] Финальный скоринг всех 191 ниш по единой методологии
 
-### 1C. Национальные особенности
-- [x] Бизнес-культура Испании (deep research) → spain-national-characteristics-2026.md
-- [x] Платёжные привычки (Bizum, Redsys, BNPL) → spain-national-characteristics-2026.md
-- [x] Digital adoption по регионам (Madrid vs Barcelona vs Valencia vs Andalusia) → spain-regional-b2b-culture-2026.md
-- [x] Языковые нюансы (castellano vs catalán vs региональные) → spain-regional-b2b-culture-2026.md
+### 1C. Deep Dives ✅ (19 ниш)
+Файлы в `02-research/spain-niches/DEEP-DIVE-*.md`
+- [x] VUD Compliance, Autónomo Bundle, Ley Atención, Crypto Tax, Modelo 721
+- [x] Home Services, Telegram Media, FUNDAE SaaS, Comunidades de Vecinos
+- [x] Solar Marketplace, Hotel AI Pricing, EU Grants, British Expats
+- [x] Funerarias, LATAM Diaspora, Finiquito, Physio Directory
+- [x] Psychologists Directory, Wedding Vendors
 
-## ФАЗА 2: Deep Dive ТОП-5
+---
 
-### По каждой нише:
-- [ ] Конкурентный анализ (кто, что, сколько, слабости)
-- [ ] Ad Library scan (Meta, Google — кто рекламируется)
-- [ ] TAM/SAM/SOM (bottom-up расчёт)
-- [ ] JTBD analysis (что клиент хочет "нанять")
-- [ ] Gap map (где дыры в текущих решениях)
-- [ ] Unit economics (CAC, LTV, margin, payback)
-- [ ] Feasibility check (MVP за сколько недель, какой стек)
+## ФАЗА 2: Validation ← СЕЙЧАС
 
-## ФАЗА 3: Validation ТОП-3
-- [ ] CustDev: 10-20 интервью на нишу
-- [ ] Landing page + waitlist
-- [ ] Ads test (€50-100 на нишу)
-- [ ] Go/No-Go решение
+### 2A. Интервью (10-15 на нишу)
+
+**TIER 1 — запустить НЕМЕДЛЕННО:**
+- [ ] **VUD Compliance** (9.08) — 10 интервью с владельцами туристических квартир
+  - Скрипт: `05-validation/CUSTOMER_INTERVIEW_GUIDE.md`
+  - Цель: 70%+ "urgent", 50%+ платят €20+/мес
+- [ ] **DC Talent Marketplace** (8.03) — URGENCY: проекты стартуют Q3 2026
+  - 10 интервью с GC Арагона/Мадрида (general contractors строящие ЦОД)
+  - 5 интервью с data center техниками (HVAC, electrical)
+  - Цель: confirm 30%+ talent shortage + willingness to pay 20-25% placement fee
+- [ ] **Gender Pay Gap Compliance** (8.15) — дедлайн июнь 2026
+  - 10 интервью с HR-директорами компаний 150+ сотрудников
+  - Цель: 70%+ не имеют автоматизации, 50%+ платят €200+/мес
+
+**TIER 2 — следующая очередь:**
+- [ ] **Vet Clinic SaaS** (7.87) — интервью с 10 vet clinic directors + 3 страховые (Adeslas)
+- [ ] **B2B Flower Wholesale** (7.71) — 10 флористов + 5 Mercamadrid оптовиков
+- [ ] **Licitaciones Públicas** (7.70) — 15 SMEs, которые уже участвуют в тендерах
+
+### 2B. Landing Pages + Ads test
+
+- [ ] VUD Compliance: landing page + CTA "waitlist" + €50 FB test
+- [ ] Gender Pay Gap: landing page + CTA "free checklist" + €50 LinkedIn test
+- [ ] Цель CVR: >3% (>20 signups per €250 spend)
+
+### 2C. Быстрые запуски (нет интервью, просто делать)
+
+- [ ] **Finiquito Calculator** — запустить прямо сейчас (CAC=0, SEO, 4 нед MVP)
+  - Файл: `02-research/spain-niches/DEEP-DIVE-LEGALTECH-FINIQUITO.md`
+- [ ] **Wine Label QR Compliance** — EU закон в силе, 15 интервью бодег, порог 50% "да"
+- [ ] **Telegram Media ES** — 1-2 нед, первый канал → монетизация через 3 мес
+
+### 2D. Deep Dives не сделаны (требуются перед validation)
+
+- [ ] **Нотариусы digital** — оценка 7.5+, deep dive не сделан
+- [ ] **Rental Insurance comparador** — fintech, deep dive не сделан
+- [ ] **Non-Resident Mortgage Spain** — fintech, нет данных
+- [ ] **DC FM Coordinator** (8.02) — нужен операционный план (не SaaS)
+
+---
+
+## ФАЗА 3: Go/No-Go
+
+- [ ] Анализ интервью + scoring (после Фазы 2)
+- [ ] Финальный выбор 1-2 ниш
+- [ ] Engineering roadmap
+
+**Критерии Go:**
+- 70%+ интервьюируемых говорят "urgent"
+- 50%+ готовы платить конкретную цену
+- Landing CVR >3%
+- Niche score ≥ 6.0/10
+
+---
 
 ## ФАЗА 4: MVP & Launch
+
 - [ ] Выбрать 1 нишу
 - [ ] Спека MVP (1 core feature)
 - [ ] Билд (2-6 недель)
@@ -62,36 +107,23 @@
 
 ---
 
-## Приоритеты на СЕЙЧАС
+## KPI проекта
 
-1. ~~Установить топ skills~~ ✅ — niche-scorer, competitor-mapper, spain-context, market-research
-2. ~~Обновить Spain context~~ ✅ — spain-national-characteristics-2026.md + spain-regional-b2b-culture-2026.md
-3. ~~Нишевый скан #2 (CIS-модели)~~ ✅ — 20 ниш в spain-cis-adapted-niches-2026.md (Telegram, инфобиз, WhatsApp, coaching, etc.)
-4. ~~Нишевый скан #3 (новые направления)~~ ✅ — 5 ниш в NEW-NICHES-SCAN-2026.md (Elderly Care, Solar, Gestoría SaaS, Fertility, Pet Care)
-5. **NEXT: Add Batch 8 to SQLite + Validate ТОП-3**:
-   - [ ] `python3 scripts/add_niches.py tasks/staging/batch-8-new-niches.js`
-   - [ ] `python3 scripts/export_json.py`
-   - [ ] Verify в дашборде
-   - **ТОП-3 для validation (Week 1-2):**
-     - Solar Energy Marketplace (8.4/10) — best timing (INEA/INCEA Q1-Q2 2026)
-     - Elderly Care Platform (8.1/10) — highest urgency (200K дефицит cuidadores)
-     - Modern Gestoría SaaS (8.1/10) — deadline-driven (VeriFactu янв 2027)
-   - **Validation includes:**
-     - 10-15 customer interviews per niche
-     - Landing page + email waitlist test
-     - €30-50 ad test (Google/Meta) per niche
-     - Ad Library competitor scan
-     - Go/No-Go decision (recommend: Solar Energy first)
+| Метрика | Цель | Текущее |
+|---------|------|---------|
+| Ниш проскорено | 100+ | **191** ✅ |
+| Deep dives | 10+ | **19** ✅ |
+| CustDev интервью | 30+ | 0 |
+| Landing pages | 3 | 0 |
+| MVP запущен | 1 | 0 |
+| Первый платящий клиент | 1 | 0 |
 
 ---
 
-## KPI проекта
+## Ресурсы
 
-| Метрика | Цель | Текущее | Update |
-|---------|------|---------|--------|
-| Ниш проскорено | 50+ | 55+ (35 + 20 CIS) | ✅ Цель достигнута |
-| Deep dives сделано | 5 | 0 | Next phase |
-| CustDev интервью | 30+ | 0 | Deep dive фаза |
-| Landing pages | 3 | 0 | Validation фаза |
-| MVP запущен | 1 | 0 | MVP фаза |
-| Первый платящий клиент | 1 | 0 | Launch фаза |
+- **Дашборд:** https://github.com/suprunoff/spain-niches-2026 (Vercel)
+- **Фреймворки:** `01-frameworks/`
+- **Скоринг-шаблон:** `01-frameworks/NICHE_SCORING_TEMPLATES.md`
+- **Spain context:** `02-research/spain-national/`
+- **Customer interview guide:** `05-validation/CUSTOMER_INTERVIEW_GUIDE.md`
