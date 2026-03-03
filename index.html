@@ -889,6 +889,7 @@ function bars(n) {
 }
 
 function mvpC(n) {
+  if (n.mi == null || n.mx == null) return '<span class="mvp-chip mvp-med">—</span>';
   const mid = (n.mi + n.mx) / 2;
   const cls = mid <= 6 ? 'mvp-fast' : mid <= 12 ? 'mvp-med' : 'mvp-slow';
   return `<span class="mvp-chip ${cls}">${n.mi}-${n.mx} w</span>`;
@@ -993,7 +994,7 @@ function render() {
       <td class="rank"><span class="star ${isStarred ? 'on' : ''}" onclick="toggleStar(${n.rank}, event)" title="Add to shortlist">${isStarred ? '⭐' : '☆'}</span></td>
       <td><div class="niche-name">${n.name}${ddBadge}<small class="niche-sub">${n.sub}</small></div></td>
       <td>${typeBadge}</td>
-      <td><span class="score-cell ${scoreClass(n.score)}">${n.score.toFixed(2)}</span><span class="tier-badge ${tierClass(n.score)}">T${tierNum(n.score)}</span></td>
+      <td><span class="score-cell ${scoreClass(n.score)}">${n.score != null ? n.score.toFixed(2) : '—'}</span><span class="tier-badge ${tierClass(n.score)}">T${tierNum(n.score)}</span></td>
       <td>${bars(n)}</td>
       <td>${mvpC(n)}</td>
       <td class="tam">${n.tam}</td>
@@ -1040,7 +1041,7 @@ function buildStats() {
   `;
 }
 
-fetch('./data/niches.json').then(r => r.json()).then(d => { D = d; buildStats(); updateStarCount(); render(); });
+fetch('./data/niches.json').then(r => r.json()).then(d => { D = d; buildStats(); updateStarCount(); render(); }).catch(e => { console.error('Failed to load niches.json:', e); document.getElementById('nr').style.display = 'block'; document.getElementById('nr').textContent = 'Error loading data. Check console.'; });
 </script>
 
 </body>
