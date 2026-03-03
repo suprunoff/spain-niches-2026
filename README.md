@@ -61,6 +61,9 @@ tasks/                  — План и задачи
 | 2 | **Non-Resident Mortgage Broker** | **8.2** | €300-600M | ✅ Complete | `FINTECH-INDEX.md` |
 | 3 | **VeriFactu SaaS (RegTech)** | **8.0** | €250-500M | ✅ Complete | `FINTECH-INDEX.md` |
 
-⭐ = **Исследование включает 5 нишь (3 GO, 2 EXPLORE) + CustDev templates + MVP plans**
+**LATAM Diaspora Batch (новое 2026-03-02):**
+| 1 | **LATAM Diaspora Platform Spain** ⭐ | **8.2** | €235M TAM, €2-5M SAM | ✅ Ready for Validation | `DEEP-DIVE-LATAM-DIASPORA.md` |
+
+⭐ = **Исследование включает comprehensive analysis + validation plan + MVP spec**
 | 4 | Telegram-медиа империя (ES) | 8.75/10 | DEEP DIVE | `TIER1_ANALYSIS_INDEX.md` |
 | 5 | Tourist rental compliance | 9.1/10 | VALIDATED | `DELIVERABLES_TIER1_DEEPDIVE.md` |
