@@ -769,7 +769,7 @@ function renderList() {
           <span class="tag-type">${esc(n.type || '')}</span>
         </div>
       </div>
-      <span class="niche-item-score ${tierClass(t)}">${n.score.toFixed(2)}</span>
+      <span class="niche-item-score ${tierClass(t)}">${n.score != null ? n.score.toFixed(2) : '—'}</span>
       <span class="niche-item-tier badge-tier bg-t${t}" style="color:${tierColor(t)}">T${t}</span>
       <button class="btn-star${isStarred ? ' starred' : ''}" data-rank="${n.rank}" title="Star">★</button>
     `;
@@ -870,7 +870,7 @@ function renderDetail(niche) {
           </div>
         </div>
         <div class="detail-score-block">
-          <div class="detail-score ${tierClass(t)}">${niche.score.toFixed(2)}</div>
+          <div class="detail-score ${tierClass(t)}">${niche.score != null ? niche.score.toFixed(2) : '—'}</div>
           <div class="detail-score-label">Niche Score</div>
         </div>
       </div>
@@ -918,7 +918,7 @@ function renderDetail(niche) {
 
     <!-- SCORE FACTORS -->
     <div class="detail-section">
-      <div class="section-label">Score Factors · ${niche.score.toFixed(2)}</div>
+      <div class="section-label">Score Factors · ${niche.score != null ? niche.score.toFixed(2) : '—'}</div>
       <div class="factors-grid">
         ${factorRows}
       </div>
