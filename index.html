@@ -1,1048 +1,1097 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spain Niches 2026 — Intelligence Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --sidebar-bg: #0F1928;
-      --sidebar-text: #8B97A8;
-      --sidebar-text-active: #FFFFFF;
-      --sidebar-border: #1E293B;
-      --main-bg: #F5F6FA;
-      --surface: #FFFFFF;
-      --border: #E5E7EB;
-      --text-primary: #111827;
-      --text-muted: #6B7280;
-      --accent: #5C6BC0;
-      --t1: #10B981;
-      --t2: #F59E0B;
-      --t3: #F97316;
-      --t4: #9CA3AF;
-      --t1bg: rgba(16, 185, 129, 0.08);
-      --t2bg: rgba(245, 158, 11, 0.08);
-      --t3bg: rgba(249, 115, 22, 0.08);
-      --t4bg: rgba(156, 163, 175, 0.08);
-      --type-regtech: #0284C7;
-      --type-ai: #7C3AED;
-      --type-content: #DC2626;
-      --type-platform: #2563EB;
-      --type-marketplace: #EA580C;
-      --type-vertical: #0891B2;
-      --type-directory: #059669;
-      --type-edtech: #CA8A04;
-      --type-fintech: #65A30D;
-      --type-hrtech: #BE185D;
-      --type-proptech: #0369A1;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--text-primary);
-      background: var(--main-bg);
-      display: flex;
-    }
-
-    /* ━━━━━━━━━━━━━━━━━━━━━ SIDEBAR ━━━━━━━━━━━━━━━━━━━━━ */
-    .sidebar {
-      width: 160px;
-      background: var(--sidebar-bg);
-      border-right: 1px solid var(--sidebar-border);
-      padding: 20px 12px;
-      overflow-y: auto;
-      flex-shrink: 0;
-    }
-
-    .sidebar-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 24px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--sidebar-text-active);
-      padding: 8px;
-      letter-spacing: -0.3px;
-    }
-
-    .sidebar-logo-flag {
-      font-size: 20px;
-    }
-
-    .sidebar-nav {
-      list-style: none;
-      margin-bottom: 24px;
-    }
-
-    .nav-item {
-      padding: 10px 12px;
-      margin-bottom: 4px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--sidebar-text);
-      transition: all 0.2s;
-      border-left: 2px solid transparent;
-      position: relative;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-item:hover {
-      color: var(--sidebar-text-active);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .nav-item.active {
-      color: var(--sidebar-text-active);
-      background: rgba(92, 107, 192, 0.15);
-      border-left-color: var(--accent);
-    }
-
-    .nav-item-label {
-      flex: 1;
-    }
-
-    .nav-item-badge {
-      font-size: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2px 6px;
-      border-radius: 3px;
-      color: var(--sidebar-text);
-      min-width: 24px;
-      text-align: center;
-    }
-
-    .sidebar-divider {
-      height: 1px;
-      background: var(--sidebar-border);
-      margin: 16px 0;
-    }
-
-    .analytics-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--sidebar-text);
-      border: none;
-      background: none;
-      width: 100%;
-      border-radius: 6px;
-      transition: all 0.2s;
-      text-align: left;
-    }
-
-    .analytics-toggle:hover {
-      color: var(--sidebar-text-active);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .analytics-arrow {
-      margin-left: auto;
-      font-size: 10px;
-      transition: transform 0.2s;
-    }
-
-    .analytics-toggle[aria-expanded="true"] .analytics-arrow {
-      transform: rotate(90deg);
-    }
-
-    /* ━━━━━━━━━━━━━━━━━━━━━ MAIN CONTENT ━━━━━━━━━━━━━━━━━━━━━ */
-    .main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .content-header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .header-title {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      min-width: 140px;
-    }
-
-    .search-input {
-      flex: 1;
-      background: var(--main-bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 13px;
-      font-family: 'IBM Plex Mono', monospace;
-      color: var(--text-primary);
-      transition: all 0.2s;
-    }
-
-    .search-input::placeholder {
-      color: var(--text-muted);
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: var(--accent);
-      background: var(--surface);
-    }
-
-    .filter-group {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .filter-select {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 7px 10px;
-      font-size: 12px;
-      color: var(--text-primary);
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s;
-    }
-
-    .filter-select:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .result-count {
-      font-size: 12px;
-      color: var(--text-muted);
-      white-space: nowrap;
-      min-width: 120px;
-      text-align: right;
-    }
-
-    .stats-row {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 24px;
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-    }
-
-    .stat-card {
-      flex: 0 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      padding: 8px 16px;
-      min-width: 100px;
-    }
-
-    .stat-number {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 10px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      font-weight: 500;
-    }
-
-    .stat-card.t1 .stat-number { color: var(--t1); }
-    .stat-card.t2 .stat-number { color: var(--t2); }
-    .stat-card.t3 .stat-number { color: var(--t3); }
-
-    /* ━━━━━━━━━━━━━━━━━━━━━ TABLE ━━━━━━━━━━━━━━━━━━━━━ */
-    .table-container {
-      flex: 1;
-      overflow: auto;
-      background: var(--surface);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 1400px;
-    }
-
-    thead tr {
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: var(--surface);
-      z-index: 10;
-    }
-
-    th {
-      text-align: left;
-      padding: 10px 12px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      font-family: 'IBM Plex Mono', monospace;
-      white-space: nowrap;
-      cursor: pointer;
-      user-select: none;
-      border-right: 1px solid var(--border);
-    }
-
-    th:last-child {
-      border-right: none;
-    }
-
-    th:hover {
-      color: var(--accent);
-      background: var(--main-bg);
-    }
-
-    th.sorted {
-      color: var(--accent);
-    }
-
-    td {
-      padding: 9px 12px;
-      border-bottom: 1px solid var(--border);
-      border-left: 2px solid transparent;
-      vertical-align: middle;
-      background: var(--surface);
-      font-size: 12px;
-    }
-
-    tbody tr {
-      transition: background 0.1s;
-    }
-
-    tbody tr:hover td {
-      background: #F9FAFB;
-    }
-
-    tbody tr:hover td:first-child {
-      border-left-color: var(--accent);
-    }
-
-    tr.has-dd {
-      cursor: pointer;
-    }
-
-    .rank {
-      color: var(--text-muted);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      font-weight: 600;
-      width: 28px;
-    }
-
-    .niche-name {
-      font-weight: 600;
-      color: var(--text-primary);
-      max-width: 200px;
-    }
-
-    .niche-sub {
-      display: block;
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 400;
-      margin-top: 2px;
-      line-height: 1.3;
-    }
-
-    .star {
-      cursor: pointer;
-      font-size: 13px;
-      opacity: 0.3;
-      transition: opacity 0.15s, transform 0.15s;
-      display: inline-block;
-      user-select: none;
-    }
-    .star:hover { opacity: 0.8; transform: scale(1.2); }
-    .star.on { opacity: 1; }
-
-    .dd-badge {
-      display: inline-block;
-      margin-left: 6px;
-      padding: 2px 5px;
-      border-radius: 3px;
-      font-size: 9px;
-      font-weight: 700;
-      background: rgba(92, 107, 192, 0.15);
-      color: var(--accent);
-      border: 1px solid rgba(92, 107, 192, 0.3);
-    }
-
-    .type-badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 10px;
-      font-weight: 600;
-      white-space: nowrap;
-      letter-spacing: 0.2px;
-    }
-
-    .type-badge.regtech { background: rgba(2, 132, 199, 0.12); color: var(--type-regtech); }
-    .type-badge.ai { background: rgba(124, 58, 237, 0.12); color: var(--type-ai); }
-    .type-badge.content { background: rgba(220, 38, 38, 0.12); color: var(--type-content); }
-    .type-badge.platform { background: rgba(37, 99, 235, 0.12); color: var(--type-platform); }
-    .type-badge.marketplace { background: rgba(234, 88, 12, 0.12); color: var(--type-marketplace); }
-    .type-badge.vertical { background: rgba(8, 145, 178, 0.12); color: var(--type-vertical); }
-    .type-badge.directory { background: rgba(5, 150, 105, 0.12); color: var(--type-directory); }
-    .type-badge.edtech { background: rgba(202, 138, 4, 0.12); color: var(--type-edtech); }
-    .type-badge.fintech { background: rgba(101, 163, 13, 0.12); color: var(--type-fintech); }
-    .type-badge.hrtech { background: rgba(190, 24, 93, 0.12); color: var(--type-hrtech); }
-    .type-badge.proptech { background: rgba(3, 105, 161, 0.12); color: var(--type-proptech); }
-
-    .score-cell {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 14px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .score-t1 { color: var(--t1); }
-    .score-t2 { color: var(--t2); }
-    .score-t3 { color: var(--t3); }
-    .score-t4 { color: var(--t4); }
-
-    .tier-badge {
-      display: inline-block;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-size: 9px;
-      font-weight: 700;
-      white-space: nowrap;
-      margin-left: 6px;
-      letter-spacing: 0.2px;
-    }
-
-    .tier-1 { background: var(--t1bg); color: var(--t1); border: 1px solid rgba(16, 185, 129, 0.25); }
-    .tier-2 { background: var(--t2bg); color: var(--t2); border: 1px solid rgba(245, 158, 11, 0.25); }
-    .tier-3 { background: var(--t3bg); color: var(--t3); border: 1px solid rgba(249, 115, 22, 0.25); }
-    .tier-4 { background: var(--t4bg); color: var(--t4); border: 1px solid rgba(156, 163, 175, 0.25); }
-
-    .factors {
-      display: flex;
-      gap: 3px;
-      align-items: flex-end;
-      height: 32px;
-    }
-
-    .factor-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 18px;
-    }
-
-    .factor-bar {
-      width: 16px;
-      height: 28px;
-      border-radius: 1px;
-      background: #F3F4F6;
-      display: flex;
-      flex-direction: column-reverse;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .factor-fill {
-      border-radius: 1px;
-      transition: all 0.2s ease;
-    }
-
-    .factor-label {
-      font-size: 8px;
-      color: var(--text-muted);
-      margin-top: 2px;
-      font-weight: 600;
-    }
-
-    .mvp-chip {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 10px;
-      font-size: 10px;
-      font-weight: 600;
-      font-family: 'IBM Plex Mono', monospace;
-      white-space: nowrap;
-    }
-
-    .mvp-fast { background: rgba(16, 185, 129, 0.15); color: #047857; }
-    .mvp-med { background: rgba(245, 158, 11, 0.15); color: #b45309; }
-    .mvp-slow { background: rgba(249, 115, 22, 0.15); color: #ea580c; }
-
-    .tam {
-      color: var(--text-muted);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      white-space: nowrap;
-    }
-
-    .unit-cell {
-      font-size: 10px;
-      line-height: 1.4;
-    }
-
-    .unit-cac {
-      color: #059669;
-      font-family: 'IBM Plex Mono', monospace;
-      font-weight: 600;
-      display: block;
-    }
-
-    .unit-ltv {
-      color: #0284C7;
-      font-family: 'IBM Plex Mono', monospace;
-      font-weight: 600;
-      display: block;
-    }
-
-    .unit-ratio {
-      color: var(--text-muted);
-      font-size: 9px;
-      display: block;
-      margin-top: 1px;
-    }
-
-    .y1-cell {
-      font-size: 11px;
-      font-weight: 600;
-      font-family: 'IBM Plex Mono', monospace;
-      color: #7C3AED;
-    }
-
-    .gap-text {
-      color: var(--text-muted);
-      font-size: 11px;
-      line-height: 1.4;
-      max-width: 180px;
-    }
-
-    .detail-row td {
-      background: rgba(92, 107, 192, 0.03) !important;
-      border-bottom: 2px solid rgba(92, 107, 192, 0.1) !important;
-      padding: 16px 12px !important;
-    }
-
-    .detail-panel {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      padding: 4px 0;
-    }
-
-    .detail-card {
-      background: var(--main-bg);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      padding: 12px 14px;
-      border-radius: 6px;
-    }
-
-    .detail-card h4 {
-      font-size: 9px;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      margin-bottom: 8px;
-      font-weight: 700;
-      font-family: 'IBM Plex Mono', monospace;
-    }
-
-    .detail-card p {
-      font-size: 11px;
-      color: var(--text-primary);
-      line-height: 1.5;
-    }
-
-    .detail-card strong {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    .footer {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 12px 24px;
-      font-size: 11px;
-      color: var(--text-muted);
-      text-align: center;
-      letter-spacing: 0.3px;
-    }
-
-    .footer-timestamp {
-      font-family: 'IBM Plex Mono', monospace;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .no-results {
-      text-align: center;
-      padding: 48px 24px;
-      color: var(--text-muted);
-      font-size: 13px;
-    }
-
-    /* ━━━━━━━━━━━━━━━━━━━━━ TOOLTIPS ━━━━━━━━━━━━━━━━━━━━━ */
-    [data-tip] {
-      position: relative;
-      cursor: help;
-    }
-
-    [data-tip]:hover::after,
-    [data-tip]:hover::before {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    [data-tip]::after {
-      content: attr(data-tip);
-      position: absolute;
-      bottom: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--text-primary);
-      color: var(--surface);
-      font-size: 11px;
-      font-weight: 400;
-      font-family: 'Inter', sans-serif;
-      line-height: 1.5;
-      padding: 6px 9px;
-      border-radius: 5px;
-      white-space: pre-line;
-      max-width: 220px;
-      text-align: left;
-      letter-spacing: 0;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.15s ease;
-      z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    [data-tip]::before {
-      content: '';
-      position: absolute;
-      bottom: calc(100% + 3px);
-      left: 50%;
-      transform: translateX(-50%);
-      border: 5px solid transparent;
-      border-top-color: var(--text-primary);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.15s ease;
-      z-index: 1000;
-    }
-
-    /* ━━━━━━━━━━━━━━━━━━━━━ SCROLLBAR ━━━━━━━━━━━━━━━━━━━━━ */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #D1D5DB;
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #9CA3AF;
-    }
-
-    /* ━━━━━━━━━━━━━━━━━━━━━ RESPONSIVE ━━━━━━━━━━━━━━━━━━━━━ */
-    @media (max-width: 1200px) {
-      .sidebar {
-        width: 140px;
-        padding: 16px 8px;
-      }
-
-      .sidebar-logo {
-        margin-bottom: 20px;
-      }
-
-      .nav-item {
-        padding: 8px 10px;
-        font-size: 11px;
-      }
-
-      .content-header {
-        flex-wrap: wrap;
-      }
-
-      .filter-group {
-        width: 100%;
-      }
-
-      .factors {
-        gap: 2px;
-      }
-
-      .factor-bar {
-        width: 14px;
-        height: 24px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spain Niches 2026</title>
+<style>
+  :root {
+    --t1: #10b981;
+    --t2: #3b82f6;
+    --t3: #f59e0b;
+    --t4: #6b7280;
+    --accent: #6366f1;
+    --sidebar-bg: #0f172a;
+    --sidebar-hover: #1e293b;
+    --sidebar-selected: #1e3a5f;
+    --main-bg: #0d1117;
+    --card-bg: #161b22;
+    --border: #21262d;
+    --text: #e6edf3;
+    --text-muted: #7d8590;
+    --text-dim: #4d5566;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --orange: #f97316;
+    --red: #ef4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--main-bg);
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .app {
+    display: flex;
+    height: 100vh;
+  }
+
+  /* ─── LEFT PANEL ─────────────────────────────────────────── */
+  .left-panel {
+    width: 320px;
+    min-width: 280px;
+    max-width: 320px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .left-header {
+    padding: 16px 14px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .left-header h1 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .left-header h1 span.flag { font-size: 16px; }
+
+  .search-container {
+    padding: 10px 10px 6px;
+    flex-shrink: 0;
+  }
+
+  .search-container input {
+    width: 100%;
+    background: #1e293b;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 12px;
+    padding: 7px 10px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .search-container input:focus {
+    border-color: var(--accent);
+  }
+
+  .search-container input::placeholder { color: var(--text-dim); }
+
+  .filter-row {
+    padding: 0 10px 8px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .filter-select {
+    background: #1e293b;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text-muted);
+    font-size: 11px;
+    padding: 4px 6px;
+    cursor: pointer;
+    outline: none;
+    flex: 1;
+    min-width: 60px;
+    transition: border-color 0.15s;
+  }
+
+  .filter-select:focus, .filter-select:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+
+  .btn-star-filter {
+    background: #1e293b;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text-muted);
+    font-size: 12px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-star-filter.active {
+    background: #2d2a1a;
+    border-color: #ca8a04;
+    color: #fbbf24;
+  }
+
+  .btn-star-filter:hover { border-color: var(--accent); color: var(--text); }
+
+  .stats-mini {
+    padding: 4px 12px 8px;
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stats-mini span { margin-right: 8px; }
+  .stats-mini .s-t1 { color: var(--t1); }
+  .stats-mini .s-t2 { color: var(--t2); }
+  .stats-mini .s-t3 { color: var(--t3); }
+
+  .niche-list-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .niche-list-container::-webkit-scrollbar { width: 4px; }
+  .niche-list-container::-webkit-scrollbar-track { background: transparent; }
+  .niche-list-container::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 2px; }
+
+  .niche-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    transition: background 0.1s;
+    gap: 8px;
+    position: relative;
+  }
+
+  .niche-item:hover { background: var(--sidebar-hover); }
+  .niche-item.selected { background: var(--sidebar-selected); }
+
+  .niche-item-rank {
+    font-size: 10px;
+    color: var(--text-dim);
+    width: 20px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .niche-item-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .niche-item-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+
+  .niche-item-meta {
+    display: flex;
+    gap: 4px;
+    margin-top: 2px;
+    align-items: center;
+  }
+
+  .tag-type {
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: rgba(99,102,241,0.15);
+    color: #818cf8;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .niche-item-score {
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    width: 34px;
+    text-align: right;
+  }
+
+  .niche-item-tier {
+    font-size: 9px;
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 18px;
+    text-align: center;
+    padding: 2px 0;
+    border-radius: 3px;
+  }
+
+  .btn-star {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0 2px;
+    opacity: 0.3;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+
+  .btn-star.starred { opacity: 1; }
+  .niche-item:hover .btn-star { opacity: 0.6; }
+  .niche-item:hover .btn-star.starred { opacity: 1; }
+
+  .empty-list {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  /* ─── RIGHT PANEL ────────────────────────────────────────── */
+  .right-panel {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--main-bg);
+  }
+
+  .right-panel::-webkit-scrollbar { width: 6px; }
+  .right-panel::-webkit-scrollbar-track { background: transparent; }
+  .right-panel::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 3px; }
+
+  /* Empty state */
+  #emptyState {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    gap: 12px;
+  }
+
+  #emptyState .es-flag { font-size: 48px; }
+  #emptyState h2 { font-size: 18px; font-weight: 600; color: var(--text-muted); }
+  #emptyState p { font-size: 13px; }
+  #emptyState .es-hint {
+    margin-top: 8px;
+    font-size: 11px;
+    background: #1e293b;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: var(--text-dim);
+  }
+
+  /* Detail card */
+  #detailCard {
+    padding: 28px 32px 48px;
+    max-width: 900px;
+  }
+
+  /* Section header */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .detail-section {
+    margin-bottom: 28px;
+  }
+
+  /* ── HEADER ── */
+  .detail-header {
+    margin-bottom: 28px;
+  }
+
+  .detail-header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .detail-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .detail-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .detail-badges {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+
+  .badge-type {
+    background: rgba(99,102,241,0.15);
+    color: #818cf8;
+    border: 1px solid rgba(99,102,241,0.2);
+  }
+
+  .badge-tier {
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .badge-dd {
+    background: rgba(16,185,129,0.1);
+    color: #34d399;
+    border: 1px solid rgba(16,185,129,0.2);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .detail-score-block {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .detail-score {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .detail-score-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
+  /* ── THESIS ── */
+  .gap-statement {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .gtm-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding: 0 2px;
+  }
+
+  .gtm-text strong { color: var(--text-dim); font-weight: 600; }
+
+  /* ── METRICS ── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+
+  .metric-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .metric-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .metric-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .metric-sub {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .metric-null { color: var(--text-dim) !important; font-weight: 400 !important; }
+
+  /* ── SCORE FACTORS ── */
+  .factors-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .factor-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+  }
+
+  .factor-icon { font-size: 14px; flex-shrink: 0; }
+
+  .factor-body { flex: 1; min-width: 0; }
+
+  .factor-name {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .factor-bar-track {
+    height: 5px;
+    background: #1e293b;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .factor-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+
+  .factor-val {
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    width: 18px;
+    text-align: right;
+  }
+
+  /* ── DEEP DIVE ── */
+  .detail-expandable {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .expandable-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.1s;
+  }
+
+  .expandable-header:hover { background: rgba(255,255,255,0.03); }
+
+  .expandable-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .expandable-arrow {
+    color: var(--text-dim);
+    font-size: 10px;
+    transition: transform 0.2s;
+  }
+
+  .detail-expandable.open .expandable-arrow { transform: rotate(90deg); }
+
+  .expandable-body {
+    padding: 0 16px 14px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    display: none;
+  }
+
+  .detail-expandable.open .expandable-body { display: block; }
+
+  /* ─── TIER COLORS ─────────────────────────── */
+  .score-t1, .tier-t1 { color: var(--t1); }
+  .score-t2, .tier-t2 { color: var(--t2); }
+  .score-t3, .tier-t3 { color: var(--t3); }
+  .score-t4, .tier-t4 { color: var(--t4); }
+
+  .bg-t1 { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.25); }
+  .bg-t2 { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.25); }
+  .bg-t3 { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.25); }
+  .bg-t4 { background: rgba(107,114,128,0.15); border-color: rgba(107,114,128,0.25); }
+
+  .bar-green { background: var(--green); }
+  .bar-amber { background: var(--amber); }
+  .bar-orange { background: var(--orange); }
+  .bar-red { background: var(--red); }
+
+  /* ─── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 1100px) {
+    .metrics-row { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .app { flex-direction: column; }
+    .left-panel { width: 100%; max-width: 100%; height: 40vh; min-height: 280px; border-right: none; border-bottom: 1px solid var(--border); }
+    .right-panel { flex: 1; }
+    #detailCard { padding: 16px; }
+    .detail-header-top { flex-direction: column; }
+    .detail-score-block { text-align: left; }
+    .metrics-row { grid-template-columns: repeat(2, 1fr); }
+    .factors-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-<!-- ━━━━━━━━━━━━━━━━━ SIDEBAR ━━━━━━━━━━━━━━━━━ -->
-<aside class="sidebar">
-  <div class="sidebar-logo">
-    <span class="sidebar-logo-flag">🇪🇸</span>
-    <span class="sidebar-logo-text">Spain<br>Niches</span>
-  </div>
-
-  <ul class="sidebar-nav">
-    <li class="nav-item active" onclick="setTierFromNav('all', this)">
-      <span class="nav-item-label">All Niches</span>
-      <span class="nav-item-badge" data-all-count>122</span>
-    </li>
-    <li class="nav-item" onclick="setTierFromNav('1', this)">
-      <span class="nav-item-label">Tier 1</span>
-      <span class="nav-item-badge" data-t1-count>—</span>
-    </li>
-    <li class="nav-item" onclick="setTierFromNav('2', this)">
-      <span class="nav-item-label">Tier 2</span>
-      <span class="nav-item-badge" data-t2-count>—</span>
-    </li>
-    <li class="nav-item" onclick="setTierFromNav('3', this)">
-      <span class="nav-item-label">Tier 3</span>
-      <span class="nav-item-badge" data-t3-count>—</span>
-    </li>
-    <li class="nav-item" onclick="setTierFromNav('4', this)">
-      <span class="nav-item-label">Tier 4</span>
-      <span class="nav-item-badge" data-t4-count>—</span>
-    </li>
-    <li class="nav-item" onclick="setStarFilter(this)" id="star-nav">
-      <span class="nav-item-label">⭐ Shortlist</span>
-      <span class="nav-item-badge" id="star-count">0</span>
-    </li>
-  </ul>
-
-  <div class="sidebar-divider"></div>
-
-  <button class="analytics-toggle" onclick="toggleAnalytics()">
-    <span>Analytics</span>
-    <span class="analytics-arrow">▸</span>
-  </button>
-</aside>
-
-<!-- ━━━━━━━━━━━━━━━━━ MAIN CONTENT ━━━━━━━━━━━━━━━━━ -->
-<div class="main">
-  <!-- Header -->
-  <div class="content-header">
-    <div class="header-title">Niches Intelligence</div>
-    <input type="search" id="s" placeholder="🔍 Search 122 niches..." class="search-input" oninput="go()">
-    <div class="filter-group">
-      <select id="tf" class="filter-select" onchange="go()">
-        <option value="">All types</option>
-        <option>RegTech</option><option>AI</option><option>Content</option>
-        <option>Platform</option><option>Marketplace</option><option>Vertical</option>
-        <option>Directory</option><option>EdTech</option><option>FinTech</option>
-        <option>HRTech</option><option>PropTech</option><option>HealthTech</option>
-        <option>AgriTech</option><option>CleanTech</option><option>GovTech</option>
-        <option>InsurTech</option><option>TravelTech</option><option>CreatorTech</option>
-        <option>LegalTech</option><option>RetailTech</option><option>LogisticsTech</option>
-      </select>
-      <select id="mf" class="filter-select" onchange="go()">
-        <option value="">Any MVP</option>
-        <option value="fast">≤6 weeks</option>
-        <option value="med">7–12 weeks</option>
-        <option value="slow">>12 weeks</option>
-      </select>
-      <select id="tif" class="filter-select" onchange="setTierSelect(this.value)">
-        <option value="all">All tiers</option>
-        <option value="1">T1 ≥ 8.0</option>
-        <option value="2">T2 7.5–7.9</option>
-        <option value="3">T3 6.5–7.4</option>
-        <option value="4">T4 &lt; 6.5</option>
-      </select>
+<div class="app">
+  <!-- ── LEFT PANEL ── -->
+  <aside class="left-panel">
+    <div class="left-header">
+      <h1><span class="flag">🇪🇸</span> Spain Niches 2026</h1>
     </div>
-    <div class="result-count">Showing <span id="visibleCount">—</span></div>
-  </div>
 
-  <!-- Stats Row -->
-  <div class="stats-row" id="stats"></div>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search niches… (Cmd+K)" autocomplete="off">
+    </div>
 
-  <!-- Table -->
-  <div class="table-container">
-    <table>
-      <thead><tr>
-        <th onclick="srt('rank')" data-c="rank"># <span id="a-rank">↕</span></th>
-        <th onclick="srt('name')" data-c="name">Niche <span id="a-name">↕</span></th>
-        <th onclick="srt('type')" data-c="type">Type <span id="a-type">↕</span></th>
-        <th onclick="srt('score')" data-c="score" class="sorted" data-tip="Weighted score 1–10 across 8 factors">Score <span id="a-score">↓</span></th>
-        <th data-tip="🔥 Demand · 🎯 Gap (no competitors) · ⚖️ Regulation urgency · 🇪🇸 Spain fit · 💰 Monetization · 🚀 Accessibility (low barrier) · 🧑‍💻 Founder fit · ⏰ Timing">🔥 · 🎯 · ⚖️ · 🇪🇸 · 💰 · 🚀 · 🧑‍💻 · ⏰</th>
-        <th onclick="srt('mvp')" data-c="mvp" data-tip="Estimated weeks to ship a working MVP">MVP <span id="a-mvp">↕</span></th>
-        <th onclick="srt('tam')" data-c="tam" data-tip="Total Addressable Market in Spain (bottom-up estimate)">TAM <span id="a-tam">↕</span></th>
-        <th onclick="srt('cac')" data-c="cac" data-tip="CAC = Customer Acquisition Cost · LTV = Lifetime Value · ratio = LTV/CAC">CAC / LTV <span id="a-cac">↕</span></th>
-        <th onclick="srt('y1')" data-c="y1" data-tip="Projected Annual Recurring Revenue at end of Year 1 (100 customers scenario)">Y1 ARR <span id="a-y1">↕</span></th>
-        <th data-tip="Key market gap: why this niche is underserved in Spain right now">Gap</th>
-      </tr></thead>
-      <tbody id="tb"></tbody>
-    </table>
-    <div class="no-results" id="nr" style="display:none">No niches found</div>
-  </div>
+    <div class="filter-row">
+      <select id="filterType" class="filter-select">
+        <option value="">All types</option>
+      </select>
+      <select id="filterTier" class="filter-select">
+        <option value="">All tiers</option>
+        <option value="1">T1</option>
+        <option value="2">T2</option>
+        <option value="3">T3</option>
+      </select>
+      <select id="filterMvp" class="filter-select">
+        <option value="">Any MVP</option>
+        <option value="4">≤4w</option>
+        <option value="8">≤8w</option>
+      </select>
+      <button id="btnStarFilter" class="btn-star-filter" title="Show starred only">★</button>
+    </div>
 
-  <!-- Footer -->
-  <div class="footer">
-    Spain Niches Intelligence Dashboard · <span id="totalCountFooter">—</span> niches analyzed · Methodology v2 · Last updated <span class="footer-timestamp" id="timestamp">2026-03-02</span>
-  </div>
+    <div class="stats-mini" id="statsMini"></div>
+
+    <div class="niche-list-container">
+      <div id="nicheList"></div>
+    </div>
+  </aside>
+
+  <!-- ── RIGHT PANEL ── -->
+  <main class="right-panel" id="rightPanel">
+    <div id="emptyState">
+      <div class="es-flag">🇪🇸</div>
+      <h2>Spain Niches Dashboard</h2>
+      <p>Select a niche from the list to view its full profile</p>
+      <div class="es-hint">↑↓ Navigate · Enter Select · Cmd+K Search</div>
+    </div>
+    <div id="detailCard" style="display:none"></div>
+  </main>
 </div>
 
 <script>
-let D = [];
-
-let sortCol = 'score', sortAsc = false, tierF = 'all', searchF = '', typeF = '', mvpF = '', starOnly = false;
-let starred = new Set(JSON.parse(localStorage.getItem('starred') || '[]'));
-
-function saveStarred() { localStorage.setItem('starred', JSON.stringify([...starred])); }
-
-function toggleStar(rank, e) {
-  e.stopPropagation();
-  if (starred.has(rank)) starred.delete(rank); else starred.add(rank);
-  saveStarred();
-  updateStarCount();
-  render();
-}
-
-function setStarFilter(el) {
-  starOnly = !starOnly;
-  tierF = 'all';
-  document.getElementById('tif').value = 'all';
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  if (starOnly) el.classList.add('active');
-  else document.querySelector('.nav-item[onclick*="all"]').classList.add('active');
-  go();
-}
-
-function updateStarCount() {
-  document.getElementById('star-count').textContent = starred.size;
-}
-
-// Score tier logic
-const tierNum = s => s >= 8 ? 1 : s >= 7.5 ? 2 : s >= 6.5 ? 3 : 4;
-const tierClass = s => 'tier-' + tierNum(s);
-const scoreClass = s => 'score-t' + tierNum(s);
-const factorColor = v => v >= 9 ? '#10B981' : v >= 7 ? '#F59E0B' : v >= 5 ? '#F97316' : '#EF4444';
-
-const typeClass = t => {
-  const map = {
-    'RegTech': 'regtech', 'AI': 'ai', 'Content': 'content', 'Platform': 'platform',
-    'Marketplace': 'marketplace', 'Vertical': 'vertical', 'Directory': 'directory',
-    'EdTech': 'edtech', 'FinTech': 'fintech', 'HRTech': 'hrtech', 'PropTech': 'proptech'
-  };
-  return map[t] || '';
+const state = {
+  data: [],
+  filtered: [],
+  selected: null,
+  filters: { search: '', type: '', tier: '', mvp: '', starred: false },
+  starred: new Set(),
+  sortCol: 'score',
+  sortAsc: false
 };
 
-function bars(n) {
-  const fs = [
-    ['d', '🔥', 'Demand — search volume & willingness to pay'],
-    ['g', '🎯', 'Gap — absence of direct competitors in Spain'],
-    ['r', '⚖️', 'Regulation — urgency driven by legal deadlines'],
-    ['s', '🇪🇸', 'Spain fit — cultural & market alignment'],
-    ['m', '💰', 'Monetization — revenue model clarity'],
-    ['a', '🚀', 'Accessibility — low barrier to entry'],
-    ['f', '🧑‍💻', 'Founder fit — solo-buildable without big team'],
-    ['t', '⏰', 'Timing — market readiness right now'],
+// ─── UTILS ───────────────────────────────────────────────────
+
+function tierNum(score) {
+  if (score >= 8.5) return 1;
+  if (score >= 7.0) return 2;
+  if (score >= 5.5) return 3;
+  return 4;
+}
+
+function tierColor(t) {
+  return ['', 'var(--t1)', 'var(--t2)', 'var(--t3)', 'var(--t4)'][t] || 'var(--t4)';
+}
+
+function tierClass(t) {
+  return `score-t${t}`;
+}
+
+function factorColor(val) {
+  if (val >= 8) return 'bar-green';
+  if (val >= 6) return 'bar-amber';
+  if (val >= 4) return 'bar-orange';
+  return 'bar-red';
+}
+
+function factorColorHex(val) {
+  if (val >= 8) return 'var(--green)';
+  if (val >= 6) return 'var(--amber)';
+  if (val >= 4) return 'var(--orange)';
+  return 'var(--red)';
+}
+
+function fmt(val, prefix = '', suffix = '') {
+  if (val === null || val === undefined || val === '') return '—';
+  return `${prefix}${val}${suffix}`;
+}
+
+function esc(str) {
+  if (!str) return '';
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ─── DATA ────────────────────────────────────────────────────
+
+async function loadData() {
+  try {
+    const res = await fetch('data/niches.json');
+    state.data = await res.json();
+    // Sort by score desc
+    state.data.sort((a, b) => b.score - a.score);
+    // Populate type filter
+    const types = [...new Set(state.data.map(n => n.type).filter(Boolean))].sort();
+    const sel = document.getElementById('filterType');
+    types.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t;
+      opt.textContent = t;
+      sel.appendChild(opt);
+    });
+    render();
+  } catch (e) {
+    document.getElementById('nicheList').innerHTML =
+      '<div class="empty-list">Failed to load niches.json</div>';
+  }
+}
+
+// ─── FILTER ──────────────────────────────────────────────────
+
+function applyFilters() {
+  const { search, type, tier, mvp, starred } = state.filters;
+  const q = search.toLowerCase();
+  state.filtered = state.data.filter(n => {
+    if (q && !(
+      n.name.toLowerCase().includes(q) ||
+      (n.sub || '').toLowerCase().includes(q) ||
+      (n.type || '').toLowerCase().includes(q) ||
+      (n.gap || '').toLowerCase().includes(q)
+    )) return false;
+    if (type && n.type !== type) return false;
+    if (tier && tierNum(n.score) !== parseInt(tier)) return false;
+    if (mvp) {
+      const weeks = parseInt(mvp);
+      if (!n.mi || n.mi > weeks) return false;
+    }
+    if (starred && !state.starred.has(n.rank)) return false;
+    return true;
+  });
+}
+
+// ─── RENDER LIST ─────────────────────────────────────────────
+
+function renderList() {
+  const list = document.getElementById('nicheList');
+  const stats = document.getElementById('statsMini');
+
+  if (!state.filtered.length) {
+    list.innerHTML = '<div class="empty-list">No niches match</div>';
+    stats.innerHTML = 'No results';
+    return;
+  }
+
+  // Stats
+  const t1 = state.filtered.filter(n => tierNum(n.score) === 1).length;
+  const t2 = state.filtered.filter(n => tierNum(n.score) === 2).length;
+  const t3 = state.filtered.filter(n => tierNum(n.score) === 3).length;
+  stats.innerHTML = `<span class="s-t1">T1:${t1}</span><span class="s-t2">T2:${t2}</span><span class="s-t3">T3:${t3}</span><span>Total:${state.filtered.length}</span>`;
+
+  const frag = document.createDocumentFragment();
+  state.filtered.forEach((n, idx) => {
+    const t = tierNum(n.score);
+    const isSelected = state.selected && state.selected.rank === n.rank;
+    const isStarred = state.starred.has(n.rank);
+    const div = document.createElement('div');
+    div.className = `niche-item${isSelected ? ' selected' : ''}`;
+    div.dataset.rank = n.rank;
+    div.dataset.idx = idx;
+    div.innerHTML = `
+      <span class="niche-item-rank">${n.rank}</span>
+      <div class="niche-item-body">
+        <div class="niche-item-name">${esc(n.name)}</div>
+        <div class="niche-item-meta">
+          <span class="tag-type">${esc(n.type || '')}</span>
+        </div>
+      </div>
+      <span class="niche-item-score ${tierClass(t)}">${n.score.toFixed(2)}</span>
+      <span class="niche-item-tier badge-tier bg-t${t}" style="color:${tierColor(t)}">T${t}</span>
+      <button class="btn-star${isStarred ? ' starred' : ''}" data-rank="${n.rank}" title="Star">★</button>
+    `;
+    frag.appendChild(div);
+  });
+  list.innerHTML = '';
+  list.appendChild(frag);
+
+  // Scroll selected into view
+  if (state.selected) {
+    const sel = list.querySelector('.selected');
+    if (sel) sel.scrollIntoView({ block: 'nearest' });
+  }
+}
+
+// ─── RENDER DETAIL ────────────────────────────────────────────
+
+function renderDetail(niche) {
+  const card = document.getElementById('detailCard');
+  const t = tierNum(niche.score);
+  const isStarred = state.starred.has(niche.rank);
+
+  const factors = [
+    { key: 'd', icon: '🔥', label: 'Demand' },
+    { key: 'g', icon: '🎯', label: 'Gap' },
+    { key: 'r', icon: '📋', label: 'Regulatory' },
+    { key: 's', icon: '⚡', label: 'Speed' },
+    { key: 'm', icon: '💰', label: 'Monetization' },
+    { key: 'a', icon: '📣', label: 'Acquisition' },
+    { key: 'f', icon: '📈', label: 'Fundability' },
+    { key: 't', icon: '⏱', label: 'Timing' },
   ];
-  return '<div class="factors">' + fs.map(([k, l, tip]) => {
-    const v = n[k];
-    return `<div class="factor-wrap" data-tip="${tip}: ${v}/10"><div class="factor-bar"><div class="factor-fill" style="height:${v*10}%;background:${factorColor(v)}"></div></div><div class="factor-label">${l}</div></div>`;
-  }).join('') + '</div>';
-}
 
-function mvpC(n) {
-  if (n.mi == null || n.mx == null) return '<span class="mvp-chip mvp-med">—</span>';
-  const mid = (n.mi + n.mx) / 2;
-  const cls = mid <= 6 ? 'mvp-fast' : mid <= 12 ? 'mvp-med' : 'mvp-slow';
-  return `<span class="mvp-chip ${cls}">${n.mi}-${n.mx} w</span>`;
-}
-
-function unitCell(n) {
-  if (!n.cac) return '<span style="color:var(--text-muted)">—</span>';
-  const ratio = (n.ltv / n.cac).toFixed(1);
-  return `<div class="unit-cell"><span class="unit-cac">€${n.cac}</span> / <span class="unit-ltv">€${n.ltv}</span><span class="unit-ratio">${ratio}x</span></div>`;
-}
-
-function y1Cell(n) {
-  if (!n.y1) return '<span style="color:var(--text-muted)">—</span>';
-  return `<span class="y1-cell">${n.y1}</span>`;
-}
-
-function detailPanel(n) {
-  if (!n.dd) return '';
-  return `<tr class="detail-row" id="dp-${n.rank}" style="display:none"><td colspan="10">
-    <div class="detail-panel">
-      <div class="detail-card" style="border-left-color:#7C3AED"><h4>Unit Economics</h4><p>CAC <strong>€${n.cac}</strong> · LTV <strong>€${n.ltv}</strong><br>Churn ${n.churn || '—'} · Y1 <strong>${n.y1 || '—'}</strong></p></div>
-      <div class="detail-card" style="border-left-color:#DC2626"><h4>GTM Strategy</h4><p>${n.gtm || '—'}</p></div>
-      <div class="detail-card" style="border-left-color:#2563EB"><h4>MVP Scope</h4><p>${n.mvpScope || '—'}</p></div>
-      <div class="detail-card" style="border-left-color:#EA580C"><h4>Key Risks</h4><p>${n.risks || '—'}</p></div>
-    </div>
-  </td></tr>`;
-}
-
-function toggleDetail(rank) {
-  const el = document.getElementById('dp-' + rank);
-  if (el) el.style.display = el.style.display === 'none' ? 'table-row' : 'none';
-}
-
-function toggleAnalytics() {
-  // Placeholder for analytics toggle
-  console.log('Analytics toggle clicked');
-}
-
-function go() {
-  searchF = document.getElementById('s').value.toLowerCase();
-  typeF = document.getElementById('tf').value;
-  mvpF = document.getElementById('mf').value;
-  render();
-}
-
-function setTierSelect(t) {
-  tierF = t;
-  setTierFromNav(t, document.querySelector(`[onclick*="setTierFromNav('${t}'"]`));
-  go();
-}
-
-function setTierFromNav(t, el) {
-  tierF = t;
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  if (el) el.classList.add('active');
-  document.getElementById('tif').value = t;
-  go();
-}
-
-function srt(col) {
-  if (sortCol === col) sortAsc = !sortAsc;
-  else { sortCol = col; sortAsc = col !== 'score'; }
-  ['rank', 'name', 'type', 'score', 'mvp', 'tam', 'cac', 'y1'].forEach(c => {
-    const el = document.getElementById('a-' + c);
-    if (el) el.textContent = c === sortCol ? (sortAsc ? '↑' : '↓') : '↕';
-  });
-  document.querySelectorAll('th[data-c]').forEach(th => {
-    th.classList.toggle('sorted', th.dataset.c === sortCol);
-  });
-  go();
-}
-
-function render() {
-  let data = [...D];
-  if (starOnly) data = data.filter(n => starred.has(n.rank));
-  else if (tierF !== 'all') data = data.filter(n => tierNum(n.score) === +tierF);
-  if (searchF) data = data.filter(n => n.name.toLowerCase().includes(searchF) || n.sub.toLowerCase().includes(searchF) || n.type.toLowerCase().includes(searchF) || n.gap.toLowerCase().includes(searchF));
-  if (typeF) data = data.filter(n => n.type === typeF);
-  if (mvpF === 'fast') data = data.filter(n => n.mx <= 6);
-  else if (mvpF === 'med') data = data.filter(n => n.mi >= 7 && n.mx <= 12);
-  else if (mvpF === 'slow') data = data.filter(n => n.mi > 12);
-
-  data.sort((a, b) => {
-    let va = a[sortCol], vb = b[sortCol];
-    if (sortCol === 'mvp') { va = a.mi; vb = b.mi; }
-    if (sortCol === 'cac') { va = a.cac || 9999; vb = b.cac || 9999; }
-    if (sortCol === 'y1') { va = a.y1n || 0; vb = b.y1n || 0; }
-    if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
-    return sortAsc ? (va - vb) : (vb - va);
-  });
-
-  document.getElementById('totalCountFooter').textContent = D.length;
-  document.getElementById('visibleCount').textContent = data.length + ' niche' + (data.length !== 1 ? 's' : '');
-  document.getElementById('nr').style.display = data.length ? 'none' : 'block';
-  document.getElementById('tb').innerHTML = data.map((n, i) => {
-    const ddBadge = n.dd ? '<span class="dd-badge">DD ✓</span>' : '';
-    const typeC = typeClass(n.type);
-    const typeBadge = `<span class="type-badge ${typeC}">${n.type}</span>`;
-    const isStarred = starred.has(n.rank);
-    const clickAttr = n.dd ? `class="has-dd" onclick="toggleDetail(${n.rank})"` : '';
-    return `<tr ${clickAttr}>
-      <td class="rank"><span class="star ${isStarred ? 'on' : ''}" onclick="toggleStar(${n.rank}, event)" title="Add to shortlist">${isStarred ? '⭐' : '☆'}</span></td>
-      <td><div class="niche-name">${n.name}${ddBadge}<small class="niche-sub">${n.sub}</small></div></td>
-      <td>${typeBadge}</td>
-      <td><span class="score-cell ${scoreClass(n.score)}">${n.score != null ? n.score.toFixed(2) : '—'}</span><span class="tier-badge ${tierClass(n.score)}">T${tierNum(n.score)}</span></td>
-      <td>${bars(n)}</td>
-      <td>${mvpC(n)}</td>
-      <td class="tam">${n.tam}</td>
-      <td>${unitCell(n)}</td>
-      <td>${y1Cell(n)}</td>
-      <td class="gap-text">${n.gap}</td>
-    </tr>${detailPanel(n)}`;
+  const factorRows = factors.map(f => {
+    const val = niche[f.key];
+    if (val === null || val === undefined) return '';
+    const pct = (val / 10) * 100;
+    const colorClass = factorColor(val);
+    const colorHex = factorColorHex(val);
+    return `
+      <div class="factor-row">
+        <span class="factor-icon">${f.icon}</span>
+        <div class="factor-body">
+          <div class="factor-name">${f.label}</div>
+          <div class="factor-bar-track">
+            <div class="factor-bar-fill ${colorClass}" style="width:${pct}%"></div>
+          </div>
+        </div>
+        <span class="factor-val" style="color:${colorHex}">${val}</span>
+      </div>
+    `;
   }).join('');
 
-  // Update sidebar badge counts
-  const t1 = D.filter(n => n.score >= 8).length;
-  const t2 = D.filter(n => n.score >= 7.5 && n.score < 8).length;
-  const t3 = D.filter(n => n.score >= 6.5 && n.score < 7.5).length;
-  const t4 = D.filter(n => n.score < 6.5).length;
-  document.querySelector('[data-t1-count]').textContent = t1;
-  document.querySelector('[data-t2-count]').textContent = t2;
-  document.querySelector('[data-t3-count]').textContent = t3;
-  document.querySelector('[data-t4-count]').textContent = t4;
-}
+  const mvpStr = (niche.mi && niche.mx) ? `${niche.mi}–${niche.mx}w` : (niche.mi ? `${niche.mi}w` : '—');
+  const cacStr = niche.cac ? `€${niche.cac}` : '—';
+  const ltvStr = niche.ltv ? `€${niche.ltv}` : '—';
+  const ltvCac = (niche.cac && niche.ltv) ? (niche.ltv / niche.cac).toFixed(1) + 'x' : '—';
+  const y1Str = fmt(niche.y1);
+  const tamStr = fmt(niche.tam);
 
-function buildStats() {
-  const t1 = D.filter(n => n.score >= 8).length;
-  const t2 = D.filter(n => n.score >= 7.5 && n.score < 8).length;
-  const t3 = D.filter(n => n.score >= 6.5 && n.score < 7.5).length;
-  const avgScore = (D.reduce((sum, n) => sum + n.score, 0) / D.length).toFixed(2);
+  // Deep dive expandables
+  let deepDiveHtml = '';
+  if (niche.dd) {
+    const sections = [
+      { icon: '🚀', title: 'GTM Strategy', content: niche.gtm },
+      { icon: '⚠️', title: 'Key Risks', content: niche.risks },
+      { icon: '🔧', title: 'MVP Scope', content: niche.mvpScope },
+    ];
+    deepDiveHtml = `
+      <div class="detail-section">
+        <div class="section-label">Deep Dive</div>
+        ${sections.map(s => s.content ? `
+          <div class="detail-expandable" data-section="${esc(s.title)}">
+            <div class="expandable-header">
+              <span class="expandable-title">${s.icon} ${esc(s.title)}</span>
+              <span class="expandable-arrow">▶</span>
+            </div>
+            <div class="expandable-body">${esc(s.content)}</div>
+          </div>
+        ` : '').join('')}
+      </div>
+    `;
+  }
 
-  document.getElementById('stats').innerHTML = `
-    <div class="stat-card t1">
-      <div class="stat-number">${t1}</div>
-      <div class="stat-label">Tier 1 ≥8.0</div>
+  card.innerHTML = `
+    <!-- HEADER -->
+    <div class="detail-header">
+      <div class="detail-header-top">
+        <div>
+          <div class="detail-name">${esc(niche.name)}</div>
+          ${niche.sub ? `<div class="detail-sub">${esc(niche.sub)}</div>` : ''}
+          <div class="detail-badges">
+            <span class="badge badge-type">${esc(niche.type || '')}</span>
+            <span class="badge badge-tier bg-t${t}" style="color:${tierColor(t)}">Tier ${t}</span>
+            ${niche.dd ? '<span class="badge-dd">Deep Dive</span>' : ''}
+            ${niche.churn ? `<span class="badge" style="background:rgba(107,114,128,0.1);color:var(--text-dim);border:1px solid var(--border)">Churn ${esc(niche.churn)}</span>` : ''}
+            <button class="btn-star${isStarred ? ' starred' : ''}" style="opacity:1;font-size:16px" data-rank="${niche.rank}" title="Star this niche">★</button>
+          </div>
+        </div>
+        <div class="detail-score-block">
+          <div class="detail-score ${tierClass(t)}">${niche.score.toFixed(2)}</div>
+          <div class="detail-score-label">Niche Score</div>
+        </div>
+      </div>
     </div>
-    <div class="stat-card t2">
-      <div class="stat-number">${t2}</div>
-      <div class="stat-label">Tier 2 7.5–7.9</div>
+
+    <!-- THESIS -->
+    <div class="detail-section">
+      <div class="section-label">Thesis</div>
+      ${niche.gap ? `<div class="gap-statement">${esc(niche.gap)}</div>` : ''}
+      ${niche.gtm && !niche.dd ? `<div class="gtm-text"><strong>Entry:</strong> ${esc(niche.gtm)}</div>` : ''}
+      ${!niche.gap && !niche.gtm ? `<div class="gtm-text" style="color:var(--text-dim)">No thesis data</div>` : ''}
     </div>
-    <div class="stat-card t3">
-      <div class="stat-number">${t3}</div>
-      <div class="stat-label">Tier 3 6.5–7.4</div>
+
+    <!-- METRICS -->
+    <div class="detail-section">
+      <div class="section-label">Metrics</div>
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-label">TAM</div>
+          <div class="metric-value ${tamStr === '—' ? 'metric-null' : ''}">${tamStr}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">MVP</div>
+          <div class="metric-value ${mvpStr === '—' ? 'metric-null' : ''}">${mvpStr}</div>
+          ${mvpStr !== '—' ? '<div class="metric-sub">weeks</div>' : ''}
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">CAC</div>
+          <div class="metric-value ${cacStr === '—' ? 'metric-null' : ''}">${cacStr}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">LTV</div>
+          <div class="metric-value ${ltvStr === '—' ? 'metric-null' : ''}">${ltvStr}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">LTV/CAC</div>
+          <div class="metric-value ${ltvCac === '—' ? 'metric-null' : ''}">${ltvCac}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Y1 ARR</div>
+          <div class="metric-value ${y1Str === '—' ? 'metric-null' : ''}">${y1Str}</div>
+        </div>
+      </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-number" style="color:#5C6BC0">${avgScore}</div>
-      <div class="stat-label">Avg Score</div>
+
+    <!-- SCORE FACTORS -->
+    <div class="detail-section">
+      <div class="section-label">Score Factors · ${niche.score.toFixed(2)}</div>
+      <div class="factors-grid">
+        ${factorRows}
+      </div>
     </div>
+
+    ${deepDiveHtml}
   `;
 }
 
-fetch('./data/niches.json').then(r => r.json()).then(d => { D = d; buildStats(); updateStarCount(); render(); }).catch(e => { console.error('Failed to load niches.json:', e); document.getElementById('nr').style.display = 'block'; document.getElementById('nr').textContent = 'Error loading data. Check console.'; });
-</script>
+// ─── SELECT NICHE ─────────────────────────────────────────────
 
+function selectNiche(rank) {
+  const niche = state.filtered.find(n => n.rank === parseInt(rank));
+  if (!niche) return;
+  state.selected = niche;
+
+  document.getElementById('emptyState').style.display = 'none';
+  const card = document.getElementById('detailCard');
+  card.style.display = 'block';
+  renderDetail(niche);
+  renderList(); // update selected highlight
+
+  // Scroll right panel to top
+  document.getElementById('rightPanel').scrollTop = 0;
+}
+
+function clearSelection() {
+  state.selected = null;
+  document.getElementById('emptyState').style.display = 'flex';
+  document.getElementById('detailCard').style.display = 'none';
+  renderList();
+}
+
+// ─── STAR ─────────────────────────────────────────────────────
+
+function toggleStar(rank, e) {
+  e.stopPropagation();
+  rank = parseInt(rank);
+  if (state.starred.has(rank)) {
+    state.starred.delete(rank);
+  } else {
+    state.starred.add(rank);
+  }
+  // Persist
+  localStorage.setItem('starred', JSON.stringify([...state.starred]));
+
+  // Re-render if star filter is on
+  if (state.filters.starred) {
+    render();
+  } else {
+    renderList();
+    if (state.selected && state.selected.rank === rank) {
+      renderDetail(state.selected);
+    }
+  }
+}
+
+// ─── KEYBOARD ────────────────────────────────────────────────
+
+function handleKeyDown(e) {
+  // Cmd+K: focus search
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+    document.getElementById('searchInput').select();
+    return;
+  }
+
+  // Skip if typing in input
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+  const len = state.filtered.length;
+  if (!len) return;
+
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    let idx = state.selected
+      ? state.filtered.findIndex(n => n.rank === state.selected.rank)
+      : -1;
+    if (e.key === 'ArrowDown') idx = Math.min(idx + 1, len - 1);
+    else idx = Math.max(idx - 1, 0);
+    selectNiche(state.filtered[idx].rank);
+  }
+
+  if (e.key === 'Escape') {
+    clearSelection();
+  }
+}
+
+// ─── RENDER (master) ─────────────────────────────────────────
+
+function render() {
+  applyFilters();
+  renderList();
+  if (state.selected) {
+    const stillExists = state.filtered.find(n => n.rank === state.selected.rank);
+    if (stillExists) {
+      state.selected = stillExists;
+      renderDetail(stillExists);
+    } else {
+      clearSelection();
+    }
+  }
+}
+
+// ─── EVENT BINDINGS ──────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Load starred from localStorage
+  try {
+    const saved = JSON.parse(localStorage.getItem('starred') || '[]');
+    state.starred = new Set(saved);
+  } catch (_) {}
+
+  loadData();
+
+  // Search
+  document.getElementById('searchInput').addEventListener('input', e => {
+    state.filters.search = e.target.value;
+    render();
+  });
+
+  // Filters
+  document.getElementById('filterType').addEventListener('change', e => {
+    state.filters.type = e.target.value;
+    render();
+  });
+
+  document.getElementById('filterTier').addEventListener('change', e => {
+    state.filters.tier = e.target.value;
+    render();
+  });
+
+  document.getElementById('filterMvp').addEventListener('change', e => {
+    state.filters.mvp = e.target.value;
+    render();
+  });
+
+  document.getElementById('btnStarFilter').addEventListener('click', () => {
+    state.filters.starred = !state.filters.starred;
+    document.getElementById('btnStarFilter').classList.toggle('active', state.filters.starred);
+    render();
+  });
+
+  // Niche list clicks (delegated)
+  document.getElementById('nicheList').addEventListener('click', e => {
+    const starBtn = e.target.closest('.btn-star');
+    if (starBtn) {
+      toggleStar(starBtn.dataset.rank, e);
+      return;
+    }
+    const item = e.target.closest('.niche-item');
+    if (item) {
+      selectNiche(item.dataset.rank);
+    }
+  });
+
+  // Detail card clicks (delegated — expandables + star)
+  document.getElementById('detailCard').addEventListener('click', e => {
+    const starBtn = e.target.closest('.btn-star');
+    if (starBtn) {
+      toggleStar(starBtn.dataset.rank, e);
+      return;
+    }
+    const expHeader = e.target.closest('.expandable-header');
+    if (expHeader) {
+      expHeader.closest('.detail-expandable').classList.toggle('open');
+    }
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', handleKeyDown);
+});
+</script>
 </body>
 </html>
