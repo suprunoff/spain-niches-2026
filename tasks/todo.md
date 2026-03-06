@@ -12,8 +12,9 @@
 - [x] Установить скиллы: niche-scorer, competitor-mapper, spain-context, market-research
 - [x] SQLite pipeline: niches.db → data/niches.json → Vercel дашборд
 - [x] Дашборд (Apollo.io style): тёмный sidebar, tooltips, shortlist, tier-фильтры
+- [x] Дашборд rewrite (2026-03-03): Master-Detail layout, 320px left panel + flex right, keyboard nav, expandable deep dives, null-safe metrics
 
-## ФАЗА 1: Discovery ✅ COMPLETE (191 ниша, все проскорены)
+## ФАЗА 1: Discovery ✅ COMPLETE (208 ниш, все проскорены, 0 nulls)
 
 ### 1A. Макро-анализ ✅
 - [x] Digital economy overview → `02-research/spain-macro/`
@@ -48,6 +49,8 @@
 - [ ] **VUD Compliance** (9.08) — 10 интервью с владельцами туристических квартир
   - Скрипт: `05-validation/CUSTOMER_INTERVIEW_GUIDE.md`
   - Цель: 70%+ "urgent", 50%+ платят €20+/мес
+- [ ] **Digital Nomad Concierge** (8.02) — CAC €22 → LTV €2400 (110x!). Landing + Reddit nomad communities
+- [ ] **DC Subcontractor Platform** (7.78) — 5 интервью GC (ACS, Ferrovial). Окно 2026-2028
 - [ ] **DC Talent Marketplace** (8.03) — URGENCY: проекты стартуют Q3 2026
   - 10 интервью с GC Арагона/Мадрида (general contractors строящие ЦОД)
   - 5 интервью с data center техниками (HVAC, electrical)
@@ -111,7 +114,7 @@
 
 | Метрика | Цель | Текущее |
 |---------|------|---------|
-| Ниш проскорено | 100+ | **191** ✅ |
+| Ниш проскорено | 100+ | **208** ✅ |
 | Deep dives | 10+ | **19** ✅ |
 | CustDev интервью | 30+ | 0 |
 | Landing pages | 3 | 0 |

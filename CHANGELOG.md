@@ -348,3 +348,23 @@ All project activities in reverse chronological order.
 - **Validation Method:** Founder + customer interviews over surveys
 - **Depth:** Deep dives on vertical solutions, not horizontal SaaS
 - **MVP Priority:** Build for 1 niche, not 10 simultaneously
+
+## 2026-03-06 — Discovery Phase закрыта: 208 ниш, US-арбитраж, Construction+DC ресёрч
+
+### Фиксы
+- Прод-фикс: null score → `.toFixed()` crash — null-safe рендер (3 места в index.html)
+- Проскорено 32 нулевых ниши (ID 123-165)
+
+### Новые ниши (+17, итого 208)
+- Construction/DC: DC Subcontractor (7.78), BIM SME (7.47), DC Commissioning (7.40), Construction Fintech (6.75)
+- B2C неочевидные: Digital Nomad Concierge (8.02), Online Therapy (7.44), Health Monitoring, Caregiver, Extraescolares, Slow Tourism, Post-Death Admin
+- US→Spain арбитраж: MaintainX clone (7.40), Beehiiv clone (7.25), ServiceTitan clone (7.22), EWA (7.18), Partiful clone (7.09), Goldie clone (6.82)
+
+### Ресёрч проведён
+- ConTech Spain: €83.5B рынок, BIM mandate апр 2024, CAE saturated
+- DC Construction: AWS €33.7B, 2300+ MW, 0 Spain SaaS
+- B2B/B2C цветы: Blom Market (2020) = конкурент → B2B оценка 7.55→6.56
+- US→Spain арбитраж: 50+ платформ, 3 агента параллельно
+
+### Оценки пересмотрены
+- B2B Flowers ID 180: 7.55 → 6.56 (Blom Market confirmation)
